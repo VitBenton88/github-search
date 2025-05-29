@@ -17,7 +17,7 @@ const mockContext: SearchContextType = {
   repositories: []
 }
 
-describe('SearchForm', () => {
+describe('Search Form', () => {
   const renderComponent = (propData = mockDefaultProps, contextValue = mockContext) => render(
     <SearchContext.Provider value={contextValue}>
       <Form {...propData} />
