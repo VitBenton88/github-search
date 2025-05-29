@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom'
 import { getRepository } from '@/api'
 import type { RepositoryType } from '@/types/repository'
 import Loader from '@/components/Loader'
-import ExternalLink from '@/components/ExternalLink'
 import Nav from '@/components/Nav'
 import Details from './Details'
 import Access from './Access'
 import Header from './Header'
+import Links from './Links'
 
 const Repository: FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -37,7 +37,6 @@ const Repository: FC = () => {
   return (
     <>
       <Nav data-testid="nav" />
-
       {!repository?.id ?
         (<p data-testid="not-found">Repository not found.</p>)
         : (
@@ -47,22 +46,7 @@ const Repository: FC = () => {
             <aside>
               <Details repository={repository} data-testid="details" />
               <Access repository={repository} data-testid="access" />
-
-              <section>
-                <header>
-                  <h4>Links:</h4>
-                </header>
-                <ul>
-                  {!!repository.homepage &&
-                    (<li>
-                      <ExternalLink href={repository.homepage}>Homepage &rarr;</ExternalLink>
-                    </li>)
-                  }
-                  <li>
-                    <ExternalLink href={repository.html_url}>GitHub &rarr;</ExternalLink>
-                  </li>
-                </ul>
-              </section>
+              <Links repository={repository} data-testid="links" />
             </aside>
           </main>
         )}
