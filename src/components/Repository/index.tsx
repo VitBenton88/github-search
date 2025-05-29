@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState, type FC } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getRepository } from '@/api'
 import type { RepositoryType } from '@/types/repository'
-import Loader from '../Loader'
-import ExternalLink from '../ExternalLink'
+import Loader from '@/components/Loader'
+import ExternalLink from '@/components/ExternalLink'
+import Nav from '@/components/Nav'
 
 const Repository: FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType | null>(null)
   const { name, owner } = useParams<{ owner: string, name: string }>()
-  const navigate = useNavigate()
 
   const formatDisplayDate = useCallback((isoString: string): string => {
     const date = new Date(isoString);
@@ -38,11 +38,7 @@ const Repository: FC = () => {
 
   return (
     <>
-      <nav data-testid="nav">
-        <button data-testid="back-btn" type="button" onClick={() => navigate('/')}>
-          &larr; Back to search
-        </button>
-      </nav>
+      <Nav data-testid="nav" />
 
       {!repository?.id ?
         (<p data-testid="not-found">Repository not found.</p>)

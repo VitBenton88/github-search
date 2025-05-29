@@ -3,7 +3,6 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { describe, it, beforeEach, expect, vi, type Mock } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../index'
-import userEvent from '@testing-library/user-event'
 import { mockRepo } from '@/test/__mocks__/repositories.js'
 
 const mockNavigate = vi.fn()
@@ -37,7 +36,6 @@ describe('Repository', () => {
     );
 
   const elements = {
-    get backBtn() { return screen.getByTestId('back-btn'); },
     get description() { return screen.queryByTestId('description'); },
     get downloads() { return screen.queryByTestId('downloads'); },
     get nav() { return screen.queryByTestId('nav'); },
@@ -92,22 +90,5 @@ describe('Repository', () => {
         expect(title).not.toBeInTheDocument()
       })
     })
-  });
-
-  describe('behavior', () => {
-    describe('when clicking back button', () => {
-      beforeEach(async () => {
-        (getRepository as Mock).mockResolvedValue(mockRepo);
-
-        await waitFor(async () => {
-          renderComponent();
-          await userEvent.click(elements.backBtn);
-        })
-      })
-
-      it('should navigate user to home route', () => {
-        expect(mockNavigate).toHaveBeenCalledWith('/')
-      })
-    });
   });
 })
