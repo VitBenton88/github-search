@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { describe, it, beforeEach, expect, vi } from 'vitest'
+import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import Nav from '../index'
 
@@ -15,7 +16,12 @@ vi.mock('react-router-dom', async () => {
 
 
 describe('Nav', () => {
-  const renderComponent = () => render(<Nav />);
+  const renderComponent = () =>
+    render(
+      <MemoryRouter initialEntries={['/repo/mock-owner/mock-repo']}>
+        <Nav />
+      </MemoryRouter>
+    );
 
   const elements = {
     get backBtn() { return screen.getByTestId('back-btn'); },
