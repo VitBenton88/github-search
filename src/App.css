@@ -37,6 +37,10 @@ main#search form {
   width: 100%;
 }
 
+main#search form fieldset {
+  padding: 1em;
+}
+
 table {
   margin-top: 1em;
 }
