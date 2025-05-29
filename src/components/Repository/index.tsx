@@ -6,6 +6,7 @@ import Loader from '@/components/Loader'
 import ExternalLink from '@/components/ExternalLink'
 import Nav from '@/components/Nav'
 import Header from './Header'
+import Details from './Details'
 
 const Repository: FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -43,17 +44,7 @@ const Repository: FC = () => {
             <Header repository={repository} data-testid="header" />
 
             <aside>
-              <section>
-                <header>
-                  <h4>Details:</h4>
-                </header>
-                <ul>
-                  <li>Language: {repository.language}</li>
-                  <li>Size: {repository.size} bytes</li>
-                  <li data-testid="downloads">{repository.has_downloads ? 'Has downloads' : 'No downloads'}</li>
-                  <li>{repository.allow_forking ? 'Allows forking' : 'Does not allow forking'}</li>
-                </ul>
-              </section>
+              <Details repository={repository} data-testid="details" />
 
               <section>
                 <header>

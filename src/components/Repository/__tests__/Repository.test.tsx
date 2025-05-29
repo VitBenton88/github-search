@@ -36,7 +36,7 @@ describe('Repository', () => {
     );
 
   const elements = {
-    get downloads() { return screen.queryByTestId('downloads'); },
+    get details() { return screen.queryByTestId('details'); },
     get header() { return screen.queryByTestId('header'); },
     get nav() { return screen.queryByTestId('nav'); },
     get notFoundWarning() { return screen.queryByTestId('not-found'); },
@@ -61,12 +61,11 @@ describe('Repository', () => {
       })
 
 
-      it('should render correct repository data', () => {
-        expect(elements.downloads).toHaveTextContent('Has downloads')
+      it('should render repository details', () => {
+        expect(elements.details).toBeInTheDocument()
       })
 
-
-      it('should not render no repo warning', () => {
+      it('should not render no repository warning', () => {
         expect(elements.notFoundWarning).not.toBeInTheDocument()
       })
 
@@ -85,9 +84,10 @@ describe('Repository', () => {
       })
 
       it('should only render warning', () => {
-        const { header, notFoundWarning } = elements;
+        const { details, header, notFoundWarning } = elements;
 
         expect(notFoundWarning).toBeInTheDocument()
+        expect(details).not.toBeInTheDocument()
         expect(header).not.toBeInTheDocument()
       })
     })
