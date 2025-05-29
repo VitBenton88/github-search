@@ -1,54 +1,36 @@
-# React + TypeScript + Vite
+# GitHub Repository Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive and accessible web application that allows users to search for GitHub repositories, view detailed information, and manage favorites. Built with React, TypeScript, and Vite, this project emphasizes performance, accessibility, and user experience.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 **Search GitHub Repositories**: Enter keywords to find repositories.
+- ⭐ **Manage Favorites**: Toggle favorites for easy access.
+- 📄 **Repository Details**: View comprehensive information about selected repositories.
+- 🎨 **Responsive Design**: Optimized for various screen sizes.
+- ♿ **Accessibility**: Keyboard and screen-reader friendly.
+- 🌙 **Dark Mode Support**: Seamless transition between light and dark themes.
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React**: Frontend library for building user interfaces.
+- **TypeScript**: Typed superset of JavaScript for enhanced code quality.
+- **Vite**: Fast build tool and development server.
+- **ESLint**: Linting utility for maintaining code standards.
+- **Jest**: Testing framework for ensuring code reliability.
+- **GitHub REST API**: [Official GitHub REST API documentation](https://docs.github.com/en/rest?apiVersion=2022-11-28) used for fetching repository data.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 📦 Getting Started
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Node.js** (version 14 or higher)
+- **npm** (version 6 or higher)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/VitBenton88/lf-may-assignment.git
+   cd lf-may-assignment
