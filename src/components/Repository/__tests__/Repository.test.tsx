@@ -33,6 +33,7 @@ describe('Repository', () => {
     );
 
   const elements = {
+    get access() { return screen.queryByTestId('access'); },
     get details() { return screen.queryByTestId('details'); },
     get header() { return screen.queryByTestId('header'); },
     get nav() { return screen.queryByTestId('nav'); },
@@ -58,6 +59,7 @@ describe('Repository', () => {
       })
 
       it('should render repository details', () => {
+        expect(elements.access).toBeInTheDocument()
         expect(elements.details).toBeInTheDocument()
       })
 
@@ -80,9 +82,10 @@ describe('Repository', () => {
       })
 
       it('should only render warning', () => {
-        const { details, header, notFoundWarning } = elements;
+        const { access, details, header, notFoundWarning } = elements;
 
         expect(notFoundWarning).toBeInTheDocument()
+        expect(access).not.toBeInTheDocument()
         expect(details).not.toBeInTheDocument()
         expect(header).not.toBeInTheDocument()
       })
