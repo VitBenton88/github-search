@@ -32,7 +32,7 @@ A responsive and accessible web application that allows users to search for GitH
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/VitBenton88/lf-may-assignment.git
+   git clone https://github.com/VitBenton88/github-search.git
    cd github-search
 
 2. **Install dependencies**:
