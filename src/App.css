@@ -71,25 +71,6 @@ button[type="submit"] {
   }
 }
 
-/* Mobile styles */
-
-@media (max-width: 768px) {
-  main#repository {
-    flex-direction: column;
-  }
-
-  main#repository header,
-  main#repository aside {
-    width: auto;
-  }
-
-  main#repository aside {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-}
-
 /* User color schemes */
 
 @media (prefers-color-scheme: light) {

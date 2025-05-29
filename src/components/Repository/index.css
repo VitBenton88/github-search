@@ -29,3 +29,22 @@ main#repository aside {
 main#repository h4 {
   margin: 0;
 }
+
+/* Mobile styles */
+
+@media (max-width: 768px) {
+  main#repository {
+    flex-direction: column;
+  }
+
+  main#repository header,
+  main#repository aside {
+    width: auto;
+  }
+
+  main#repository aside {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
