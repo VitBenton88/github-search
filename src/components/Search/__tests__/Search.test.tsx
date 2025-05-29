@@ -25,6 +25,7 @@ describe('Search', () => {
   const elements = {
     get loader() { return screen.queryByTestId('loader'); },
     get noSearch() { return screen.queryByTestId('noSearch'); },
+    get pageNotFound() { return screen.queryByTestId('pageNotFound'); },
     get searchForm() { return screen.getByTestId('searchForm'); },
     get searchResults() { return screen.queryByTestId('searchResults'); },
   };
@@ -51,6 +52,10 @@ describe('Search', () => {
 
       it('should not render a loader', () => {
         expect(elements.loader).not.toBeInTheDocument()
+      })
+
+      it('should not render page not found message', () => {
+        expect(elements.pageNotFound).not.toBeInTheDocument()
       })
     })
 
