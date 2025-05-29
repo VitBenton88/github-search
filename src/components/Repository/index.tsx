@@ -1,20 +1,16 @@
-import { useCallback, useEffect, useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import { useParams } from 'react-router-dom'
 import { getRepository } from '@/api'
 import type { RepositoryType } from '@/types/repository'
 import Loader from '@/components/Loader'
 import ExternalLink from '@/components/ExternalLink'
 import Nav from '@/components/Nav'
+import Header from './Header'
 
 const Repository: FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType | null>(null)
   const { name, owner } = useParams<{ owner: string, name: string }>()
-
-  const formatDisplayDate = useCallback((isoString: string): string => {
-    const date = new Date(isoString);
-    return date.toLocaleString();
-  }, [])
 
   useEffect(() => {
     const fetchRepository = async () => {
@@ -44,16 +40,7 @@ const Repository: FC = () => {
         (<p data-testid="not-found">Repository not found.</p>)
         : (
           <main id="repository">
-            <header>
-              <h1 data-testid="title">{repository.name}</h1>
-              <small aria-label={`${repository.stargazers_count} stars`}>⭐ {repository.stargazers_count}</small>
-              {!!repository.description &&
-                (<h2 data-testid="description">{repository.description}</h2>)
-              }
-              <h3>Owner: <ExternalLink data-testid="owner-link" href={repository.owner_url}>{repository.owner} &rarr;</ExternalLink></h3>
-              <h4>Created: {formatDisplayDate(repository.created_at)}</h4>
-              <h4>Updated: {formatDisplayDate(repository.updated_at)}</h4>
-            </header>
+            <Header repository={repository} data-testid="header" />
 
             <aside>
               <section>

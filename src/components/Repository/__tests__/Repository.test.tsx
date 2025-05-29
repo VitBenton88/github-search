@@ -36,12 +36,10 @@ describe('Repository', () => {
     );
 
   const elements = {
-    get description() { return screen.queryByTestId('description'); },
     get downloads() { return screen.queryByTestId('downloads'); },
+    get header() { return screen.queryByTestId('header'); },
     get nav() { return screen.queryByTestId('nav'); },
     get notFoundWarning() { return screen.queryByTestId('not-found'); },
-    get ownerLink() { return screen.queryByTestId('owner-link'); },
-    get title() { return screen.queryByTestId('title'); },
   };
 
   describe('render', () => {
@@ -58,21 +56,24 @@ describe('Repository', () => {
         expect(elements.nav).toBeInTheDocument()
       })
 
-      it('should render correct repository data', () => {
-        const { description, downloads, notFoundWarning, ownerLink, title } = elements;
+      it('should render header', () => {
+        expect(elements.header).toBeInTheDocument()
+      })
 
-        expect(notFoundWarning).not.toBeInTheDocument()
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveTextContent(mockRepo.description)
-        expect(downloads).toHaveTextContent('Has downloads')
-        expect(ownerLink).toHaveAttribute('href', mockRepo.owner_url)
-        expect(title).toHaveTextContent(mockRepo.name)
+
+      it('should render correct repository data', () => {
+        expect(elements.downloads).toHaveTextContent('Has downloads')
+      })
+
+
+      it('should not render no repo warning', () => {
+        expect(elements.notFoundWarning).not.toBeInTheDocument()
       })
 
       it('should fetch repository on render', () => {
         expect(getRepository).toHaveBeenCalledWith(mockRepo.owner, mockRepo.name)
       })
-    });
+    })
 
     describe('when no repository is found', () => {
       beforeEach(async () => {
@@ -84,11 +85,11 @@ describe('Repository', () => {
       })
 
       it('should only render warning', () => {
-        const { notFoundWarning, title } = elements;
+        const { header, notFoundWarning } = elements;
 
         expect(notFoundWarning).toBeInTheDocument()
-        expect(title).not.toBeInTheDocument()
+        expect(header).not.toBeInTheDocument()
       })
     })
-  });
+  })
 })
