@@ -1,5 +1,6 @@
 import { useEffect, useState, type FC } from 'react'
 import { useParams } from 'react-router-dom'
+import './index.css'
 import { getRepository } from '@/api'
 import type { RepositoryType } from '@/types/repository'
 import Loader from '@/components/Loader'

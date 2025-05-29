@@ -23,38 +23,6 @@ button[type="submit"] {
   margin-top: 1em;
 }
 
-/* Repository page */
-
-main#repository {
-  display: flex;
-  gap: 1em;
-}
-
-main#repository header,
-main#repository aside {
-  padding: 1em;
-}
-
-main#repository h1 {
-  margin: 0;
-  word-break: break-word;
-}
-
-main#repository header {
-  padding: 0;
-  width: calc(70% - 2em);
-}
-
-main#repository aside {
-  border: 1px solid white;
-  border-radius: 15px;
-  width: calc(30% - 30px);
-}
-
-main#repository h4 {
-  margin: 0;
-}
-
 /* Components */
 
 .loader {
