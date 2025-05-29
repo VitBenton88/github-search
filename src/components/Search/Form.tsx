@@ -1,9 +1,9 @@
 import { useCallback, useContext, useEffect, useState, type FC } from 'react'
-import { SearchContext } from '@/context/SearchContext'
+import { SearchContext, type SearchHandler } from '@/context/SearchContext'
 
 export type SearchFormProps = {
   disableForm: boolean
-  onSubmit: Function
+  onSubmit: SearchHandler
 }
 
 const Form: FC<SearchFormProps> = ({ disableForm, onSubmit, ...props }) => {
@@ -14,13 +14,13 @@ const Form: FC<SearchFormProps> = ({ disableForm, onSubmit, ...props }) => {
   useEffect(() => {
     // Persist search keyword from previous query
     setSearchKeyword(savedSearchTerm);
-  }, [])
+  }, [savedSearchTerm])
 
   const handleFormSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
 
     onSubmit(searchKeyword, filterPopular);
-  }, [searchKeyword, filterPopular])
+  }, [searchKeyword, filterPopular, onSubmit])
 
   return (
     <form onSubmit={handleFormSubmit} data-testid="form" {...props}>

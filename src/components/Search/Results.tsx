@@ -11,7 +11,7 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
 
   const handleClick = useCallback(async (owner: string, name: string) => {
     navigate(`/repo/${owner}/${name}`);
-  }, [])
+  }, [navigate])
 
   const formatDisplayDate = useCallback((isoString: string): string => {
     const date = new Date(isoString);

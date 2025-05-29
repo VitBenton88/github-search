@@ -38,7 +38,7 @@ export const searchRepositories = async (searchKeyword = '', popularFilter = fal
  * @returns {RepositoryType}
  */
 export const getRepository = async (owner = '', name = ''): Promise<RepositoryType> => {
-  let fetchUrl = `${BASE_URL}/repos/${owner}/${name}`;
+  const fetchUrl = `${BASE_URL}/repos/${owner}/${name}`;
 
   const response = await fetch(fetchUrl);
 
