@@ -15,13 +15,13 @@ const Header: FC<HeaderProps> = ({ repository, ...props }) => {
   return (
     <header {...props}>
       <h1 data-testid="title">{repository.name}</h1>
-      <small aria-label={`${repository.stargazers_count} stars`}>⭐ {repository.stargazers_count}</small>
+      <small aria-label={`${repository.stargazers_count} stars`} data-testid="star-count">⭐ {repository.stargazers_count}</small>
       {!!repository.description &&
         (<h2 data-testid="description">{repository.description}</h2>)
       }
       <h3>Owner: <ExternalLink data-testid="owner-link" href={repository.owner_url}>{repository.owner} &rarr;</ExternalLink></h3>
-      <h4>Created: {formatDisplayDate(repository.created_at)}</h4>
-      <h4>Updated: {formatDisplayDate(repository.updated_at)}</h4>
+      <h4 data-testid="created">Created: {formatDisplayDate(repository.created_at)}</h4>
+      <h4 data-testid="updated">Updated: {formatDisplayDate(repository.updated_at)}</h4>
     </header>
   )
 }
