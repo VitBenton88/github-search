@@ -5,7 +5,7 @@ import Access, { type AccessProps } from '../Access'
 
 const mockDefaultProps: AccessProps = { repository: mockRepo };
 
-describe('Access', () => {
+describe('Repository Access details', () => {
   const renderComponent = (propData = mockDefaultProps) =>
     render(<Access {...propData} />);
 

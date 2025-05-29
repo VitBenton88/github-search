@@ -5,7 +5,7 @@ import Details, { type DetailsProps } from '../Details'
 
 const mockDefaultProps: DetailsProps = { repository: mockRepo };
 
-describe('Details', () => {
+describe('Repository Details', () => {
   const renderComponent = (propData = mockDefaultProps) =>
     render(<Details {...propData} />);
 
