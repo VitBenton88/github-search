@@ -1,8 +1,9 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { SearchProvider } from './context/SearchContext'
-import Search from '@/components/Search'
+import NotFoundRedirect from '@/components/routing/NotFoundRedirect'
 import Repository from '@/components/Repository'
+import Search from '@/components/Search'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Search />} />
         <Route path='/repo/:owner/:name' element={<Repository />} />
+        <Route path="*" element={<NotFoundRedirect />} />
       </Routes>
     </SearchProvider>
   )
