@@ -23,34 +23,36 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   );
 
   return (
-    <table data-testid="table" {...props}>
-      <caption>Search results</caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Created</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map(({ created_at, id, name, owner }) => (
-          <tr key={id} data-testid="result">
-            <td data-testid="name">{name}</td>
-            <td>{formatDisplayDate(created_at)}</td>
-            <td>
-              <button
-                type="button"
-                aria-label={`View details for ${name} repository`}
-                onClick={() => handleClick(owner, name)}
-                data-testid="viewMoreBtn"
-              >
-                View
-              </button>
-            </td>
+    <div className='results-wrapper'>
+      <table data-testid="table" {...props}>
+        <caption>Search results</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Action</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {items.map(({ created_at, id, name, owner }) => (
+            <tr key={id} data-testid="result">
+              <td data-testid="name">{name}</td>
+              <td>{formatDisplayDate(created_at)}</td>
+              <td>
+                <button
+                  type="button"
+                  aria-label={`View details for ${name} repository`}
+                  onClick={() => handleClick(owner, name)}
+                  data-testid="viewMoreBtn"
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
