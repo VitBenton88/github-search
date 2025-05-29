@@ -33,4 +33,14 @@ A responsive and accessible web application that allows users to search for GitH
 
    ```bash
    git clone https://github.com/VitBenton88/lf-may-assignment.git
-   cd lf-may-assignment
+   cd github-search
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+
+3. **Start the development server**:
+
+   ```bash
+   npm run dev
