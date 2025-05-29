@@ -81,13 +81,13 @@ main#repository h4 {
 /* Components */
 
 .loader {
-  border: 24px solid;
-  border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  display: block;
+  display: inline-block;
+  border-top: 3px solid white;
+  border-right: 3px solid transparent;
   box-sizing: border-box;
-  margin: 1rem auto 0;
-  width: 24px;
 }
 
 /* Animations */
@@ -99,25 +99,17 @@ main#repository h4 {
   }
 
   .loader {
-    animation: animloader 1s linear infinite;
+    animation: rotation 1s linear infinite;
   }
 }
 
-@keyframes animloader {
+@keyframes rotation {
   0% {
-    border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
-  }
-
-  33% {
-    border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
-  }
-
-  66% {
-    border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+    transform: rotate(0deg)
   }
 
   100% {
-    border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+    transform: rotate(360deg)
   }
 }
 
@@ -149,5 +141,13 @@ main#repository h4 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+  }
+}
+
+/* User color schemes */
+
+@media (prefers-color-scheme: light) {
+  .loader {
+    border-top: 3px solid black;
   }
 }
