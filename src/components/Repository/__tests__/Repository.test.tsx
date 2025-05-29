@@ -5,8 +5,6 @@ import { MemoryRouter } from 'react-router-dom'
 import Repository from '../index'
 import { mockRepo } from '@/test/__mocks__/repositories.js'
 
-const mockNavigate = vi.fn()
-
 vi.mock('@/api', async () => {
   const actual = await vi.importActual('@/api');
   return {
@@ -19,7 +17,6 @@ vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
   return {
     ...actual,
-    useNavigate: () => mockNavigate,
     useParams: () => ({
       name: mockRepo.name,
       owner: mockRepo.owner
