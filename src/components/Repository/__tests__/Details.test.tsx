@@ -12,7 +12,7 @@ describe('Details', () => {
   const elements = {
     get downloads() { return screen.getByTestId('downloads'); },
     get forking() { return screen.getByTestId('forking'); },
-    get header() { return screen.getByTestId('header'); },
+    get heading() { return screen.getByTestId('heading'); },
     get language() { return screen.getByTestId('language'); },
     get size() { return screen.getByTestId('size'); },
   };
@@ -25,8 +25,8 @@ describe('Details', () => {
         })
       })
 
-      it('should render correct repository details', () => {
-        expect(elements.header).toBeInTheDocument()
+      it('should render header', () => {
+        expect(elements.heading).toBeInTheDocument()
       })
 
       it('should render correct repository details', () => {

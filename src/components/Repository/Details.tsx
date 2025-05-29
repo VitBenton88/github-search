@@ -9,7 +9,7 @@ const Details: FC<DetailsProps> = ({ repository, ...props }) => {
 
   return (
     <section {...props}>
-      <header data-testid="header">
+      <header data-testid="heading">
         <h4>Details:</h4>
       </header>
       <ul>
