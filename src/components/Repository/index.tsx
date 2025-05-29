@@ -5,8 +5,9 @@ import type { RepositoryType } from '@/types/repository'
 import Loader from '@/components/Loader'
 import ExternalLink from '@/components/ExternalLink'
 import Nav from '@/components/Nav'
-import Header from './Header'
 import Details from './Details'
+import Access from './Access'
+import Header from './Header'
 
 const Repository: FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -45,16 +46,7 @@ const Repository: FC = () => {
 
             <aside>
               <Details repository={repository} data-testid="details" />
-
-              <section>
-                <header>
-                  <h4>Access:</h4>
-                </header>
-                <ul>
-                  <li>{repository.archived ? 'Archived' : 'Not archived'}</li>
-                  <li>{repository.isPrivate ? 'Private' : 'Public'}</li>
-                </ul>
-              </section>
+              <Access repository={repository} data-testid="access" />
 
               <section>
                 <header>
