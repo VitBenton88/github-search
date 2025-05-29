@@ -41,12 +41,12 @@ main#search form fieldset {
   padding: 1em;
 }
 
-table {
+main#search table {
   margin-top: 1em;
 }
 
-td,
-th {
+main#search td,
+main#search th {
   padding: 0.5rem 1rem;
 }
 
@@ -85,13 +85,14 @@ main#repository h4 {
 /* Components */
 
 .loader {
-  width: 48px;
-  height: 48px;
   border-radius: 50%;
   display: inline-block;
   border-top: 3px solid white;
   border-right: 3px solid transparent;
   box-sizing: border-box;
+  height: 48px;
+  margin-top: 1em;
+  width: 48px;
 }
 
 /* Animations */
