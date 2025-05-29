@@ -1,0 +1,155 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+form,
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  margin-bottom: 2em;
+}
+
+input[type="text"] {
+  padding: .5em;
+}
+
+button[type="submit"] {
+  margin-top: 1em;
+}
+
+/* Search page */
+
+main#search {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+main#search form {
+  max-width: 400px;
+  width: 100%;
+}
+
+table {
+  margin-top: 1em;
+}
+
+td,
+th {
+  padding: 0.5rem 1rem;
+}
+
+/* Repository page */
+
+main#repository {
+  display: flex;
+  gap: 1em;
+}
+
+main#repository header,
+main#repository aside {
+  padding: 1em;
+}
+
+main#repository h1 {
+  margin: 0;
+  word-break: break-word;
+}
+
+main#repository header {
+  padding: 0;
+  width: calc(70% - 2em);
+}
+
+main#repository aside {
+  border: 1px solid white;
+  border-radius: 15px;
+  width: calc(30% - 30px);
+}
+
+main#repository h4 {
+  margin: 0;
+}
+
+/* Components */
+
+.loader {
+  border: 24px solid;
+  border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: block;
+  box-sizing: border-box;
+  margin: 1rem auto 0;
+  width: 24px;
+}
+
+/* Utility */
+
+.fade-up {
+  animation: fadeUp 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animations */
+
+@media (prefers-reduced-motion: no-preference) {
+  .loader {
+    animation: animloader 1s linear infinite;
+  }
+}
+
+@keyframes animloader {
+  0% {
+    border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+  }
+
+  33% {
+    border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+  }
+
+  66% {
+    border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+  }
+
+  100% {
+    border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile styles */
+
+@media (max-width: 768px) {
+  main#repository {
+    flex-direction: column;
+  }
+
+  main#repository header,
+  main#repository aside {
+    width: auto;
+  }
+
+  main#repository aside {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
