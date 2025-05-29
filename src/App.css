@@ -23,44 +23,6 @@ button[type="submit"] {
   margin-top: 1em;
 }
 
-/* Search page */
-
-main#search {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.loader,
-main#search form {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-main#search form {
-  max-width: 400px;
-  width: 100%;
-}
-
-main#search form fieldset {
-  padding: 1em;
-}
-
-main#search .results-wrapper {
-  overflow-x: auto;
-}
-
-main#search table {
-  border-collapse: collapse;
-  margin-top: 1em;
-  width: 100%;
-}
-
-main#search td,
-main#search th {
-  padding: 0.5rem 1rem;
-}
-
 /* Repository page */
 
 main#repository {

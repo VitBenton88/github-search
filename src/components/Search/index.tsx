@@ -1,4 +1,5 @@
 import { useContext, type FC } from 'react'
+import './index.css'
 import Loader from '../Loader'
 import SearchForm from './Form'
 import SearchResults from './Results'
