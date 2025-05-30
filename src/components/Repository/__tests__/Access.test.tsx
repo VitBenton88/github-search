@@ -38,10 +38,10 @@ describe('Repository Access details', () => {
     describe('when repository is archived', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          const mockDefaultProps: AccessProps = {
+          const mockProps: AccessProps = {
             repository: { ...mockRepo, archived: true }
           }
-          renderComponent(mockDefaultProps)
+          renderComponent(mockProps)
         })
       })
 
@@ -53,10 +53,10 @@ describe('Repository Access details', () => {
     describe('when repository is private', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          const mockDefaultProps: AccessProps = {
+          const mockProps: AccessProps = {
             repository: { ...mockRepo, isPrivate: true }
           }
-          renderComponent(mockDefaultProps)
+          renderComponent(mockProps)
         })
       })
 
