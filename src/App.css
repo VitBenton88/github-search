@@ -5,35 +5,12 @@
   width: 100%;
 }
 
-form,
-fieldset {
-  display: flex;
-  flex-direction: column;
-}
-
-nav {
-  margin-bottom: 2em;
-}
-
 input[type="text"] {
   padding: .5em;
 }
 
 button[type="submit"] {
   margin-top: 1em;
-}
-
-/* Components */
-
-.loader {
-  border-radius: 50%;
-  display: inline-block;
-  border-top: 3px solid white;
-  border-right: 3px solid transparent;
-  box-sizing: border-box;
-  height: 48px;
-  margin-top: 1em;
-  width: 48px;
 }
 
 /* Animations */
@@ -68,13 +45,5 @@ button[type="submit"] {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* User color schemes */
-
-@media (prefers-color-scheme: light) {
-  .loader {
-    border-top: 3px solid black;
   }
 }

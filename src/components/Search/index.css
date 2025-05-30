@@ -35,3 +35,9 @@ main#search td,
 main#search th {
   padding: 0.5rem 1rem;
 }
+
+form,
+fieldset {
+  display: flex;
+  flex-direction: column;
+}

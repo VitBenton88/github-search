@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './index.css'
 
 const Loader: FC = ({ ...props }) => {
   const navigate = useNavigate()

@@ -1,0 +1,18 @@
+.loader {
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid white;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  height: 48px;
+  margin-top: 1em;
+  width: 48px;
+}
+
+/* User color schemes */
+
+@media (prefers-color-scheme: light) {
+  .loader {
+    border-top: 3px solid black;
+  }
+}
