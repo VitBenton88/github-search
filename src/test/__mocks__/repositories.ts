@@ -20,12 +20,12 @@ export const mockRepo: RepositoryType = {
 }
 
 export const mockBasicRepo: BasicRepositoryType = {
-  id: mockRepo.id, name: mockRepo.name, created_at: mockRepo.created_at, owner: mockRepo.owner
+  id: mockRepo.id, name: mockRepo.name, description: mockRepo.description, owner: mockRepo.owner
 }
 
 export const mockBasicRepos: BasicRepositoryType[] = [
   mockBasicRepo,
   {
-    id: '2', name: 'mock-repo2', created_at: '2013-12-04T04:02:55Z', owner: 'mock-owner2'
+    id: '2', name: 'mock-repo2', description: 'mock description', owner: 'mock-owner2'
   }
 ]

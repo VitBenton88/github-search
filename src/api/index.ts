@@ -22,8 +22,8 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
   if (response.ok) {
     const { items } = await response.json()
 
-    return items.map((repo: { created_at: string; id: string; name: string; owner: { login: string }; }) => ({
-      created_at: repo.created_at,
+    return items.map((repo: { description: string; id: string; name: string; owner: { login: string }; }) => ({
+      description: repo.description,
       id: repo.id,
       name: repo.name,
       owner: repo.owner.login,

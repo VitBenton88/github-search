@@ -1,5 +1,5 @@
 export interface BasicRepositoryType {
-  created_at: string
+  description: string
   id: string
   name: string
   owner: string
@@ -8,7 +8,7 @@ export interface BasicRepositoryType {
 export interface RepositoryType extends BasicRepositoryType {
   allow_forking: boolean
   archived: boolean
-  description: string
+  created_at: string
   has_downloads: boolean
   homepage: string
   html_url: string

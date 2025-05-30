@@ -13,11 +13,6 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
     navigate(`/repo/${owner}/${name}`)
   }, [navigate])
 
-  const formatDisplayDate = useCallback((isoString: string): string => {
-    const date = new Date(isoString)
-    return date.toLocaleString()
-  }, [])
-
   if (!items.length) return (
     <p data-testid="noneFound">No repositories found.</p>
   )
@@ -29,15 +24,15 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Created</th>
+            <th>Description</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {items.map(({ created_at, id, name, owner }) => (
+          {items.map(({ description, id, name, owner }) => (
             <tr key={id} data-testid="result">
               <td data-testid="name">{name}</td>
-              <td>{formatDisplayDate(created_at)}</td>
+              <td>{description}</td>
               <td>
                 <button
                   type="button"
