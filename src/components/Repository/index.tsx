@@ -16,7 +16,7 @@ const Repository: FC = () => {
   const { name, owner } = useParams<{ owner: string, name: string }>()
 
   useEffect(() => {
-    const fetchRepository = async () => {
+    const fetchRepository = async (owner: string, name: string): Promise<void> => {
       try {
         const fetchedRepository = await getRepository(owner, name)
         setRepository(fetchedRepository)
@@ -30,7 +30,7 @@ const Repository: FC = () => {
       }
     }
 
-    fetchRepository()
+    (owner && name) && fetchRepository(owner, name)
   }, [owner, name])
 
   if (isLoading) return (<Loader />)
