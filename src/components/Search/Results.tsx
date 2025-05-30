@@ -9,7 +9,7 @@ export type SearchResultsProps = {
 const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   const navigate = useNavigate()
 
-  const handleClick = useCallback(async (owner: string, name: string) => {
+  const handleClick = useCallback((owner: string, name: string) => {
     navigate(`/repo/${owner}/${name}`)
   }, [navigate])
 
