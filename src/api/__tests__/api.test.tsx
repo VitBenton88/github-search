@@ -29,7 +29,7 @@ describe('api.ts', () => {
         json: async () => mockResponse
       })
 
-      const result = await searchRepositories('test')
+      const result = await searchRepositories('test', false)
 
       expect(result).toEqual([mockBasicRepo])
 
@@ -58,7 +58,7 @@ describe('api.ts', () => {
         statusText: 'Server Error'
       })
 
-      await expect(searchRepositories('fail')).rejects.toThrow(
+      await expect(searchRepositories('fail', false)).rejects.toThrow(
         'Failed to search repositories. 500 Server Error'
       )
     })
