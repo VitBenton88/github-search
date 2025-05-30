@@ -1,8 +1,8 @@
-import type { FC } from 'react'
+import { type FC, type HTMLAttributes } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './index.css'
 
-const Loader: FC = ({ ...props }) => {
+const Loader: FC = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
   const navigate = useNavigate()
 
   return (
