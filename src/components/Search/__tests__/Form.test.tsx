@@ -24,7 +24,6 @@ describe('Search Form', () => {
     </SearchContext.Provider>
   )
 
-
   const elements = {
     get fieldset() { return screen.getByTestId('fieldset') },
     get form() { return screen.getByTestId('form') },
