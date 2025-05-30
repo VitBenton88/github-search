@@ -20,6 +20,7 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       'no-multi-spaces': ['error'],
+      'no-trailing-spaces': 'error',
       'quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
         'jsx-quotes': ['error', 'prefer-double'],
       'react-refresh/only-export-components': [
