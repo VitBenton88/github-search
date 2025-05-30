@@ -23,12 +23,17 @@ main#search form fieldset {
 
 main#search .results-wrapper {
   overflow-x: auto;
+  width: 100%;
 }
 
 main#search table {
   border-collapse: collapse;
-  margin-top: 1em;
-  width: 100%;
+  margin: 1em auto 0;
+}
+
+main#search td {
+  max-width: 400px;
+  overflow-wrap: break-word;
 }
 
 main#search td,
