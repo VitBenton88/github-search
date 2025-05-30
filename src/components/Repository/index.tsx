@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from 'react'
+import { type FC, useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './index.css'
 import { getRepository } from '@/api'
@@ -15,23 +15,25 @@ const Repository: FC = () => {
   const [repository, setRepository] = useState<RepositoryType | null>(null)
   const { name, owner } = useParams<{ owner: string, name: string }>()
 
-  useEffect(() => {
-    const fetchRepository = async (owner: string, name: string): Promise<void> => {
-      try {
-        const fetchedRepository = await getRepository(owner, name)
-        setRepository(fetchedRepository)
-      } catch (error) {
-        console.error(error)
-        if (error instanceof Error) {
-          alert(error.message)
-        }
-      } finally {
-        setIsLoading(false)
+  const fetchRepository = useCallback(async (owner: string, name: string): Promise<void> => {
+    try {
+      const fetchedRepository = await getRepository(owner, name)
+      setRepository(fetchedRepository)
+    } catch (error) {
+      console.error(error)
+      if (error instanceof Error) {
+        alert(error.message)
       }
+    } finally {
+      setIsLoading(false)
     }
+  }, [])
 
-    (owner && name) && fetchRepository(owner, name)
-  }, [owner, name])
+  useEffect(() => {
+    if (!owner || !name) return
+
+    fetchRepository(owner, name)
+  }, [owner, name, fetchRepository])
 
   if (isLoading) return (<Loader />)
 
