@@ -35,7 +35,7 @@ describe('Repository Access details', () => {
       })
     })
 
-    describe('with an archived repository', () => {
+    describe('when repository is archived', () => {
       beforeEach(async () => {
         await waitFor(() => {
           const mockDefaultProps: AccessProps = {
@@ -50,7 +50,7 @@ describe('Repository Access details', () => {
       })
     })
 
-    describe('with a private repository', () => {
+    describe('when repository is private', () => {
       beforeEach(async () => {
         await waitFor(() => {
           const mockDefaultProps: AccessProps = {
