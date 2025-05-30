@@ -12,6 +12,7 @@ const viteConfig = defineViteConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@mocks': path.resolve(__dirname, './src/test/__mocks__')
     },
   },
 })

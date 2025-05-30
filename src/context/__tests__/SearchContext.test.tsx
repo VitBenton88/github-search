@@ -3,9 +3,9 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { SearchProvider } from '../SearchContext'
 import userEvent from '@testing-library/user-event'
-import { mockRepo } from '@/test/__mocks__/repositories.js'
-import { MockSearchConsumer } from '@/test/__mocks__/consumers.js'
-import type { RepositoryType } from '@/types/repository.js'
+import { mockRepo } from '@mocks/repositories'
+import { MockSearchConsumer } from '@mocks/consumers'
+import type { RepositoryType } from '@/types/repository'
 
 const mockRepos: RepositoryType[] = [mockRepo]
 

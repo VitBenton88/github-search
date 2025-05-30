@@ -1,4 +1,4 @@
-import type { BasicRepositoryType, RepositoryType } from '@/types/repository.js'
+import type { BasicRepositoryType, RepositoryType } from '@/types/repository'
 
 export const mockRepo: RepositoryType = {
   id: '1',

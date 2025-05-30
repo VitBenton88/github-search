@@ -5,7 +5,9 @@
       "@/*": [
         "./src/*"
       ],
-      // Add more aliases as needed
+      "@mocks/*": [
+        "./src/test/__mocks__/*"
+      ]
     },
     "types": [
       "node"

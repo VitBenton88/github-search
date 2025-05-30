@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { mockRepo } from '@/test/__mocks__/repositories.js'
+import { mockRepo } from '@mocks/repositories'
 import Access, { type AccessProps } from '../Access'
 
 const mockDefaultProps: AccessProps = { repository: mockRepo }

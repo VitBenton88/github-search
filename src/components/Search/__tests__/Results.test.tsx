@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Results from '../Results'
 import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
-import { mockBasicRepos } from '@/test/__mocks__/repositories.js'
+import { mockBasicRepos } from '@mocks/repositories'
 import type { SearchResultsProps } from '../Results'
 
 const mockNavigate = vi.fn()

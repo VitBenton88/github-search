@@ -16,6 +16,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@mocks/*": [
+        "./src/test/__mocks__/*"
+      ]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

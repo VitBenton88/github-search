@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
-import { mockRepo } from '@/test/__mocks__/repositories.js'
+import { mockRepo } from '@mocks/repositories'
 import Header, { type HeaderProps } from '../Header'
 
 const mockNavigate = vi.fn()

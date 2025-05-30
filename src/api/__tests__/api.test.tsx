@@ -1,6 +1,6 @@
 import { describe, expect, it, type Mock, vi } from 'vitest'
 import { getRepository, searchRepositories } from '@/api'
-import { mockBasicRepo, mockRepo } from '@/test/__mocks__/repositories'
+import { mockBasicRepo, mockRepo } from '@mocks/repositories'
 
 const mockFetch = vi.fn()
 

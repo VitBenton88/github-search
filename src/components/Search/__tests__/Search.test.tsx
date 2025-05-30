@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { SearchContext, type SearchContextType } from '@/context/SearchContext'
 import Search from '../index'
 import { MemoryRouter } from 'react-router-dom'
-import { mockBasicRepos } from '@/test/__mocks__/repositories.js'
+import { mockBasicRepos } from '@mocks/repositories'
 
 const mockContext: SearchContextType = {
   handleSearch: vi.fn(),

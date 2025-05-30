@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../index'
-import { mockRepo } from '@/test/__mocks__/repositories.js'
+import { mockRepo } from '@mocks/repositories'
 
 vi.mock('@/api', async () => {
   const actual = await vi.importActual('@/api')
