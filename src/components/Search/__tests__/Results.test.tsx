@@ -6,37 +6,37 @@ import userEvent from '@testing-library/user-event'
 import { mockBasicRepos } from '@/test/__mocks__/repositories.js'
 import type { SearchResultsProps } from '../Results'
 
-const mockNavigate = vi.fn();
-const mockDefaultProps: SearchResultsProps = { items: mockBasicRepos };
+const mockNavigate = vi.fn()
+const mockDefaultProps: SearchResultsProps = { items: mockBasicRepos }
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+  const actual = await vi.importActual('react-router-dom')
   return {
     ...actual,
     useNavigate: () => mockNavigate,
-  };
-});
+  }
+})
 
 describe('Search Results', () => {
   const renderComponent = (propData = mockDefaultProps) => render(
     <MemoryRouter initialEntries={['/']}>
       <Results {...propData} />
     </MemoryRouter>
-  );
+  )
 
   const elements = {
-    get names() { return screen.queryAllByTestId('name'); },
-    get noneFound() { return screen.queryByTestId('noneFound'); },
-    get results() { return screen.queryAllByTestId('result'); },
-    get table() { return screen.queryByTestId('table'); },
-    get viewMoreBtns() { return screen.getAllByTestId('viewMoreBtn'); },
-  };
+    get names() { return screen.queryAllByTestId('name') },
+    get noneFound() { return screen.queryByTestId('noneFound') },
+    get results() { return screen.queryAllByTestId('result') },
+    get table() { return screen.queryByTestId('table') },
+    get viewMoreBtns() { return screen.getAllByTestId('viewMoreBtn') },
+  }
 
   describe('render', () => {
     describe('default', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          renderComponent();
+          renderComponent()
         })
       })
 
@@ -61,7 +61,7 @@ describe('Search Results', () => {
       beforeEach(async () => {
         await waitFor(() => {
           const propData = { ...mockDefaultProps, items: [] }
-          renderComponent(propData);
+          renderComponent(propData)
         })
       })
 
@@ -79,8 +79,8 @@ describe('Search Results', () => {
     describe('when clicking a result’s action', () => {
       beforeEach(async () => {
         await waitFor(async () => {
-          renderComponent();
-          await userEvent.click(elements.viewMoreBtns[0]);
+          renderComponent()
+          await userEvent.click(elements.viewMoreBtns[0])
         })
       })
 

@@ -4,10 +4,10 @@ import Form, { type SearchFormProps } from '../Form'
 import userEvent from '@testing-library/user-event'
 import { SearchContext, type SearchContextType } from '@/context/SearchContext'
 
-const mockOnSubmit = vi.fn();
-const mockSearchTerm = 'mock search term';
+const mockOnSubmit = vi.fn()
+const mockSearchTerm = 'mock search term'
 
-const mockDefaultProps: SearchFormProps = { disableForm: false, onSubmit: mockOnSubmit };
+const mockDefaultProps: SearchFormProps = { disableForm: false, onSubmit: mockOnSubmit }
 
 const mockContext: SearchContextType = {
   handleSearch: vi.fn(),
@@ -22,26 +22,26 @@ describe('Search Form', () => {
     <SearchContext.Provider value={contextValue}>
       <Form {...propData} />
     </SearchContext.Provider>
-  );
+  )
 
 
   const elements = {
-    get fieldset() { return screen.getByTestId('fieldset'); },
-    get form() { return screen.getByTestId('form'); },
-    get searchInput() { return screen.getByTestId('searchInput'); },
-    get submitBtn() { return screen.getByTestId('submitBtn'); },
-  };
+    get fieldset() { return screen.getByTestId('fieldset') },
+    get form() { return screen.getByTestId('form') },
+    get searchInput() { return screen.getByTestId('searchInput') },
+    get submitBtn() { return screen.getByTestId('submitBtn') },
+  }
 
   describe('render', () => {
     describe('default', () => {
       beforeEach(() => {
         act(() => {
-          renderComponent();
+          renderComponent()
         })
       })
 
       it('should render an enabled form', () => {
-        const { fieldset, form } = elements;
+        const { fieldset, form } = elements
 
         expect(form).toBeInTheDocument()
         expect(fieldset).not.toHaveAttribute('disabled')
@@ -56,12 +56,12 @@ describe('Search Form', () => {
       beforeEach(() => {
         act(() => {
           const propData = { ...mockDefaultProps, disableForm: true }
-          renderComponent(propData);
+          renderComponent(propData)
         })
       })
 
       it('should render a disabled form', () => {
-        const { fieldset, form } = elements;
+        const { fieldset, form } = elements
 
         expect(form).toBeInTheDocument()
         expect(fieldset).toHaveAttribute('disabled')
@@ -72,7 +72,7 @@ describe('Search Form', () => {
       beforeEach(() => {
         act(() => {
           const contextData = { ...mockContext, searchTerm: mockSearchTerm }
-          renderComponent(mockDefaultProps, contextData);
+          renderComponent(mockDefaultProps, contextData)
         })
       })
 
@@ -86,10 +86,10 @@ describe('Search Form', () => {
     describe('when submitting form', () => {
       beforeEach(async () => {
         act(() => {
-          renderComponent();
+          renderComponent()
         })
 
-        const { searchInput, submitBtn } = elements;
+        const { searchInput, submitBtn } = elements
 
         await userEvent.type(searchInput, mockSearchTerm)
         await userEvent.click(submitBtn)

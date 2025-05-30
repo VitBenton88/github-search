@@ -6,7 +6,7 @@ import Repository from '../index'
 import { mockRepo } from '@/test/__mocks__/repositories.js'
 
 vi.mock('@/api', async () => {
-  const actual = await vi.importActual('@/api');
+  const actual = await vi.importActual('@/api')
   return {
     ...actual,
     getRepository: vi.fn(),
@@ -14,14 +14,14 @@ vi.mock('@/api', async () => {
 })
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+  const actual = await vi.importActual('react-router-dom')
   return {
     ...actual,
     useParams: () => ({
       name: mockRepo.name,
       owner: mockRepo.owner
     })
-  };
+  }
 })
 
 describe('Repository', () => {
@@ -30,23 +30,23 @@ describe('Repository', () => {
       <MemoryRouter initialEntries={['/repo/mock-owner/mock-repo']}>
         <Repository />
       </MemoryRouter>
-    );
+    )
 
   const elements = {
-    get access() { return screen.queryByTestId('access'); },
-    get details() { return screen.queryByTestId('details'); },
-    get header() { return screen.queryByTestId('header'); },
-    get nav() { return screen.queryByTestId('nav'); },
-    get notFoundWarning() { return screen.queryByTestId('not-found'); },
-  };
+    get access() { return screen.queryByTestId('access') },
+    get details() { return screen.queryByTestId('details') },
+    get header() { return screen.queryByTestId('header') },
+    get nav() { return screen.queryByTestId('nav') },
+    get notFoundWarning() { return screen.queryByTestId('not-found') },
+  }
 
   describe('render', () => {
     describe('default', () => {
       beforeEach(async () => {
-        (getRepository as Mock).mockResolvedValue(mockRepo);
+        (getRepository as Mock).mockResolvedValue(mockRepo)
 
         await waitFor(() => {
-          renderComponent();
+          renderComponent()
         })
       })
 
@@ -74,15 +74,15 @@ describe('Repository', () => {
 
     describe('when no repository is found', () => {
       beforeEach(async () => {
-        (getRepository as Mock).mockResolvedValue(null);
+        (getRepository as Mock).mockResolvedValue(null)
 
         await waitFor(() => {
-          renderComponent();
+          renderComponent()
         })
       })
 
       it('should only render warning', () => {
-        const { access, details, header, notFoundWarning } = elements;
+        const { access, details, header, notFoundWarning } = elements
 
         expect(notFoundWarning).toBeInTheDocument()
         expect(access).not.toBeInTheDocument()

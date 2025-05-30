@@ -20,21 +20,21 @@ describe('Search', () => {
         <Search />
       </MemoryRouter>
     </SearchContext.Provider>
-  );
+  )
 
   const elements = {
-    get loader() { return screen.queryByTestId('loader'); },
-    get noSearch() { return screen.queryByTestId('noSearch'); },
-    get pageNotFound() { return screen.queryByTestId('pageNotFound'); },
-    get searchForm() { return screen.getByTestId('searchForm'); },
-    get searchResults() { return screen.queryByTestId('searchResults'); },
-  };
+    get loader() { return screen.queryByTestId('loader') },
+    get noSearch() { return screen.queryByTestId('noSearch') },
+    get pageNotFound() { return screen.queryByTestId('pageNotFound') },
+    get searchForm() { return screen.getByTestId('searchForm') },
+    get searchResults() { return screen.queryByTestId('searchResults') },
+  }
 
   describe('render', () => {
     describe('default', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          renderComponent();
+          renderComponent()
         })
       })
 
@@ -62,7 +62,7 @@ describe('Search', () => {
     describe('with a search', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          renderComponent({ ...mockContext, hasSearched: true });
+          renderComponent({ ...mockContext, hasSearched: true })
         })
       })
 
@@ -81,7 +81,7 @@ describe('Search', () => {
 
     describe('with a search and loading', () => {
       beforeEach(() => {
-        renderComponent({ ...mockContext, hasSearched: true, isLoading: true });
+        renderComponent({ ...mockContext, hasSearched: true, isLoading: true })
       })
 
       it('should not render a search prompt', () => {

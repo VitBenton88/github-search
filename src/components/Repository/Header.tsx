@@ -8,8 +8,8 @@ export type HeaderProps = {
 
 const Header: FC<HeaderProps> = ({ repository, ...props }) => {
   const formatDisplayDate = useCallback((isoString: string): string => {
-    const date = new Date(isoString);
-    return date.toLocaleString();
+    const date = new Date(isoString)
+    return date.toLocaleString()
   }, [])
 
   return (

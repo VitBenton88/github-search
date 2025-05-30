@@ -18,19 +18,19 @@ const Repository: FC = () => {
   useEffect(() => {
     const fetchRepository = async () => {
       try {
-        const fetchedRepository = await getRepository(owner, name);
-        setRepository(fetchedRepository);
+        const fetchedRepository = await getRepository(owner, name)
+        setRepository(fetchedRepository)
       } catch (error) {
-        console.error(error);
+        console.error(error)
         if (error instanceof Error) {
-          alert(error.message);
+          alert(error.message)
         }
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
     }
 
-    fetchRepository();
+    fetchRepository()
   }, [owner, name])
 
   if (isLoading) return (<Loader />)

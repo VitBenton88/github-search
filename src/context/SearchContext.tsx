@@ -29,21 +29,21 @@ const SearchProvider = ({ children }: { children: ReactNode }) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch: SearchHandler = useCallback(async (searchKeyword, filterPopular) => {
-    setHasSearched(true);
-    setIsLoading(true);
-    setRepositories([]);
-    setSearchTerm(searchKeyword);
+    setHasSearched(true)
+    setIsLoading(true)
+    setRepositories([])
+    setSearchTerm(searchKeyword)
 
     try {
-      const reposFetch = await searchRepositories(searchKeyword, filterPopular);
-      setRepositories(reposFetch);
+      const reposFetch = await searchRepositories(searchKeyword, filterPopular)
+      setRepositories(reposFetch)
     } catch (error) {
-      console.error(error);
+      console.error(error)
       if (error instanceof Error) {
-        alert(error.message);
+        alert(error.message)
       }
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
   }, [])
 

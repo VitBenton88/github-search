@@ -10,17 +10,17 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   const navigate = useNavigate()
 
   const handleClick = useCallback(async (owner: string, name: string) => {
-    navigate(`/repo/${owner}/${name}`);
+    navigate(`/repo/${owner}/${name}`)
   }, [navigate])
 
   const formatDisplayDate = useCallback((isoString: string): string => {
-    const date = new Date(isoString);
-    return date.toLocaleString();
+    const date = new Date(isoString)
+    return date.toLocaleString()
   }, [])
 
   if (!items.length) return (
     <p data-testid="noneFound">No repositories found.</p>
-  );
+  )
 
   return (
     <div className='results-wrapper'>

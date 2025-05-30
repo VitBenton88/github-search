@@ -1,11 +1,11 @@
-import { defineConfig as defineViteConfig, mergeConfig } from 'vite';
-import { defineConfig as defineVitestConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { defineConfig as defineViteConfig, mergeConfig } from 'vite'
+import { defineConfig as defineVitestConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const viteConfig = defineViteConfig({
   plugins: [react()],
@@ -14,7 +14,7 @@ const viteConfig = defineViteConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-});
+})
 
 const vitestConfig = defineVitestConfig({
   test: {
@@ -23,6 +23,6 @@ const vitestConfig = defineVitestConfig({
     environment: 'jsdom',
     setupFiles: "./src/test/vitest.setup.ts"
   }
-});
+})
 
-export default mergeConfig(viteConfig, vitestConfig);
+export default mergeConfig(viteConfig, vitestConfig)

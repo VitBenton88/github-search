@@ -7,11 +7,11 @@ import Nav from '../index'
 const mockNavigate = vi.fn()
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+  const actual = await vi.importActual('react-router-dom')
   return {
     ...actual,
     useNavigate: () => mockNavigate,
-  };
+  }
 })
 
 describe('Nav', () => {
@@ -20,12 +20,12 @@ describe('Nav', () => {
       <MemoryRouter initialEntries={['/repo/mock-owner/mock-repo']}>
         <Nav />
       </MemoryRouter>
-    );
+    )
 
   const elements = {
-    get backBtn() { return screen.getByTestId('back-btn'); },
-    get nav() { return screen.getByTestId('nav'); },
-  };
+    get backBtn() { return screen.getByTestId('back-btn') },
+    get nav() { return screen.getByTestId('nav') },
+  }
 
   describe('render', () => {
     beforeEach(renderComponent)
@@ -39,14 +39,14 @@ describe('Nav', () => {
     describe('when clicking back button', () => {
       beforeEach(async () => {
         await waitFor(async () => {
-          renderComponent();
-          await userEvent.click(elements.backBtn);
+          renderComponent()
+          await userEvent.click(elements.backBtn)
         })
       })
 
       it('should navigate user to home route', () => {
         expect(mockNavigate).toHaveBeenCalledWith('/')
       })
-    });
-  });
+    })
+  })
 })

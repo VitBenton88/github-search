@@ -5,20 +5,20 @@ import NotFoundRedirect from '../NotFoundRedirect'
 const mockNavigate = vi.fn()
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+  const actual = await vi.importActual('react-router-dom')
   return {
     ...actual,
     useNavigate: () => mockNavigate,
-  };
+  }
 })
 
 describe('NotFoundRedirect', () => {
-  const renderComponent = () => render(<NotFoundRedirect />);
+  const renderComponent = () => render(<NotFoundRedirect />)
 
   describe('render', () => {
     beforeEach(async () => {
       await waitFor(() => {
-        renderComponent();
+        renderComponent()
       })
     })
 

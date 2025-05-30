@@ -1,6 +1,6 @@
 import type { BasicRepositoryType, RepositoryType } from '@/types/repository'
 
-const BASE_URL = 'https://api.github.com';
+const BASE_URL = 'https://api.github.com'
 
 /**
  * Search repositories.
@@ -9,16 +9,16 @@ const BASE_URL = 'https://api.github.com';
  * @returns {BasicRepositoryType[]}
  */
 export const searchRepositories = async (searchKeyword = '', popularFilter = false): Promise<BasicRepositoryType[]> => {
-  let fetchUrl = `${BASE_URL}/search/repositories?q=${searchKeyword}`;
+  let fetchUrl = `${BASE_URL}/search/repositories?q=${searchKeyword}`
 
   if (popularFilter) {
     fetchUrl += '+stars:>1000'
   }
 
-  const response = await fetch(fetchUrl);
+  const response = await fetch(fetchUrl)
 
   if (response.ok) {
-    const { items } = await response.json();
+    const { items } = await response.json()
 
     return items.map((repo: { created_at: string; id: string; name: string; owner: { login: string }; }) => ({
       created_at: repo.created_at,
@@ -27,7 +27,7 @@ export const searchRepositories = async (searchKeyword = '', popularFilter = fal
       owner: repo.owner.login,
     }))
   } else {
-    throw new Error(`Failed to search repositories. ${response.status} ${response.statusText}`);
+    throw new Error(`Failed to search repositories. ${response.status} ${response.statusText}`)
   }
 }
 
@@ -38,9 +38,9 @@ export const searchRepositories = async (searchKeyword = '', popularFilter = fal
  * @returns {RepositoryType}
  */
 export const getRepository = async (owner = '', name = ''): Promise<RepositoryType> => {
-  const fetchUrl = `${BASE_URL}/repos/${owner}/${name}`;
+  const fetchUrl = `${BASE_URL}/repos/${owner}/${name}`
 
-  const response = await fetch(fetchUrl);
+  const response = await fetch(fetchUrl)
 
   if (response.ok) {
     const {
@@ -60,7 +60,7 @@ export const getRepository = async (owner = '', name = ''): Promise<RepositoryTy
       size,
       stargazers_count,
       updated_at
-    } = await response.json();
+    } = await response.json()
 
     return {
       allow_forking,
@@ -81,6 +81,6 @@ export const getRepository = async (owner = '', name = ''): Promise<RepositoryTy
       updated_at
     }
   } else {
-    throw new Error(`Failed to fetch repository. ${response.status} ${response.statusText}`);
+    throw new Error(`Failed to fetch repository. ${response.status} ${response.statusText}`)
   }
 }

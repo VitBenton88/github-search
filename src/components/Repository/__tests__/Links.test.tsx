@@ -3,23 +3,23 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@/test/__mocks__/repositories.js'
 import Links, { type LinksProps } from '../Links'
 
-const mockDefaultProps: LinksProps = { repository: mockRepo };
+const mockDefaultProps: LinksProps = { repository: mockRepo }
 
 describe('Repository Links', () => {
   const renderComponent = (propData = mockDefaultProps) =>
-    render(<Links {...propData} />);
+    render(<Links {...propData} />)
 
   const elements = {
-    get githubLink() { return screen.getByTestId('githubLink'); },
-    get heading() { return screen.getByTestId('heading'); },
-    get homepageLink() { return screen.getByTestId('homepageLink'); },
-  };
+    get githubLink() { return screen.getByTestId('githubLink') },
+    get heading() { return screen.getByTestId('heading') },
+    get homepageLink() { return screen.getByTestId('homepageLink') },
+  }
 
   describe('render', () => {
     describe('default', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          renderComponent();
+          renderComponent()
         })
       })
 
@@ -28,8 +28,8 @@ describe('Repository Links', () => {
       })
 
       it('should render correct repository links', () => {
-        const { githubLink, homepageLink } = elements;
-        const { html_url, homepage } = mockRepo;
+        const { githubLink, homepageLink } = elements
+        const { html_url, homepage } = mockRepo
 
         expect(githubLink).toHaveAttribute('href', html_url)
         expect(homepageLink).toHaveAttribute('href', homepage)

@@ -3,11 +3,11 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import Loader from '../Loader'
 
 describe('Loader', () => {
-  const renderComponent = () => render(<Loader />);
+  const renderComponent = () => render(<Loader />)
 
   const elements = {
-    get loader() { return screen.getByTestId('loader'); },
-  };
+    get loader() { return screen.getByTestId('loader') },
+  }
 
   describe('render', () => {
     beforeEach(renderComponent)

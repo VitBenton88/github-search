@@ -10,7 +10,7 @@ import type { RepositoryType } from '@/types/repository.js'
 const mockRepos: RepositoryType[] = [mockRepo]
 
 vi.mock('@/api', async () => {
-  const actual = await vi.importActual('@/api');
+  const actual = await vi.importActual('@/api')
   return {
     ...actual,
     searchRepositories: vi.fn(),
@@ -27,25 +27,25 @@ describe('SearchContext', () => {
   }
 
   const elements = {
-    get hasSearched() { return screen.getByTestId('hasSearched'); },
-    get isLoading() { return screen.getByTestId('isLoading'); },
-    get repositories() { return screen.getByTestId('repositories'); },
-    get searchBtn() { return screen.getByTestId('search-button'); },
-    get searchTerm() { return screen.getByTestId('searchTerm'); },
-  };
+    get hasSearched() { return screen.getByTestId('hasSearched') },
+    get isLoading() { return screen.getByTestId('isLoading') },
+    get repositories() { return screen.getByTestId('repositories') },
+    get searchBtn() { return screen.getByTestId('search-button') },
+    get searchTerm() { return screen.getByTestId('searchTerm') },
+  }
 
   describe('render', () => {
     describe('default', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          renderContext();
+          renderContext()
         })
       })
 
       it('should render children', () => {
         const {
           hasSearched, isLoading, repositories, searchBtn, searchTerm
-        } = elements;
+        } = elements
 
         expect(hasSearched).toHaveTextContent('has not searched')
         expect(isLoading).toHaveTextContent('is not loading')
@@ -53,23 +53,23 @@ describe('SearchContext', () => {
         expect(searchBtn).toBeInTheDocument()
         expect(searchTerm).toHaveTextContent('')
       })
-    });
-  });
+    })
+  })
 
   describe('behavior', () => {
     describe('when searching', () => {
       beforeEach(async () => {
-        (searchRepositories as Mock).mockResolvedValue(mockRepos);
+        (searchRepositories as Mock).mockResolvedValue(mockRepos)
 
         await waitFor(async () => {
-          renderContext();
-          await userEvent.click(elements.searchBtn);
+          renderContext()
+          await userEvent.click(elements.searchBtn)
         })
       })
 
       it('should call search method with correct term and filter', () => {
         expect(searchRepositories).toHaveBeenCalledWith('mock search term', false)
       })
-    });
-  });
+    })
+  })
 })

@@ -2,26 +2,26 @@ import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import ExternalLink, { type ExternalLinkProps } from '../ExternalLink'
 
-const mockHref = 'https://test.com';
-const mockTarget = '_self';
-const mockDefaultProps: ExternalLinkProps = { href: mockHref, children: null };
+const mockHref = 'https://test.com'
+const mockTarget = '_self'
+const mockDefaultProps: ExternalLinkProps = { href: mockHref, children: null }
 
 describe('ExternalLink', () => {
   const renderComponent = (propData = mockDefaultProps) =>
-    render(<ExternalLink {...propData} />);
+    render(<ExternalLink {...propData} />)
 
   const elements = {
-    get link() { return screen.getByTestId('link'); },
-  };
+    get link() { return screen.getByTestId('link') },
+  }
 
   describe('render', () => {
     describe('with href prop', () => {
       beforeEach(() => {
-        renderComponent();
+        renderComponent()
       })
 
       it('should render an anchor element with the correct href value', () => {
-        const { link } = elements;
+        const { link } = elements
 
         expect(link).toBeInTheDocument()
         expect(link).toHaveAttribute('href', mockHref)
@@ -34,7 +34,7 @@ describe('ExternalLink', () => {
       })
 
       it('should render an anchor element with the correct target value', () => {
-        const { link } = elements;
+        const { link } = elements
 
         expect(link).toBeInTheDocument()
         expect(link).toHaveAttribute('target', mockTarget)

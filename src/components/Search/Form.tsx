@@ -13,13 +13,13 @@ const Form: FC<SearchFormProps> = ({ disableForm, onSubmit, ...props }) => {
 
   useEffect(() => {
     // Persist search keyword from previous query
-    setSearchKeyword(savedSearchTerm);
+    setSearchKeyword(savedSearchTerm)
   }, [savedSearchTerm])
 
   const handleFormSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    onSubmit(searchKeyword, filterPopular);
+    onSubmit(searchKeyword, filterPopular)
   }, [searchKeyword, filterPopular, onSubmit])
 
   return (

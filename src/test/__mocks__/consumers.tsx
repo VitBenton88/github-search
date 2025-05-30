@@ -1,8 +1,8 @@
-import { SearchContext } from '@/context/SearchContext';
+import { SearchContext } from '@/context/SearchContext'
 import { useContext } from 'react'
 
 export const MockSearchConsumer = (): React.ReactNode => {
-  const context = useContext(SearchContext);
+  const context = useContext(SearchContext)
 
   return (
     <>
