@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
-import { describe, it, beforeEach, expect, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NotFoundRedirect from '../NotFoundRedirect'
 
 const mockNavigate = vi.fn()

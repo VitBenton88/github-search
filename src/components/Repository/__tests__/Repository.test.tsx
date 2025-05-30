@@ -1,6 +1,6 @@
 import { getRepository } from '@/api'
 import { render, screen, waitFor } from '@testing-library/react'
-import { describe, it, beforeEach, expect, vi, type Mock } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../index'
 import { mockRepo } from '@/test/__mocks__/repositories.js'

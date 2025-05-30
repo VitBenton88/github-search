@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, beforeEach, expect } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import ExternalLink, { type ExternalLinkProps } from '../ExternalLink'
 
 const mockHref = 'https://test.com';

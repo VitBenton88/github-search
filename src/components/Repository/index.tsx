@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './index.css'
 import { getRepository } from '@/api'

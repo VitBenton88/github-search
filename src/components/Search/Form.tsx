@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState, type FC } from 'react'
+import { type FC, useCallback, useContext, useEffect, useState } from 'react'
 import { SearchContext, type SearchHandler } from '@/context/SearchContext'
 
 export type SearchFormProps = {

@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react'
-import { describe, it, beforeEach, expect } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@/test/__mocks__/repositories.js'
 import Details, { type DetailsProps } from '../Details'
 

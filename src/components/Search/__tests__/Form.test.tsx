@@ -1,5 +1,5 @@
 import { act, render, screen } from '@testing-library/react'
-import { describe, it, beforeEach, expect, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Form, { type SearchFormProps } from '../Form'
 import userEvent from '@testing-library/user-event'
 import { SearchContext, type SearchContextType } from '@/context/SearchContext'

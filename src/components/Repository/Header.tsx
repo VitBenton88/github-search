@@ -1,4 +1,4 @@
-import { useCallback, type FC } from 'react'
+import { type FC, useCallback } from 'react'
 import ExternalLink from '@/components/ExternalLink'
 import type { RepositoryType } from '@/types/repository'
 

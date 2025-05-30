@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { SearchProvider } from './context/SearchContext'
 import NotFoundRedirect from '@/components/routing/NotFoundRedirect'
 import Repository from '@/components/Repository'

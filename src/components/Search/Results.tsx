@@ -1,4 +1,4 @@
-import { useCallback, type FC } from 'react'
+import { type FC, useCallback } from 'react'
 import type { BasicRepositoryType } from '@/types/repository'
 import { useNavigate } from 'react-router-dom'
 

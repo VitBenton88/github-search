@@ -1,6 +1,6 @@
 import { searchRepositories } from '@/api'
 import { render, screen, waitFor } from '@testing-library/react'
-import { describe, it, beforeEach, expect, vi, type Mock } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { SearchProvider } from '../SearchContext'
 import userEvent from '@testing-library/user-event'
 import { mockRepo } from '@/test/__mocks__/repositories.js'
