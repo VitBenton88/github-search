@@ -23,7 +23,7 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   )
 
   return (
-    <div className='results-wrapper'>
+    <div className="results-wrapper">
       <table data-testid="table" {...props}>
         <caption>Search results</caption>
         <thead>

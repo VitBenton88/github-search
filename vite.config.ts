@@ -21,7 +21,7 @@ const vitestConfig = defineVitestConfig({
     globals: true,
     include: ['src/**/__tests__/**/*.test.{ts,tsx}'],
     environment: 'jsdom',
-    setupFiles: "./src/test/vitest.setup.ts"
+    setupFiles: './src/test/vitest.setup.ts'
   }
 })
 

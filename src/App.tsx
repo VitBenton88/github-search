@@ -9,8 +9,8 @@ function App() {
   return (
     <SearchProvider>
       <Routes>
-        <Route path='/' element={<Search />} />
-        <Route path='/repo/:owner/:name' element={<Repository />} />
+        <Route path="/" element={<Search />} />
+        <Route path="/repo/:owner/:name" element={<Repository />} />
         <Route path="*" element={<NotFoundRedirect />} />
       </Routes>
     </SearchProvider>
