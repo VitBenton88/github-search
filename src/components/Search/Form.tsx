@@ -38,6 +38,7 @@ const Form: FC<SearchFormProps> = ({ disableForm, onSubmit, ...props }) => {
             type="checkbox"
             checked={filterPopular}
             onChange={e => setFilterPopular(e.target.checked)}
+            data-testid="popularCheckbox"
           />
           Popular
         </label>
