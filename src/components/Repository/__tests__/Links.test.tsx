@@ -12,7 +12,7 @@ describe('Repository Links', () => {
   const elements = {
     get githubLink() { return screen.getByTestId('githubLink') },
     get heading() { return screen.getByTestId('heading') },
-    get homepageLink() { return screen.getByTestId('homepageLink') },
+    get homepageLink() { return screen.queryByTestId('homepageLink') },
   }
 
   describe('render', () => {
@@ -33,6 +33,21 @@ describe('Repository Links', () => {
 
         expect(githubLink).toHaveAttribute('href', html_url)
         expect(homepageLink).toHaveAttribute('href', homepage)
+      })
+    })
+
+    describe('when repository has no homepage link', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const mockProps: LinksProps = {
+            repository: { ...mockRepo, homepage: '' }
+          }
+          renderComponent(mockProps)
+        })
+      })
+
+      it('should not render link for repository’s homepage', () => {
+        expect(elements.homepageLink).not.toBeInTheDocument()
       })
     })
   })
