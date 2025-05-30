@@ -1,10 +1,10 @@
-import { type FC, useCallback } from 'react'
+import { type FC, type HTMLAttributes, useCallback } from 'react'
 import ExternalLink from '@/components/ExternalLink'
 import type { RepositoryType } from '@/types/repository'
 
 export type HeaderProps = {
   repository: RepositoryType
-}
+} & HTMLAttributes<HTMLDivElement>
 
 const Header: FC<HeaderProps> = ({ repository, ...props }) => {
   const formatDisplayDate = useCallback((isoString: string): string => {

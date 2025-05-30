@@ -1,10 +1,10 @@
-import { type FC, type ReactNode } from 'react'
+import { type FC, type HTMLAttributes, type ReactNode } from 'react'
 
 export type ExternalLinkProps = {
   children: ReactNode
   href: string
   target?: string
-}
+} & HTMLAttributes<HTMLAnchorElement>
 
 const ExternalLink: FC<ExternalLinkProps> = ({ children, href, target = '_blank', ...props }) => {
   return (

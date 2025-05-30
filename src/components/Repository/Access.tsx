@@ -1,9 +1,9 @@
-import { type FC } from 'react'
+import { type FC, type HTMLAttributes } from 'react'
 import type { RepositoryType } from '@/types/repository'
 
 export type AccessProps = {
   repository: RepositoryType
-}
+} & HTMLAttributes<HTMLDivElement>
 
 const Access: FC<AccessProps> = ({ repository, ...props }) => {
 

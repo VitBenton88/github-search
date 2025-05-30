@@ -1,10 +1,10 @@
-import { type FC, useCallback, useContext, useEffect, useState } from 'react'
+import { type FC, type HTMLAttributes, useCallback, useContext, useEffect, useState } from 'react'
 import { SearchContext, type SearchHandler } from '@/context/SearchContext'
 
 export type SearchFormProps = {
   disableForm: boolean
   onSubmit: SearchHandler
-}
+} & HTMLAttributes<HTMLFormElement>
 
 const Form: FC<SearchFormProps> = ({ disableForm, onSubmit, ...props }) => {
   const [filterPopular, setFilterPopular] = useState(false)

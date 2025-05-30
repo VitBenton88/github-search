@@ -1,10 +1,10 @@
-import { type FC } from 'react'
+import { type FC, type HTMLAttributes } from 'react'
 import ExternalLink from '@/components/ExternalLink'
 import type { RepositoryType } from '@/types/repository'
 
 export type LinksProps = {
   repository: RepositoryType
-}
+} & HTMLAttributes<HTMLDivElement>
 
 const Links: FC<LinksProps> = ({ repository, ...props }) => {
 

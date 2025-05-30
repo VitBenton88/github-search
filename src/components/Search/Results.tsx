@@ -1,10 +1,10 @@
-import { type FC, useCallback } from 'react'
+import { type FC, type HTMLAttributes, useCallback } from 'react'
 import type { BasicRepositoryType } from '@/types/repository'
 import { useNavigate } from 'react-router-dom'
 
 export type SearchResultsProps = {
   items: BasicRepositoryType[]
-}
+} & HTMLAttributes<HTMLDivElement>
 
 const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   const navigate = useNavigate()
@@ -23,8 +23,8 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   )
 
   return (
-    <div className="results-wrapper">
-      <table data-testid="table" {...props}>
+    <div className="results-wrapper" {...props}>
+      <table data-testid="table">
         <caption>Search results</caption>
         <thead>
           <tr>
