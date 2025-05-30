@@ -34,5 +34,35 @@ describe('Repository Access details', () => {
         expect(privateStatus).toHaveTextContent('Public')
       })
     })
+
+    describe('with an archived repository', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const mockDefaultProps: AccessProps = {
+            repository: { ...mockRepo, archived: true }
+          }
+          renderComponent(mockDefaultProps)
+        })
+      })
+
+      it('should render correct archived status', () => {
+        expect(elements.archivedStatus).toHaveTextContent('Archived')
+      })
+    })
+
+    describe('with a private repository', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const mockDefaultProps: AccessProps = {
+            repository: { ...mockRepo, isPrivate: true }
+          }
+          renderComponent(mockDefaultProps)
+        })
+      })
+
+      it('should render correct private status', () => {
+        expect(elements.privateStatus).toHaveTextContent('Private')
+      })
+    })
   })
 })
