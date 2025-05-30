@@ -38,5 +38,35 @@ describe('Repository Details', () => {
         expect(size).toHaveTextContent(`${mockRepo.size} bytes`)
       })
     })
+
+    describe('when repository has no downloads', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const mockProps: DetailsProps = {
+            repository: { ...mockRepo, has_downloads: false }
+          }
+          renderComponent(mockProps)
+        })
+      })
+
+      it('should render correct downloads status', () => {
+        expect(elements.downloads).toHaveTextContent('No downloads')
+      })
+    })
+
+    describe('when repository allows forking', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const mockProps: DetailsProps = {
+            repository: { ...mockRepo, allow_forking: true }
+          }
+          renderComponent(mockProps)
+        })
+      })
+
+      it('should render correct forking status', () => {
+        expect(elements.forking).toHaveTextContent('Allows forking')
+      })
+    })
   })
 })
