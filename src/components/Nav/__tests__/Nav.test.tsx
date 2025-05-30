@@ -14,7 +14,6 @@ vi.mock('react-router-dom', async () => {
   };
 })
 
-
 describe('Nav', () => {
   const renderComponent = () =>
     render(
