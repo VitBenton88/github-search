@@ -7,7 +7,7 @@ import { SearchContext, type SearchContextType } from '@/context/SearchContext'
 const mockOnSubmit = vi.fn()
 const mockSearchTerm = 'mock search term'
 
-const mockDefaultProps: SearchFormProps = { disableForm: false, onSubmit: mockOnSubmit }
+const mockDefaultProps: SearchFormProps = { disableForm: false, onFormSubmit: mockOnSubmit }
 
 const mockContext: SearchContextType = {
   handleSearch: vi.fn(),
@@ -103,7 +103,7 @@ describe('Search Form', () => {
         await userEvent.click(submitBtn)
       })
 
-      it('should call onSubmit prop function with correct values', async () => {
+      it('should call onFormSubmit prop function with correct values', async () => {
         expect(mockOnSubmit).toHaveBeenCalledWith(mockSearchTerm, false)
       })
     })

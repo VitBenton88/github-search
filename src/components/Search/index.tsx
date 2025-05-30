@@ -15,7 +15,7 @@ const Search: FC = () => {
     <main id="search">
       {!!error && <p data-testid="pageNotFound" >{error}</p>}
       <h1>GitHub Search</h1>
-      <SearchForm disableForm={isLoading} onSubmit={handleSearch} data-testid="searchForm" />
+      <SearchForm disableForm={isLoading} onFormSubmit={handleSearch} data-testid="searchForm" />
 
       {!hasSearched && <p data-testid="noSearch">Enter a keyword to search GitHub.</p>}
 
@@ -24,7 +24,7 @@ const Search: FC = () => {
           <Loader data-testid="loader" />
         ) : (
           <div className="fade-up">
-            <SearchResults data-testid="searchResults" items={repositories} />
+            <SearchResults items={repositories} data-testid="searchResults" />
           </div>
         )
       )}

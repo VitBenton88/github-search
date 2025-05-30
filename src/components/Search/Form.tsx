@@ -3,10 +3,10 @@ import { SearchContext, type SearchHandler } from '@/context/SearchContext'
 
 export type SearchFormProps = {
   disableForm: boolean
-  onSubmit: SearchHandler
+  onFormSubmit: SearchHandler
 } & HTMLAttributes<HTMLFormElement>
 
-const Form: FC<SearchFormProps> = ({ disableForm, onSubmit, ...props }) => {
+const Form: FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }) => {
   const [filterPopular, setFilterPopular] = useState(false)
   const [searchKeyword, setSearchKeyword] = useState('')
   const { searchTerm: savedSearchTerm } = useContext(SearchContext)
@@ -19,8 +19,8 @@ const Form: FC<SearchFormProps> = ({ disableForm, onSubmit, ...props }) => {
   const handleFormSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault()
 
-    onSubmit(searchKeyword, filterPopular)
-  }, [searchKeyword, filterPopular, onSubmit])
+    onFormSubmit(searchKeyword, filterPopular)
+  }, [searchKeyword, filterPopular, onFormSubmit])
 
   return (
     <form onSubmit={handleFormSubmit} data-testid="form" {...props}>
