@@ -41,16 +41,28 @@ describe('Repository Header', () => {
         })
       })
 
-      it('should render correct repository data', () => {
-        const { created, description, ownerLink, starCount, title, updated } = elements
-        const { description: repoDesc, owner_url, stargazers_count, name } = mockRepo
+      it('should render correct created date', () => {
+        expect(elements.created).toHaveTextContent(`Created: 12/31/1979, 7:00:00 PM`)
+      })
 
-        expect(created).toHaveTextContent('Created: 12/31/1979, 7:00:00 PM')
-        expect(description).toHaveTextContent(repoDesc)
-        expect(ownerLink).toHaveAttribute('href', owner_url)
-        expect(starCount).toHaveTextContent(`⭐ ${stargazers_count}`)
-        expect(title).toHaveTextContent(name)
-        expect(updated).toHaveTextContent('Updated: 12/31/1980, 7:00:00 PM')
+      it('should render correct repository description', () => {
+        expect(elements.description).toHaveTextContent(mockRepo.description)
+      })
+
+      it('should render correct repository owner link', () => {
+        expect(elements.ownerLink).toHaveAttribute('href', mockRepo.owner_url)
+      })
+
+      it('should render correct repository star count', () => {
+        expect(elements.starCount).toHaveTextContent(`⭐ ${mockRepo.stargazers_count}`)
+      })
+
+      it('should render correct page title', () => {
+        expect(elements.title).toHaveTextContent(mockRepo.name)
+      })
+
+      it('should render correct updated date', () => {
+        expect(elements.updated).toHaveTextContent('Updated: 12/31/1980, 7:00:00 PM')
       })
     })
   })
