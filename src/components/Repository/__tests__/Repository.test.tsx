@@ -58,8 +58,11 @@ describe('Repository', () => {
         expect(elements.header).toBeInTheDocument()
       })
 
-      it('should render repository details', () => {
+      it('should render repository access details', () => {
         expect(elements.access).toBeInTheDocument()
+      })
+
+      it('should render repository details', () => {
         expect(elements.details).toBeInTheDocument()
       })
 

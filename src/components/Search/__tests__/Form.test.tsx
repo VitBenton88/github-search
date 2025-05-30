@@ -40,7 +40,7 @@ describe('Search Form', () => {
         })
       })
 
-      it('should render an enabled form with correct inputs', () => {
+      it('should render an enabled form', () => {
         const { fieldset, form } = elements
 
         expect(form).toBeInTheDocument()
@@ -103,7 +103,7 @@ describe('Search Form', () => {
         await userEvent.click(submitBtn)
       })
 
-      it('should call onSubmit function with correct values', async () => {
+      it('should call onSubmit prop function with correct values', async () => {
         expect(mockOnSubmit).toHaveBeenCalledWith(mockSearchTerm, false)
       })
     })

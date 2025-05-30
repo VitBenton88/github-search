@@ -27,12 +27,12 @@ describe('Repository Links', () => {
         expect(elements.heading).toBeInTheDocument()
       })
 
-      it('should render correct repository links', () => {
-        const { githubLink, homepageLink } = elements
-        const { html_url, homepage } = mockRepo
+      it('should render correct homepage link', () => {
+        expect(elements.homepageLink).toHaveAttribute('href', mockRepo.homepage)
+      })
 
-        expect(githubLink).toHaveAttribute('href', html_url)
-        expect(homepageLink).toHaveAttribute('href', homepage)
+      it('should render correct github link', () => {
+        expect(elements.githubLink).toHaveAttribute('href', mockRepo.html_url)
       })
     })
 
