@@ -29,13 +29,20 @@ describe('Repository Details', () => {
         expect(elements.heading).toBeInTheDocument()
       })
 
-      it('should render correct repository details', () => {
-        const { downloads, forking, language, size } = elements
+      it('should render correct downloads status', () => {
+        expect(elements.downloads).toHaveTextContent('Has downloads')
+      })
 
-        expect(downloads).toHaveTextContent('Has downloads')
-        expect(forking).toHaveTextContent('Does not allow forking')
-        expect(language).toHaveTextContent(mockRepo.language)
-        expect(size).toHaveTextContent(`${mockRepo.size} bytes`)
+      it('should render correct forking status', () => {
+        expect(elements.forking).toHaveTextContent('Does not allow forking')
+      })
+
+      it('should render correct programming language', () => {
+        expect(elements.language).toHaveTextContent(mockRepo.language)
+      })
+
+      it('should render correct size', () => {
+        expect(elements.size).toHaveTextContent(`${mockRepo.size} bytes`)
       })
     })
 
