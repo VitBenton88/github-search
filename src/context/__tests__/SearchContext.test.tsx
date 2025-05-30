@@ -64,14 +64,10 @@ describe('SearchContext', () => {
           hasSearched, isLoading, repositories, searchBtn, searchTerm
         } = elements;
 
-        expect(hasSearched).toBeInTheDocument()
         expect(hasSearched).toHaveTextContent('has not searched')
-        expect(isLoading).toBeInTheDocument()
         expect(isLoading).toHaveTextContent('is not loading')
-        expect(repositories).toBeInTheDocument()
         expect(repositories).toHaveTextContent('0')
         expect(searchBtn).toBeInTheDocument()
-        expect(searchTerm).toBeInTheDocument()
         expect(searchTerm).toHaveTextContent('')
       })
     });
