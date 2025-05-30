@@ -17,9 +17,9 @@ vi.mock('react-router-dom', async () => {
 const mockDefaultProps: HeaderProps = { repository: mockRepo }
 
 describe('Repository Header', () => {
-  const renderComponent = (propData = mockDefaultProps) =>
+  const renderComponent = (propData: HeaderProps = mockDefaultProps, initialEntries: string[] = ['/repo/mock-owner/mock-repo']) =>
     render(
-      <MemoryRouter initialEntries={['/repo/mock-owner/mock-repo']}>
+      <MemoryRouter initialEntries={initialEntries}>
         <Header {...propData} />
       </MemoryRouter>
     )

@@ -6,7 +6,7 @@ import Links, { type LinksProps } from '../Links'
 const mockDefaultProps: LinksProps = { repository: mockRepo }
 
 describe('Repository Links', () => {
-  const renderComponent = (propData = mockDefaultProps) =>
+  const renderComponent = (propData: LinksProps = mockDefaultProps) =>
     render(<Links {...propData} />)
 
   const elements = {

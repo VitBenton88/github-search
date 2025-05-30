@@ -18,11 +18,12 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('Search Results', () => {
-  const renderComponent = (propData = mockDefaultProps) => render(
-    <MemoryRouter initialEntries={['/']}>
-      <Results {...propData} />
-    </MemoryRouter>
-  )
+  const renderComponent = (propData: SearchResultsProps = mockDefaultProps, initialEntries: string[] = ['/']) =>
+    render(
+      <MemoryRouter initialEntries={initialEntries}>
+        <Results {...propData} />
+      </MemoryRouter>
+    )
 
   const elements = {
     get names() { return screen.queryAllByTestId('name') },

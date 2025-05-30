@@ -25,9 +25,9 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('Repository', () => {
-  const renderComponent = () =>
+  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']) =>
     render(
-      <MemoryRouter initialEntries={['/repo/mock-owner/mock-repo']}>
+      <MemoryRouter initialEntries={initialEntries}>
         <Repository />
       </MemoryRouter>
     )

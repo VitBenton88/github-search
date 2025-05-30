@@ -7,7 +7,7 @@ const mockTarget = '_self'
 const mockDefaultProps: ExternalLinkProps = { href: mockHref, children: null }
 
 describe('ExternalLink', () => {
-  const renderComponent = (propData = mockDefaultProps) =>
+  const renderComponent = (propData: ExternalLinkProps = mockDefaultProps) =>
     render(<ExternalLink {...propData} />)
 
   const elements = {

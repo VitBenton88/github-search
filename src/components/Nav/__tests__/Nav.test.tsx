@@ -15,9 +15,9 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('Nav', () => {
-  const renderComponent = () =>
+  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']) =>
     render(
-      <MemoryRouter initialEntries={['/repo/mock-owner/mock-repo']}>
+      <MemoryRouter initialEntries={initialEntries}>
         <Nav />
       </MemoryRouter>
     )
@@ -28,7 +28,9 @@ describe('Nav', () => {
   }
 
   describe('render', () => {
-    beforeEach(renderComponent)
+    beforeEach(() => {
+      renderComponent()
+    })
 
     it('should render a nav element', () => {
       expect(elements.nav).toBeInTheDocument()
