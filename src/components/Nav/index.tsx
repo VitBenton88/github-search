@@ -7,7 +7,7 @@ const Loader: FC = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
 
   return (
     <nav data-testid="nav" {...props}>
-      <button data-testid="back-btn" type="button" onClick={() => navigate('/')}>
+      <button type="button" onClick={() => navigate('/')} data-testid="back-btn">
         &larr; Back to search
       </button>
     </nav>

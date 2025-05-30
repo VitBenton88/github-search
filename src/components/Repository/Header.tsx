@@ -19,7 +19,7 @@ const Header: FC<HeaderProps> = ({ repository, ...props }) => {
       {!!repository.description &&
         (<h2 data-testid="description">{repository.description}</h2>)
       }
-      <h3>Owner: <ExternalLink data-testid="owner-link" href={repository.owner_url}>{repository.owner} &rarr;</ExternalLink></h3>
+      <h3>Owner: <ExternalLink href={repository.owner_url} data-testid="owner-link">{repository.owner} &rarr;</ExternalLink></h3>
       <h4 data-testid="created">Created: {formatDisplayDate(repository.created_at)}</h4>
       <h4 data-testid="updated">Updated: {formatDisplayDate(repository.updated_at)}</h4>
     </header>

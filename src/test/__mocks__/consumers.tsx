@@ -11,8 +11,8 @@ export const MockSearchConsumer = (): React.ReactNode => {
       <div data-testid="isLoading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
       <div data-testid="searchTerm">{context.searchTerm}</div>
       <button
-        data-testid="search-button"
         onClick={() => context.handleSearch('mock search term', false)}
+        data-testid="search-button"
       >
         Search
       </button>
