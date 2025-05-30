@@ -37,7 +37,7 @@ const MockConsumer = (): React.ReactNode => {
 }
 
 describe('SearchContext', () => {
-  const renderContext = (children: React.ReactNode) => {
+  const renderContext = (children: React.ReactNode = (<MockConsumer />)) => {
     return render(
       <SearchProvider>
         {children}
@@ -55,8 +55,10 @@ describe('SearchContext', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(() => {
-        renderContext(<MockConsumer />);
+      beforeEach(async () => {
+        await waitFor(() => {
+          renderContext();
+        })
       })
 
       it('should render children', () => {
@@ -77,9 +79,9 @@ describe('SearchContext', () => {
     describe('when searching', () => {
       beforeEach(async () => {
         (searchRepositories as Mock).mockResolvedValue(mockRepos);
-        renderContext(<MockConsumer />);
 
         await waitFor(async () => {
+          renderContext();
           await userEvent.click(elements.searchBtn);
         })
       })
