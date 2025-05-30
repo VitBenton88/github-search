@@ -20,7 +20,6 @@ const defaultValue: SearchContextType = {
   searchTerm: '',
 }
 
-
 const SearchContext = createContext<SearchContextType>(defaultValue)
 
 const SearchProvider = ({ children }: { children: ReactNode }) => {
