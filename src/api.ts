@@ -8,7 +8,7 @@ const BASE_URL = 'https://api.github.com'
  * @param {boolean} popularFilter - Filter search query for popular repositories (>1k stars).
  * @returns {BasicRepositoryType[]}
  */
-export const searchRepositories = async (searchKeyword = '', popularFilter = false): Promise<BasicRepositoryType[]> => {
+export const searchRepositories = async (searchKeyword: string = '', popularFilter: boolean = false): Promise<BasicRepositoryType[]> => {
   let fetchUrl = `${BASE_URL}/search/repositories?q=${searchKeyword}`
 
   if (popularFilter) {
@@ -37,7 +37,7 @@ export const searchRepositories = async (searchKeyword = '', popularFilter = fal
  * @param {string} name - Repository's name.
  * @returns {RepositoryType}
  */
-export const getRepository = async (owner = '', name = ''): Promise<RepositoryType> => {
+export const getRepository = async (owner: string = '', name: string = ''): Promise<RepositoryType> => {
   const fetchUrl = `${BASE_URL}/repos/${owner}/${name}`
 
   const response = await fetch(fetchUrl)
