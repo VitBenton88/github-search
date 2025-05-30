@@ -27,11 +27,12 @@ describe('Repository Access details', () => {
         expect(elements.heading).toBeInTheDocument()
       })
 
-      it('should render correct repository details', () => {
-        const { archivedStatus, privateStatus } = elements
+      it('should render correct archived status', () => {
+        expect(elements.archivedStatus).toHaveTextContent('Not archived')
+      })
 
-        expect(archivedStatus).toHaveTextContent('Not archived')
-        expect(privateStatus).toHaveTextContent('Public')
+      it('should render correct access status', () => {
+        expect(elements.privateStatus).toHaveTextContent('Public')
       })
     })
 
@@ -60,7 +61,7 @@ describe('Repository Access details', () => {
         })
       })
 
-      it('should render correct private status', () => {
+      it('should render correct access status', () => {
         expect(elements.privateStatus).toHaveTextContent('Private')
       })
     })
