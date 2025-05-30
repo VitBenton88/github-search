@@ -7,7 +7,7 @@ import { mockRepo } from '@/test/__mocks__/repositories.js'
 import { MockSearchConsumer } from '@/test/__mocks__/consumers.js'
 import type { RepositoryType } from '@/types/repository.js'
 
-const mockRepos: RepositoryType[] = [mockRepo];
+const mockRepos: RepositoryType[] = [mockRepo]
 
 vi.mock('@/api', async () => {
   const actual = await vi.importActual('@/api');
