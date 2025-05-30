@@ -1,10 +1,10 @@
 import { searchRepositories } from '@/api'
 import { render, screen, waitFor } from '@testing-library/react'
 import { describe, it, beforeEach, expect, vi, type Mock } from 'vitest'
-import { useContext } from 'react'
-import { SearchProvider, SearchContext } from '../SearchContext'
+import { SearchProvider } from '../SearchContext'
 import userEvent from '@testing-library/user-event'
 import { mockRepo } from '@/test/__mocks__/repositories.js'
+import { MockSearchConsumer } from '@/test/__mocks__/consumers.js'
 import type { RepositoryType } from '@/types/repository.js'
 
 const mockRepos: RepositoryType[] = [mockRepo];
@@ -17,27 +17,8 @@ vi.mock('@/api', async () => {
   }
 })
 
-const MockConsumer = (): React.ReactNode => {
-  const context = useContext(SearchContext);
-
-  return (
-    <>
-      <div data-testid="repositories">{context.repositories.length}</div>
-      <div data-testid="hasSearched">{context.hasSearched ? 'has searched' : 'has not searched'}</div>
-      <div data-testid="isLoading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
-      <div data-testid="searchTerm">{context.searchTerm}</div>
-      <button
-        data-testid="search-button"
-        onClick={() => context.handleSearch('mock search term', false)}
-      >
-        Search
-      </button>
-    </>
-  )
-}
-
 describe('SearchContext', () => {
-  const renderContext = (children: React.ReactNode = (<MockConsumer />)) => {
+  const renderContext = (children: React.ReactNode = (<MockSearchConsumer />)) => {
     return render(
       <SearchProvider>
         {children}
