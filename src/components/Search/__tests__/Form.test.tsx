@@ -40,7 +40,7 @@ describe('Search Form', () => {
         })
       })
 
-      it('should render an enabled form', () => {
+      it('should render an enabled form with correct inputs', () => {
         const { fieldset, form } = elements
 
         expect(form).toBeInTheDocument()
@@ -49,6 +49,14 @@ describe('Search Form', () => {
 
       it('should render search input with no value', () => {
         expect(elements.searchInput).toHaveAttribute('value', '')
+      })
+
+      it('should render popular checkbox with no value', () => {
+        expect(elements.popularCheckbox).not.toHaveAttribute('value')
+      })
+
+      it('should render submit button', () => {
+        expect(elements.submitBtn).toBeInTheDocument()
       })
     })
 
