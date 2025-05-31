@@ -10,12 +10,14 @@ import Access from './Access'
 import Header from './Header'
 import Links from './Links'
 
+type fetchHandler = (owner: string, name: string) => Promise<void>
+
 const Repository: FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType | null>(null)
   const { name, owner } = useParams<{ owner: string, name: string }>()
 
-  const fetchRepository = useCallback(async (owner: string, name: string): Promise<void> => {
+  const fetchRepository: fetchHandler = useCallback(async (owner, name) => {
     try {
       const fetchedRepository = await getRepository(owner, name)
       setRepository(fetchedRepository)
