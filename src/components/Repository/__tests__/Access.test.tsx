@@ -2,6 +2,9 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Access, { type AccessProps } from '../Access'
+import { REPO_LABELS } from '../Repository.constants'
+
+const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 
 const mockDefaultProps: AccessProps = { repository: mockRepo }
 
@@ -28,11 +31,11 @@ describe('Repository Access details', () => {
       })
 
       it('should render correct archived status', () => {
-        expect(elements.archivedStatus).toHaveTextContent('Not archived')
+        expect(elements.archivedStatus).toHaveTextContent(NOT_ARCHIVED)
       })
 
       it('should render correct access status', () => {
-        expect(elements.privateStatus).toHaveTextContent('Public')
+        expect(elements.privateStatus).toHaveTextContent(PUBLIC)
       })
     })
 
@@ -47,7 +50,7 @@ describe('Repository Access details', () => {
       })
 
       it('should render correct archived status', () => {
-        expect(elements.archivedStatus).toHaveTextContent('Archived')
+        expect(elements.archivedStatus).toHaveTextContent(ARCHIVED)
       })
     })
 
@@ -62,7 +65,7 @@ describe('Repository Access details', () => {
       })
 
       it('should render correct access status', () => {
-        expect(elements.privateStatus).toHaveTextContent('Private')
+        expect(elements.privateStatus).toHaveTextContent(PRIVATE)
       })
     })
   })

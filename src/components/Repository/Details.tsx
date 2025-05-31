@@ -1,5 +1,8 @@
 import { type FC, type HTMLAttributes } from 'react'
 import type { RepositoryType } from '@/types/repository'
+import { REPO_LABELS } from './Repository.constants'
+
+const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 
 export type DetailsProps = {
   repository: RepositoryType
@@ -15,8 +18,8 @@ const Details: FC<DetailsProps> = ({ repository, ...props }) => {
       <ul>
         <li data-testid="language">Language: {repository.language}</li>
         <li data-testid="size">Size: {repository.size} bytes</li>
-        <li data-testid="downloads">{repository.has_downloads ? 'Has downloads' : 'No downloads'}</li>
-        <li data-testid="forking">{repository.allow_forking ? 'Allows forking' : 'Does not allow forking'}</li>
+        <li data-testid="downloads">{repository.has_downloads ? HAS_DOWNLOADS : NO_DOWNLOADS}</li>
+        <li data-testid="forking">{repository.allow_forking ? ALLOWS_FORKING : FORBIDS_FORKING}</li>
       </ul>
     </section>
   )

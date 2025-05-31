@@ -2,6 +2,9 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Details, { type DetailsProps } from '../Details'
+import { REPO_LABELS } from '../Repository.constants'
+
+const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 
 const mockDefaultProps: DetailsProps = { repository: mockRepo }
 
@@ -30,11 +33,11 @@ describe('Repository Details', () => {
       })
 
       it('should render correct downloads status', () => {
-        expect(elements.downloads).toHaveTextContent('Has downloads')
+        expect(elements.downloads).toHaveTextContent(HAS_DOWNLOADS)
       })
 
       it('should render correct forking status', () => {
-        expect(elements.forking).toHaveTextContent('Does not allow forking')
+        expect(elements.forking).toHaveTextContent(FORBIDS_FORKING)
       })
 
       it('should render correct programming language', () => {
@@ -57,7 +60,7 @@ describe('Repository Details', () => {
       })
 
       it('should render correct downloads status', () => {
-        expect(elements.downloads).toHaveTextContent('No downloads')
+        expect(elements.downloads).toHaveTextContent(NO_DOWNLOADS)
       })
     })
 
@@ -72,7 +75,7 @@ describe('Repository Details', () => {
       })
 
       it('should render correct forking status', () => {
-        expect(elements.forking).toHaveTextContent('Allows forking')
+        expect(elements.forking).toHaveTextContent(ALLOWS_FORKING)
       })
     })
   })
