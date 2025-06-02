@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import ExternalLink, { type ExternalLinkProps } from '../ExternalLink'
 
@@ -7,7 +7,7 @@ const mockTarget = '_self'
 const mockDefaultProps: ExternalLinkProps = { href: mockHref, children: null }
 
 describe('ExternalLink', () => {
-  const renderComponent = (propData: ExternalLinkProps = mockDefaultProps) =>
+  const renderComponent = (propData: ExternalLinkProps = mockDefaultProps): RenderResult =>
     render(<ExternalLink {...propData} />)
 
   const elements = {

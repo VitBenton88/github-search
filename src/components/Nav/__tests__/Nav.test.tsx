@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
@@ -15,7 +15,7 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('Nav', () => {
-  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']) =>
+  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
         <Nav />

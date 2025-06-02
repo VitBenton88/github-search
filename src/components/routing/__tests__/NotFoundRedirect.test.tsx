@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react'
+import { render, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NotFoundRedirect from '../NotFoundRedirect'
 
@@ -13,7 +13,7 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('NotFoundRedirect', () => {
-  const renderComponent = () => render(<NotFoundRedirect />)
+  const renderComponent = (): RenderResult => render(<NotFoundRedirect />)
 
   describe('render', () => {
     beforeEach(async () => {

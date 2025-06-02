@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { mockRepo } from '@mocks/repositories'
@@ -17,7 +17,7 @@ vi.mock('react-router-dom', async () => {
 const mockDefaultProps: HeaderProps = { repository: mockRepo }
 
 describe('Repository Header', () => {
-  const renderComponent = (propData: HeaderProps = mockDefaultProps, initialEntries: string[] = ['/repo/mock-owner/mock-repo']) =>
+  const renderComponent = (propData: HeaderProps = mockDefaultProps, initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
         <Header {...propData} />

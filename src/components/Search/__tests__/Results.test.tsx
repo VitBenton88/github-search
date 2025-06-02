@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Results from '../Results'
 import { MemoryRouter } from 'react-router-dom'
@@ -18,7 +18,7 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('Search Results', () => {
-  const renderComponent = (propData: SearchResultsProps = mockDefaultProps, initialEntries: string[] = ['/']) =>
+  const renderComponent = (propData: SearchResultsProps = mockDefaultProps, initialEntries: string[] = ['/']): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
         <Results {...propData} />

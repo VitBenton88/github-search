@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Details, { type DetailsProps } from '../Details'
@@ -9,7 +9,7 @@ const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LA
 const mockDefaultProps: DetailsProps = { repository: mockRepo }
 
 describe('Repository Details', () => {
-  const renderComponent = (propData: DetailsProps = mockDefaultProps) =>
+  const renderComponent = (propData: DetailsProps = mockDefaultProps): RenderResult =>
     render(<Details {...propData} />)
 
   const elements = {

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { SearchContext, type SearchContextType } from '@/context/SearchContext'
 import Search from '../index'
@@ -14,7 +14,7 @@ const mockContext: SearchContextType = {
 }
 
 describe('Search', () => {
-  const renderComponent = (contextValue: SearchContextType = mockContext, initialEntries: string[] = ['/']) => render(
+  const renderComponent = (contextValue: SearchContextType = mockContext, initialEntries: string[] = ['/']): RenderResult => render(
     <SearchContext.Provider value={contextValue}>
       <MemoryRouter initialEntries={initialEntries}>
         <Search />

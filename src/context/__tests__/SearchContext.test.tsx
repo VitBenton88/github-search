@@ -1,5 +1,5 @@
 import { searchRepositories } from '@/api'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { SearchProvider } from '../SearchContext'
 import userEvent from '@testing-library/user-event'
@@ -18,7 +18,7 @@ vi.mock('@/api', async () => {
 })
 
 describe('SearchContext', () => {
-  const renderContext = (children: React.ReactNode = (<MockSearchConsumer />)) => {
+  const renderContext = (children: React.ReactNode = (<MockSearchConsumer />)): RenderResult => {
     return render(
       <SearchProvider>
         {children}

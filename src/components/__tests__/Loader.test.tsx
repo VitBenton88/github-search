@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import Loader from '../Loader'
 
 describe('Loader', () => {
-  const renderComponent = () => render(<Loader />)
+  const renderComponent = (): RenderResult => render(<Loader />)
 
   const elements = {
     get loader() { return screen.getByTestId('loader') },

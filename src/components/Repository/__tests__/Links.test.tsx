@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Links, { type LinksProps } from '../Links'
@@ -6,7 +6,7 @@ import Links, { type LinksProps } from '../Links'
 const mockDefaultProps: LinksProps = { repository: mockRepo }
 
 describe('Repository Links', () => {
-  const renderComponent = (propData: LinksProps = mockDefaultProps) =>
+  const renderComponent = (propData: LinksProps = mockDefaultProps): RenderResult =>
     render(<Links {...propData} />)
 
   const elements = {

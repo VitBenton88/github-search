@@ -1,5 +1,5 @@
 import { getRepository } from '@/api'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../index'
@@ -25,7 +25,7 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('Repository', () => {
-  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']) =>
+  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
         <Repository />

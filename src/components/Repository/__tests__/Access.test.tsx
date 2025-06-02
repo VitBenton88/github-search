@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Access, { type AccessProps } from '../Access'
@@ -9,7 +9,7 @@ const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 const mockDefaultProps: AccessProps = { repository: mockRepo }
 
 describe('Repository Access details', () => {
-  const renderComponent = (propData: AccessProps = mockDefaultProps) =>
+  const renderComponent = (propData: AccessProps = mockDefaultProps): RenderResult =>
     render(<Access {...propData} />)
 
   const elements = {
