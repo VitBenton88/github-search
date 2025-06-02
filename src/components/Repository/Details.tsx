@@ -17,7 +17,9 @@ const Details: FC<DetailsProps> = ({ repository, ...props }) => {
       </header>
 
       <ul>
-        <li data-testid="language">Language: {repository.language}</li>
+        {repository.language?.trim() && (
+          <li data-testid="language">Language: {repository.language}</li>
+        )}
         <li data-testid="size">Size: {repository.size} bytes</li>
         <li data-testid="downloads">{repository.has_downloads ? HAS_DOWNLOADS : NO_DOWNLOADS}</li>
         <li data-testid="forking">{repository.allow_forking ? ALLOWS_FORKING : FORBIDS_FORKING}</li>

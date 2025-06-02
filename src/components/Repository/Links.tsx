@@ -15,7 +15,7 @@ const Links: FC<LinksProps> = ({ repository, ...props }) => {
       </header>
 
       <ul>
-        {!!repository.homepage &&
+        {repository.homepage?.trim() &&
           (<li>
             <ExternalLink href={repository.homepage} data-testid="homepageLink">Homepage &rarr;</ExternalLink>
           </li>)
