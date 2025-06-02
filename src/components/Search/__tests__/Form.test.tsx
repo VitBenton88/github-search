@@ -18,7 +18,10 @@ const mockContext: SearchContextType = {
 }
 
 describe('Search Form', () => {
-  const renderComponent = (propData: SearchFormProps = mockDefaultProps, contextValue: SearchContextType = mockContext): RenderResult => render(
+  const renderComponent = (
+    contextValue: SearchContextType = mockContext,
+    propData: SearchFormProps = mockDefaultProps
+  ): RenderResult => render(
     <SearchContext.Provider value={contextValue}>
       <Form {...propData} />
     </SearchContext.Provider>
@@ -64,7 +67,7 @@ describe('Search Form', () => {
       beforeEach(() => {
         act(() => {
           const propData = { ...mockDefaultProps, disableForm: true }
-          renderComponent(propData)
+          renderComponent(undefined, propData)
         })
       })
 
@@ -80,7 +83,7 @@ describe('Search Form', () => {
       beforeEach(() => {
         act(() => {
           const contextData = { ...mockContext, searchTerm: mockSearchTerm }
-          renderComponent(mockDefaultProps, contextData)
+          renderComponent(contextData, mockDefaultProps)
         })
       })
 

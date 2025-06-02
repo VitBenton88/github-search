@@ -14,7 +14,10 @@ const mockContext: SearchContextType = {
 }
 
 describe('Search', () => {
-  const renderComponent = (contextValue: SearchContextType = mockContext, initialEntries: string[] = ['/']): RenderResult => render(
+  const renderComponent = (
+    contextValue: SearchContextType = mockContext,
+    initialEntries: string[] = ['/']
+  ): RenderResult => render(
     <SearchContext.Provider value={contextValue}>
       <MemoryRouter initialEntries={initialEntries}>
         <Search />

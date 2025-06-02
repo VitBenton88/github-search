@@ -18,7 +18,10 @@ vi.mock('react-router-dom', async () => {
 })
 
 describe('Search Results', () => {
-  const renderComponent = (propData: SearchResultsProps = mockDefaultProps, initialEntries: string[] = ['/']): RenderResult =>
+  const renderComponent = (
+    initialEntries: string[] = ['/'],
+    propData: SearchResultsProps = mockDefaultProps
+  ): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
         <Results {...propData} />
@@ -62,7 +65,7 @@ describe('Search Results', () => {
       beforeEach(async () => {
         await waitFor(() => {
           const propData = { ...mockDefaultProps, items: [] }
-          renderComponent(propData)
+          renderComponent(undefined, propData)
         })
       })
 

@@ -17,7 +17,10 @@ vi.mock('react-router-dom', async () => {
 const mockDefaultProps: HeaderProps = { repository: mockRepo }
 
 describe('Repository Header', () => {
-  const renderComponent = (propData: HeaderProps = mockDefaultProps, initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
+  const renderComponent = (
+    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
+    propData: HeaderProps = mockDefaultProps
+  ): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
         <Header {...propData} />
@@ -70,7 +73,7 @@ describe('Repository Header', () => {
       beforeEach(async () => {
         await waitFor(() => {
           const mockProps: HeaderProps = { repository: { ...mockRepo, description: '' } }
-          renderComponent(mockProps)
+          renderComponent(undefined, mockProps)
         })
       })
 
