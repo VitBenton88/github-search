@@ -16,7 +16,7 @@ const Header: FC<HeaderProps> = ({ repository, ...props }) => {
     <header {...props}>
       <h1 data-testid="title">{repository.name}</h1>
       <small aria-label={`${repository.stargazers_count} stars`} data-testid="star-count">⭐ {repository.stargazers_count}</small>
-      {!!repository.description &&
+      {repository.description?.trim() &&
         (<h2 data-testid="description">{repository.description}</h2>)
       }
       <h3>Owner: <ExternalLink href={repository.owner_url} data-testid="owner-link">{repository.owner} &rarr;</ExternalLink></h3>

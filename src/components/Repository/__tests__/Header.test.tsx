@@ -26,7 +26,7 @@ describe('Repository Header', () => {
 
   const elements = {
     get created() { return screen.getByTestId('created') },
-    get description() { return screen.getByTestId('description') },
+    get description() { return screen.queryByTestId('description') },
     get ownerLink() { return screen.getByTestId('owner-link') },
     get starCount() { return screen.getByTestId('star-count') },
     get title() { return screen.getByTestId('title') },
@@ -63,6 +63,19 @@ describe('Repository Header', () => {
 
       it('should render correct updated date', () => {
         expect(elements.updated).toHaveTextContent('Updated: 12/31/1980, 7:00:00 PM')
+      })
+    })
+
+    describe('with no description', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const mockProps: HeaderProps = { repository: { ...mockRepo, description: '' } }
+          renderComponent(mockProps)
+        })
+      })
+
+      it('should not render repository description', () => {
+        expect(elements.description).not.toBeInTheDocument()
       })
     })
   })
