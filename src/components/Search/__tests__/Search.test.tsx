@@ -1,4 +1,4 @@
-import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
+import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { SearchContext, type SearchContextType } from '@/context/SearchContext'
 import Search from '../index'

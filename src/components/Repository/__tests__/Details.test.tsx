@@ -1,4 +1,4 @@
-import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
+import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Details, { type DetailsProps } from '../Details'

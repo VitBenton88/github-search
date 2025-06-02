@@ -1,5 +1,5 @@
 import { getRepository } from '@/api'
-import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
+import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../index'

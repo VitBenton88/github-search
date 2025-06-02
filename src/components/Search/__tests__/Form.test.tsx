@@ -1,4 +1,4 @@
-import { act, render, screen, type RenderResult } from '@testing-library/react'
+import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Form, { type SearchFormProps } from '../Form'
 import userEvent from '@testing-library/user-event'

@@ -1,4 +1,4 @@
-import { render, screen, waitFor, type RenderResult } from '@testing-library/react'
+import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'

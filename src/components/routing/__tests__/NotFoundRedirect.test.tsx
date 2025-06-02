@@ -1,4 +1,4 @@
-import { render, waitFor, type RenderResult } from '@testing-library/react'
+import { render, type RenderResult, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NotFoundRedirect from '../NotFoundRedirect'
 

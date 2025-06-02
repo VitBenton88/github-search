@@ -1,4 +1,4 @@
-import { render, screen, type RenderResult } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import ExternalLink, { type ExternalLinkProps } from '../ExternalLink'
 
