@@ -7,7 +7,7 @@ import { mockBasicRepos } from '@mocks/repositories'
 import type { SearchResultsProps } from '../Results'
 
 const mockNavigate = vi.fn()
-const mockDefaultProps: SearchResultsProps = { items: mockBasicRepos }
+const mockDefaultProps: SearchResultsProps = { caption: 'Search results', items: mockBasicRepos }
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom')
@@ -29,6 +29,7 @@ describe('Search Results', () => {
     )
 
   const elements = {
+    get caption() { return screen.queryByTestId('caption') },
     get names() { return screen.queryAllByTestId('name') },
     get noneFound() { return screen.queryByTestId('noneFound') },
     get results() { return screen.queryAllByTestId('result') },
@@ -48,8 +49,12 @@ describe('Search Results', () => {
         expect(elements.table).toBeInTheDocument()
       })
 
+      it('should render the correct caption', () => {
+        expect(elements.caption).toHaveTextContent(mockDefaultProps.caption)
+      })
+
       it('should render the correct amount of results', () => {
-        expect(elements.results.length).toBe(mockBasicRepos.length)
+        expect(elements.results.length).toBe(mockDefaultProps.items.length)
       })
 
       it('should render item data correctly', () => {
@@ -75,6 +80,19 @@ describe('Search Results', () => {
 
       it('should render a "none found" warning', () => {
         expect(elements.noneFound).toBeInTheDocument()
+      })
+    })
+
+    describe('with no caption', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const propData = { ...mockDefaultProps, caption: '' }
+          renderComponent(undefined, propData)
+        })
+      })
+
+      it('should not render a caption element', () => {
+        expect(elements.caption).not.toBeInTheDocument()
       })
     })
   })

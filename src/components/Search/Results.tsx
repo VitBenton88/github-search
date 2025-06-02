@@ -3,10 +3,11 @@ import type { BasicRepositoryType } from '@/types/repository'
 import { useNavigate } from 'react-router-dom'
 
 export type SearchResultsProps = {
+  caption: string,
   items: BasicRepositoryType[]
 } & HTMLAttributes<HTMLDivElement>
 
-const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
+const Results: FC<SearchResultsProps> = ({ caption = '', items = [], ...props }) => {
   const navigate = useNavigate()
 
   const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])
@@ -34,7 +35,7 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
     <div className="results-wrapper" {...props}>
       <table data-testid="table">
 
-        <caption>Search results</caption>
+        {caption && (<caption data-testid="caption">{caption}</caption>)}
 
         <thead>
           <tr>

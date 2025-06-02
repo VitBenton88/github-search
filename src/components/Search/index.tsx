@@ -24,7 +24,10 @@ const Search: FC = () => {
           <Loader data-testid="loader" />
         ) : (
           <div className="fade-up">
-            <SearchResults items={repositories} data-testid="searchResults" />
+            <SearchResults
+              caption="Search results"
+              items={repositories}
+              data-testid="searchResults" />
           </div>
         )
       )}
