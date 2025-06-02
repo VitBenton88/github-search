@@ -9,13 +9,9 @@ export type SearchResultsProps = {
 const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   const navigate = useNavigate()
 
-  const handleClick = useCallback((owner: string, name: string) => {
-    navigate(`/repo/${owner}/${name}`)
-  }, [navigate])
+  const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])
 
-  if (!items.length) return (
-    <p data-testid="noneFound">No repositories found.</p>
-  )
+  if (!items.length) return (<p data-testid="noneFound">No repositories found.</p>)
 
   return (
     <div className="results-wrapper" {...props}>
