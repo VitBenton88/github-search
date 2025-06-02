@@ -16,7 +16,9 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
   return (
     <div className="results-wrapper" {...props}>
       <table data-testid="table">
+
         <caption>Search results</caption>
+
         <thead>
           <tr>
             <th>Name</th>
@@ -24,6 +26,7 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
             <th>Action</th>
           </tr>
         </thead>
+
         <tbody>
           {items.map(({ description, id, name, owner }) => (
             <tr key={id} data-testid="result">
@@ -42,6 +45,7 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
             </tr>
           ))}
         </tbody>
+
       </table>
     </div>
   )

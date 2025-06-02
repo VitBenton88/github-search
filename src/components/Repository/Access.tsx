@@ -15,6 +15,7 @@ const Access: FC<AccessProps> = ({ repository, ...props }) => {
       <header data-testid="heading">
         <h4>Access:</h4>
       </header>
+
       <ul>
         <li data-testid="archived-status">{repository.archived ? ARCHIVED : NOT_ARCHIVED}</li>
         <li data-testid="private-status">{repository.isPrivate ? PRIVATE : PUBLIC}</li>

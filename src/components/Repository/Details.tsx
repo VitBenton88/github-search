@@ -15,6 +15,7 @@ const Details: FC<DetailsProps> = ({ repository, ...props }) => {
       <header data-testid="heading">
         <h4>Details:</h4>
       </header>
+
       <ul>
         <li data-testid="language">Language: {repository.language}</li>
         <li data-testid="size">Size: {repository.size} bytes</li>
