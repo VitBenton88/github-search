@@ -8,10 +8,6 @@ input[type="text"] {
   padding: .5em;
 }
 
-button[type="submit"] {
-  margin-top: 1em;
-}
-
 /* Animations */
 
 @media (prefers-reduced-motion: no-preference) {

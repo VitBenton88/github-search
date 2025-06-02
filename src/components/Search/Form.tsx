@@ -1,5 +1,6 @@
 import { type FC, type HTMLAttributes, useCallback, useContext, useState } from 'react'
 import { SearchContext, type SearchHandler } from '@/context/SearchContext'
+import Button from '@/components/Button'
 
 export type SearchFormProps = {
   disableForm: boolean
@@ -39,7 +40,7 @@ const Form: FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }) => {
           Popular
         </label>
 
-        <button type="submit" data-testid="submitBtn">Search</button>
+        <Button type="submit" data-testid="submitBtn">Search</Button>
       </fieldset>
     </form>
   )

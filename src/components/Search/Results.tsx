@@ -1,6 +1,7 @@
 import { type FC, type HTMLAttributes, useCallback } from 'react'
 import type { BasicRepositoryType } from '@/types/repository'
 import { useNavigate } from 'react-router-dom'
+import Button from '@/components/Button'
 
 export type SearchResultsProps = {
   caption: string,
@@ -17,14 +18,14 @@ const Results: FC<SearchResultsProps> = ({ caption = '', items = [], ...props })
       <td data-testid="name">{repo.name}</td>
       <td>{repo.description}</td>
       <td>
-        <button
+        <Button
           type="button"
           aria-label={`View details for ${repo.name} repository`}
           onClick={() => handleClick(repo.owner, repo.name)}
           data-testid="viewMoreBtn"
         >
           View
-        </button>
+        </Button>
       </td>
     </tr>
   )
