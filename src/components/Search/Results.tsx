@@ -11,6 +11,23 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
 
   const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])
 
+  const renderTableRow = (repo: BasicRepositoryType) => (
+    <tr key={repo.id} data-testid="result">
+      <td data-testid="name">{repo.name}</td>
+      <td>{repo.description}</td>
+      <td>
+        <button
+          type="button"
+          aria-label={`View details for ${repo.name} repository`}
+          onClick={() => handleClick(repo.owner, repo.name)}
+          data-testid="viewMoreBtn"
+        >
+          View
+        </button>
+      </td>
+    </tr>
+  )
+
   if (!items.length) return (<p data-testid="noneFound">No repositories found.</p>)
 
   return (
@@ -28,22 +45,7 @@ const Results: FC<SearchResultsProps> = ({ items, ...props }) => {
         </thead>
 
         <tbody>
-          {items.map(({ description, id, name, owner }) => (
-            <tr key={id} data-testid="result">
-              <td data-testid="name">{name}</td>
-              <td>{description}</td>
-              <td>
-                <button
-                  type="button"
-                  aria-label={`View details for ${name} repository`}
-                  onClick={() => handleClick(owner, name)}
-                  data-testid="viewMoreBtn"
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          ))}
+          {items.map(renderTableRow)}
         </tbody>
 
       </table>
