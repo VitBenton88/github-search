@@ -1,6 +1,6 @@
 import { type FC, type HTMLAttributes } from 'react'
 import type { RepositoryType } from '@/types/repository'
-import { REPO_LABELS } from './Repository.constants'
+import { REPO_LABELS } from '../Repository.constants'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 

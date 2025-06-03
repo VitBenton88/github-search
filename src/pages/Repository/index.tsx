@@ -5,10 +5,10 @@ import { getRepository } from '@/api'
 import type { RepositoryType } from '@/types/repository'
 import Loader from '@/components/Loader'
 import Nav from '@/components/Nav'
-import Details from '@/components/Repository/Details'
-import Access from '@/components/Repository/Access'
-import Header from '@/components/Repository/Header'
-import Links from '@/components/Repository/Links'
+import Details from './components/Details'
+import Access from './components/Access'
+import Header from './components/Header'
+import Links from './components/Links'
 
 type fetchHandler = (owner: string, name: string) => Promise<void>
 

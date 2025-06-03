@@ -2,7 +2,7 @@ import { render, type RenderResult, screen, waitFor } from '@testing-library/rea
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Access, { type AccessProps } from '../Access'
-import { REPO_LABELS } from '../Repository.constants'
+import { REPO_LABELS } from '@/pages/Repository/Repository.constants'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 
