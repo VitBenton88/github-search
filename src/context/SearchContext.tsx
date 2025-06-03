@@ -5,20 +5,20 @@ import { searchRepositories } from '@/api'
 export type SearchHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
 
 export type SearchContextType = {
-  repositories: BasicRepositoryType[]
   filterPopular: boolean
   handleSearch: SearchHandler
   hasSearched: boolean
   isLoading: boolean
+  repositories: BasicRepositoryType[]
   searchTerm: string
 }
 
 const defaultValue: SearchContextType = {
-  repositories: [],
   filterPopular: false,
   handleSearch: async () => { },
   hasSearched: false,
   isLoading: false,
+  repositories: [],
   searchTerm: '',
 }
 
