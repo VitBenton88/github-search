@@ -6,6 +6,7 @@ export type SearchHandler = (searchKeyword: string, filterPopular: boolean) => P
 
 export type SearchContextType = {
   repositories: BasicRepositoryType[]
+  filterPopular: boolean
   handleSearch: SearchHandler
   hasSearched: boolean
   isLoading: boolean
@@ -14,6 +15,7 @@ export type SearchContextType = {
 
 const defaultValue: SearchContextType = {
   repositories: [],
+  filterPopular: false,
   handleSearch: async () => { },
   hasSearched: false,
   isLoading: false,
