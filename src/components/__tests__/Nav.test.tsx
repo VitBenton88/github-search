@@ -2,7 +2,7 @@ import { render, type RenderResult, screen, waitFor } from '@testing-library/rea
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
-import Nav from '../index'
+import Nav from '../Nav'
 
 const mockNavigate = vi.fn()
 
