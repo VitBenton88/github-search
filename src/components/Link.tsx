@@ -1,12 +1,12 @@
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
 
-export type ExternalLinkProps = {
+export type LinkProps = {
   children: ReactNode
   href: string
   target?: string
 } & HTMLAttributes<HTMLAnchorElement>
 
-const ExternalLink: FC<ExternalLinkProps> = ({ children, href, target = '_blank', ...props }) => {
+const Link: FC<LinkProps> = ({ children, href, target = '_blank', ...props }) => {
   return (
     <a
       href={href}
@@ -20,4 +20,4 @@ const ExternalLink: FC<ExternalLinkProps> = ({ children, href, target = '_blank'
   )
 }
 
-export default ExternalLink
+export default Link

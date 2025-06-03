@@ -1,14 +1,14 @@
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import ExternalLink, { type ExternalLinkProps } from '../ExternalLink'
+import Link, { type LinkProps } from '../Link'
 
 const mockHref = 'https://test.com'
 const mockTarget = '_self'
-const mockDefaultProps: ExternalLinkProps = { href: mockHref, children: null }
+const mockDefaultProps: LinkProps = { href: mockHref, children: null }
 
-describe('ExternalLink', () => {
-  const renderComponent = (propData: ExternalLinkProps = mockDefaultProps): RenderResult =>
-    render(<ExternalLink {...propData} />)
+describe('Link', () => {
+  const renderComponent = (propData: LinkProps = mockDefaultProps): RenderResult =>
+    render(<Link {...propData} />)
 
   const elements = {
     get link() { return screen.getByTestId('link') },

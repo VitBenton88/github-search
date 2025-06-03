@@ -1,5 +1,5 @@
 import { type FC, type HTMLAttributes } from 'react'
-import ExternalLink from '@/components/ExternalLink'
+import Link from '@/components/Link'
 import type { RepositoryType } from '@/types/repository'
 
 export type LinksProps = {
@@ -17,11 +17,11 @@ const Links: FC<LinksProps> = ({ repository, ...props }) => {
       <ul>
         {repository.homepage?.trim() &&
           (<li>
-            <ExternalLink href={repository.homepage} data-testid="homepageLink">Homepage &rarr;</ExternalLink>
+            <Link href={repository.homepage} data-testid="homepageLink">Homepage &rarr;</Link>
           </li>)
         }
         <li>
-          <ExternalLink href={repository.html_url} data-testid="githubLink">GitHub &rarr;</ExternalLink>
+          <Link href={repository.html_url} data-testid="githubLink">GitHub &rarr;</Link>
         </li>
       </ul>
     </section>
