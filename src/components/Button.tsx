@@ -1,4 +1,4 @@
-import './Button.css'
+import './styles/Button.css'
 import { type ButtonHTMLAttributes, type FC } from 'react'
 
 export type ButtonProps = {

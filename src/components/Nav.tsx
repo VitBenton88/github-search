@@ -1,6 +1,6 @@
+import './styles/Nav.css'
 import { type FC, type HTMLAttributes } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './Nav.css'
 import Button from '@/components/Button'
 
 const Loader: FC = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
