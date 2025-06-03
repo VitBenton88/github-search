@@ -24,11 +24,13 @@ const SearchContext = createContext<SearchContextType>(defaultValue)
 
 const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [hasSearched, setHasSearched] = useState(false)
+  const [filterPopular, setFilterPopular] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [repositories, setRepositories] = useState<BasicRepositoryType[]>([])
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch: SearchHandler = useCallback(async (searchKeyword, filterPopular) => {
+    setFilterPopular(filterPopular)
     setHasSearched(true)
     setIsLoading(true)
     setRepositories([])
@@ -48,12 +50,13 @@ const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }, [])
 
   const contextValue = useMemo(() => ({
+    filterPopular,
     handleSearch,
     hasSearched,
     isLoading,
     repositories,
     searchTerm,
-  }), [handleSearch, hasSearched, isLoading, repositories, searchTerm])
+  }), [filterPopular, handleSearch, hasSearched, isLoading, repositories, searchTerm])
 
   return (
     <SearchContext.Provider value={contextValue}>

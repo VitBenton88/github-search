@@ -8,8 +8,8 @@ export type SearchFormProps = {
 } & HTMLAttributes<HTMLFormElement>
 
 const Form: FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }) => {
-  const { searchTerm: savedSearchTerm } = useContext(SearchContext)
-  const [filterPopular, setFilterPopular] = useState(false)
+  const { filterPopular: savedFilterPopular, hasSearched, searchTerm: savedSearchTerm } = useContext(SearchContext)
+  const [filterPopular, setFilterPopular] = useState(() => hasSearched ? savedFilterPopular : false)
   // Persist search keyword from previous query
   const [searchKeyword, setSearchKeyword] = useState(() => savedSearchTerm || '')
 
