@@ -1,3 +1,4 @@
+import './Link.css'
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
 
 export type LinkProps = {
