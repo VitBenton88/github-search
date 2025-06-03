@@ -6,6 +6,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { mockBasicRepos } from '@mocks/repositories'
 
 const mockContext: SearchContextType = {
+  filterPopular: false,
   handleSearch: vi.fn(),
   hasSearched: false,
   isLoading: false,

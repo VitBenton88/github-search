@@ -10,6 +10,7 @@ const mockSearchTerm = 'mock search term'
 const mockDefaultProps: SearchFormProps = { disableForm: false, onFormSubmit: mockOnSubmit }
 
 const mockContext: SearchContextType = {
+  filterPopular: false,
   handleSearch: vi.fn(),
   hasSearched: false,
   isLoading: false,
@@ -55,7 +56,7 @@ describe('Search Form', () => {
       })
 
       it('should render popular checkbox with no value', () => {
-        expect(elements.popularCheckbox).not.toHaveAttribute('value')
+        expect(elements.popularCheckbox).not.toHaveAttribute('checked')
       })
 
       it('should render submit button', () => {
@@ -82,13 +83,26 @@ describe('Search Form', () => {
     describe('with a saved search term in context', () => {
       beforeEach(() => {
         act(() => {
-          const contextData = { ...mockContext, searchTerm: mockSearchTerm }
+          const contextData = { ...mockContext, hasSearched: true, searchTerm: mockSearchTerm }
           renderComponent(contextData, mockDefaultProps)
         })
       })
 
       it('should render search input with value', () => {
         expect(elements.searchInput).toHaveAttribute('value', mockSearchTerm)
+      })
+    })
+
+    describe('with a saved search filter in context', () => {
+      beforeEach(() => {
+        act(() => {
+          const contextData = { ...mockContext, hasSearched: true, filterPopular: true }
+          renderComponent(contextData, mockDefaultProps)
+        })
+      })
+
+      it('should render filter input with correct value', () => {
+        expect(elements.popularCheckbox).toHaveAttribute('checked')
       })
     })
   })
