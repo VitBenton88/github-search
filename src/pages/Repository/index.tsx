@@ -1,14 +1,14 @@
 import { type FC, useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import './index.css'
+import './Repository.css'
 import { getRepository } from '@/api'
 import type { RepositoryType } from '@/types/repository'
 import Loader from '@/components/Loader'
 import Nav from '@/components/Nav'
-import Details from './Details'
-import Access from './Access'
-import Header from './Header'
-import Links from './Links'
+import Details from '@/components/Repository/Details'
+import Access from '@/components/Repository/Access'
+import Header from '@/components/Repository/Header'
+import Links from '@/components/Repository/Links'
 
 type fetchHandler = (owner: string, name: string) => Promise<void>
 

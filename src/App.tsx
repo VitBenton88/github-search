@@ -2,7 +2,7 @@ import '@/App.css'
 import { Route, Routes } from 'react-router-dom'
 import { SearchProvider } from '@/context/SearchContext'
 import NotFoundRedirect from '@/pages/NotFound'
-import Repository from '@/components/Repository'
+import Repository from '@/pages/Repository'
 import Search from '@/pages/Search'
 
 function App() {

@@ -2,7 +2,7 @@ import { getRepository } from '@/api'
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
-import Repository from '../index'
+import Repository from '..'
 import { mockRepo } from '@mocks/repositories'
 
 vi.mock('@/api', async () => {
