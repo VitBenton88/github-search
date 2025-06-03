@@ -9,9 +9,9 @@ export type SearchFormProps = {
 
 const Form: FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }) => {
   const { filterPopular: savedFilterPopular, hasSearched, searchTerm: savedSearchTerm } = useContext(SearchContext)
+  // Persist search settings from previous query
   const [filterPopular, setFilterPopular] = useState(() => hasSearched ? savedFilterPopular : false)
-  // Persist search keyword from previous query
-  const [searchKeyword, setSearchKeyword] = useState(() => savedSearchTerm || '')
+  const [searchKeyword, setSearchKeyword] = useState(() => hasSearched ? savedSearchTerm : '')
 
   const handleFormSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault()
