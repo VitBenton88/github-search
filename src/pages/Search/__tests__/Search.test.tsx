@@ -1,22 +1,13 @@
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { SearchContext, type SearchContextType } from '@/context/SearchContext'
 import Search from '..'
 import { MemoryRouter } from 'react-router-dom'
-import { mockBasicRepos } from '@mocks/repositories'
-
-const mockContext: SearchContextType = {
-  filterPopular: false,
-  handleSearch: vi.fn(),
-  hasSearched: false,
-  isLoading: false,
-  searchTerm: '',
-  repositories: mockBasicRepos
-}
+import { mockSearchContext } from '@mocks/contexts'
 
 describe('Search', () => {
   const renderComponent = (
-    contextValue: SearchContextType = mockContext,
+    contextValue: SearchContextType = mockSearchContext,
     initialEntries: string[] = ['/']
   ): RenderResult => render(
     <SearchContext.Provider value={contextValue}>
@@ -66,7 +57,7 @@ describe('Search', () => {
     describe('with a search', () => {
       beforeEach(async () => {
         await waitFor(() => {
-          renderComponent({ ...mockContext, hasSearched: true })
+          renderComponent({ ...mockSearchContext, hasSearched: true })
         })
       })
 
@@ -85,7 +76,7 @@ describe('Search', () => {
 
     describe('with a search and loading', () => {
       beforeEach(() => {
-        renderComponent({ ...mockContext, hasSearched: true, isLoading: true })
+        renderComponent({ ...mockSearchContext, hasSearched: true, isLoading: true })
       })
 
       it('should not render a search prompt', () => {

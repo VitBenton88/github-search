@@ -3,24 +3,15 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Form, { type SearchFormProps } from '../Form'
 import userEvent from '@testing-library/user-event'
 import { SearchContext, type SearchContextType } from '@/context/SearchContext'
+import { mockSearchContext } from '@mocks/contexts'
 
 const mockOnSubmit = vi.fn()
 const mockSearchTerm = 'mock search term'
-
 const mockDefaultProps: SearchFormProps = { disableForm: false, onFormSubmit: mockOnSubmit }
-
-const mockContext: SearchContextType = {
-  filterPopular: false,
-  handleSearch: vi.fn(),
-  hasSearched: false,
-  isLoading: false,
-  searchTerm: '',
-  repositories: []
-}
 
 describe('Search Form', () => {
   const renderComponent = (
-    contextValue: SearchContextType = mockContext,
+    contextValue: SearchContextType = mockSearchContext,
     propData: SearchFormProps = mockDefaultProps
   ): RenderResult => render(
     <SearchContext.Provider value={contextValue}>
@@ -83,7 +74,7 @@ describe('Search Form', () => {
     describe('with a saved search term in context', () => {
       beforeEach(() => {
         act(() => {
-          const contextData = { ...mockContext, hasSearched: true, searchTerm: mockSearchTerm }
+          const contextData = { ...mockSearchContext, hasSearched: true, searchTerm: mockSearchTerm }
           renderComponent(contextData, mockDefaultProps)
         })
       })
@@ -96,7 +87,7 @@ describe('Search Form', () => {
     describe('with a saved search filter in context', () => {
       beforeEach(() => {
         act(() => {
-          const contextData = { ...mockContext, hasSearched: true, filterPopular: true }
+          const contextData = { ...mockSearchContext, hasSearched: true, filterPopular: true }
           renderComponent(contextData, mockDefaultProps)
         })
       })
