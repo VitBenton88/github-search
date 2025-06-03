@@ -2,7 +2,7 @@ import { render, type RenderResult, screen, waitFor } from '@testing-library/rea
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import Details, { type DetailsProps } from '../Details'
-import { REPO_LABELS } from '@/pages/Repository/Repository.constants'
+import { REPO_LABELS } from '@/pages/Repository/repository.constants'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 

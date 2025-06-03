@@ -1,6 +1,6 @@
 import { type FC, type HTMLAttributes } from 'react'
 import type { RepositoryType } from '@/types/repository'
-import { REPO_LABELS } from '../Repository.constants'
+import { REPO_LABELS } from '../repository.constants'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 
