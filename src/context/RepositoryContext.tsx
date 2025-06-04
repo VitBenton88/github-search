@@ -1,7 +1,7 @@
 import { createContext, type FC, type ReactNode, useCallback, useMemo, useState } from 'react'
 import type { RepositoryType } from '@/types/repository'
 import { getRepository } from '@/api'
-import { defaultRepository } from '@/constants/defaults'
+import { defaultRepository } from '@/pages/Repository/repository.constants'
 
 export type fetchHandler = (owner: string, name: string) => Promise<void>
 
