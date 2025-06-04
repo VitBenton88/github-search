@@ -1,4 +1,4 @@
-import { type FC, useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Repository.css'
 import Loader from '@/components/Loader'
@@ -8,7 +8,7 @@ import Header from './components/Header'
 import Links from './components/Links'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
-const Repository: FC = () => {
+const Repository: React.FC = () => {
   const { handleFetch, isLoading, repository } = useContext(RepositoryContext)
   const { name, owner } = useParams<{ owner: string, name: string }>()
 

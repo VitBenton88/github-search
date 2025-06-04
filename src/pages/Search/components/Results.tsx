@@ -1,4 +1,4 @@
-import { type FC, type HTMLAttributes, useCallback } from 'react'
+import { useCallback } from 'react'
 import type { BasicRepositoryType } from '@/types/repository'
 import { useNavigate } from 'react-router-dom'
 import Button from '@/components/Button'
@@ -6,9 +6,9 @@ import Button from '@/components/Button'
 export type SearchResultsProps = {
   caption: string,
   items: BasicRepositoryType[]
-} & HTMLAttributes<HTMLDivElement>
+} & React.HTMLAttributes<HTMLDivElement>
 
-const Results: FC<SearchResultsProps> = ({ caption = '', items = [], ...props }) => {
+const Results: React.FC<SearchResultsProps> = ({ caption = '', items = [], ...props }) => {
   const navigate = useNavigate()
 
   const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])

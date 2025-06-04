@@ -1,4 +1,4 @@
-import { createContext, type FC, type ReactNode, useCallback, useMemo, useState } from 'react'
+import { createContext, useCallback, useMemo, useState } from 'react'
 import type { RepositoryType } from '@/types/repository'
 import { getRepository } from '@/api'
 import { defaultRepository } from '@/pages/Repository/repository.constants'
@@ -19,7 +19,7 @@ const defaultValue: RepositoryContextType = {
 
 const RepositoryContext = createContext<RepositoryContextType>(defaultValue)
 
-const RepositoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType>(defaultValue.repository)
 

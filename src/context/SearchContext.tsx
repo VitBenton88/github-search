@@ -1,4 +1,4 @@
-import { createContext, type FC, type ReactNode, useCallback, useMemo, useState } from 'react'
+import { createContext, useCallback, useMemo, useState } from 'react'
 import type { BasicRepositoryType } from '@/types/repository'
 import { searchRepositories } from '@/api'
 
@@ -24,7 +24,7 @@ const defaultValue: SearchContextType = {
 
 const SearchContext = createContext<SearchContextType>(defaultValue)
 
-const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [hasSearched, setHasSearched] = useState(false)
   const [filterPopular, setFilterPopular] = useState(false)
   const [isLoading, setIsLoading] = useState(false)

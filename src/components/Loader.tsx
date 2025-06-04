@@ -1,7 +1,8 @@
 import './styles/Loader.css'
-import { type FC, type HTMLAttributes } from 'react'
 
-const Loader: FC = ({ ...props }: HTMLAttributes<HTMLSpanElement>) => (
+type LoaderProps = React.HTMLAttributes<HTMLDivElement>
+
+const Loader: React.FC<LoaderProps> = ({ ...props }) => (
   <span aria-label="Loading" className="loader" role="status" data-testid="loader" {...props}></span>
 )
 

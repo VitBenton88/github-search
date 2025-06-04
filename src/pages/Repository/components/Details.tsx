@@ -1,12 +1,12 @@
-import { type FC, type HTMLAttributes, useContext } from 'react'
+import { useContext } from 'react'
 import { REPO_LABELS } from '../repository.constants'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 
-type DetailsProps = HTMLAttributes<HTMLDivElement>
+type DetailsProps = React.HTMLAttributes<HTMLDivElement>
 
-const Details: FC<DetailsProps> = ({ ...props }) => {
+const Details: React.FC<DetailsProps> = ({ ...props }) => {
   const { repository } = useContext(RepositoryContext)
   const {
     allow_forking,

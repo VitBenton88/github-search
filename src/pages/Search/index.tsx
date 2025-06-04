@@ -1,4 +1,4 @@
-import { type FC, useContext } from 'react'
+import { useContext } from 'react'
 import './Search.css'
 import Loader from '@/components/Loader'
 import SearchForm from './components/Form'
@@ -6,7 +6,7 @@ import SearchResults from './components/Results'
 import { SearchContext } from '@/context/SearchContext'
 import { useLocation } from 'react-router-dom'
 
-const Search: FC = () => {
+const Search: React.FC = () => {
   const { handleSearch, hasSearched, isLoading, repositories } = useContext(SearchContext)
   const location = useLocation()
   const error = location.state?.error

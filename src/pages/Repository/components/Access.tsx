@@ -1,12 +1,12 @@
-import { type FC, type HTMLAttributes, useContext } from 'react'
+import { useContext } from 'react'
 import { REPO_LABELS } from '../repository.constants'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 
-type AccessProps = HTMLAttributes<HTMLDivElement>
+type AccessProps = React.HTMLAttributes<HTMLDivElement>
 
-const Access: FC<AccessProps> = ({ ...props }) => {
+const Access: React.FC<AccessProps> = ({ ...props }) => {
   const { repository } = useContext(RepositoryContext)
   const { archived, isPrivate } = repository
 

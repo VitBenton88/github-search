@@ -1,10 +1,10 @@
-import { type FC, type HTMLAttributes, useCallback, useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import Link from '@/components/Link'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
-type HeaderProps = HTMLAttributes<HTMLDivElement>
+type HeaderProps = React.HTMLAttributes<HTMLDivElement>
 
-const Header: FC<HeaderProps> = ({ ...props }) => {
+const Header: React.FC<HeaderProps> = ({ ...props }) => {
   const { repository } = useContext(RepositoryContext)
   const {
     created_at,

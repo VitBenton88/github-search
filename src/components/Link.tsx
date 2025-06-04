@@ -1,13 +1,12 @@
 import './styles/Link.css'
-import { type FC, type HTMLAttributes, type ReactNode } from 'react'
 
 export type LinkProps = {
-  children: ReactNode
+  children: React.ReactNode
   href: string
   target?: string
-} & HTMLAttributes<HTMLAnchorElement>
+} & React.HTMLAttributes<HTMLAnchorElement>
 
-const Link: FC<LinkProps> = ({ children, href, target = '_blank', ...props }) => {
+const Link: React.FC<LinkProps> = ({ children, href, target = '_blank', ...props }) => {
   return (
     <a
       href={href}

@@ -1,9 +1,10 @@
 import './styles/Nav.css'
-import { type FC, type HTMLAttributes } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@/components/Button'
 
-const Loader: FC = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
+type NavProps = React.HTMLAttributes<HTMLDivElement>
+
+const Nav: React.FC<NavProps> = ({ ...props }) => {
   const navigate = useNavigate()
 
   return (
@@ -15,4 +16,4 @@ const Loader: FC = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
   )
 }
 
-export default Loader
+export default Nav

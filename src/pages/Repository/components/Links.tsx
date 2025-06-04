@@ -1,10 +1,10 @@
-import { type FC, type HTMLAttributes, useContext } from 'react'
+import { useContext } from 'react'
 import Link from '@/components/Link'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
-type LinksProps = HTMLAttributes<HTMLDivElement>
+type LinksProps = React.HTMLAttributes<HTMLDivElement>
 
-const Links: FC<LinksProps> = ({ ...props }) => {
+const Links: React.FC<LinksProps> = ({ ...props }) => {
   const { repository } = useContext(RepositoryContext)
   const { homepage, html_url } = repository
 
