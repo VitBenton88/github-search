@@ -1,14 +1,19 @@
-import { type FC, type HTMLAttributes } from 'react'
-import type { RepositoryType } from '@/types/repository'
+import { type FC, type HTMLAttributes, useContext } from 'react'
 import { REPO_LABELS } from '../repository.constants'
+import { RepositoryContext } from '@/context/RepositoryContext'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 
-export type DetailsProps = {
-  repository: RepositoryType
-} & HTMLAttributes<HTMLDivElement>
+type DetailsProps = HTMLAttributes<HTMLDivElement>
 
-const Details: FC<DetailsProps> = ({ repository, ...props }) => {
+const Details: FC<DetailsProps> = ({ ...props }) => {
+  const { repository } = useContext(RepositoryContext)
+  const {
+    allow_forking,
+    has_downloads,
+    language,
+    size
+  } = repository
 
   return (
     <section {...props}>
@@ -17,12 +22,12 @@ const Details: FC<DetailsProps> = ({ repository, ...props }) => {
       </header>
 
       <ul>
-        {repository.language?.trim() && (
-          <li data-testid="language">Language: {repository.language}</li>
+        {language?.trim() && (
+          <li data-testid="language">Language: {language}</li>
         )}
-        <li data-testid="size">Size: {repository.size} bytes</li>
-        <li data-testid="downloads">{repository.has_downloads ? HAS_DOWNLOADS : NO_DOWNLOADS}</li>
-        <li data-testid="forking">{repository.allow_forking ? ALLOWS_FORKING : FORBIDS_FORKING}</li>
+        <li data-testid="size">Size: {size} bytes</li>
+        <li data-testid="downloads">{has_downloads ? HAS_DOWNLOADS : NO_DOWNLOADS}</li>
+        <li data-testid="forking">{allow_forking ? ALLOWS_FORKING : FORBIDS_FORKING}</li>
       </ul>
     </section>
   )

@@ -29,7 +29,7 @@ const Repository: FC = () => {
             <Header data-testid="header" />
 
             <aside>
-              <Details repository={repository} data-testid="details" />
+              <Details data-testid="details" />
               <Access repository={repository} data-testid="access" />
               <Links repository={repository} data-testid="links" />
             </aside>

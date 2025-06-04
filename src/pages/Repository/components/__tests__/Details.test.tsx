@@ -1,16 +1,25 @@
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
-import Details, { type DetailsProps } from '../Details'
+import { MemoryRouter } from 'react-router-dom'
+import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
+import Details from '../Details'
+import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 import { REPO_LABELS } from '@/pages/Repository/repository.constants'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 
-const mockDefaultProps: DetailsProps = { repository: mockRepo }
-
 describe('Repository Details', () => {
-  const renderComponent = (propData: DetailsProps = mockDefaultProps): RenderResult =>
-    render(<Details {...propData} />)
+  const renderComponent = (
+    contextValue: RepositoryContextType = mockRepositoryContext,
+    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
+  ): RenderResult => render(
+    <MemoryRouter initialEntries={initialEntries}>
+      <RepositoryContext.Provider value={contextValue}>
+        <Details />
+      </RepositoryContext.Provider>
+    </MemoryRouter>
+  )
 
   const elements = {
     get downloads() { return screen.getByTestId('downloads') },
@@ -22,8 +31,8 @@ describe('Repository Details', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
+      beforeEach(() => {
+        act(() => {
           renderComponent()
         })
       })
@@ -50,12 +59,16 @@ describe('Repository Details', () => {
     })
 
     describe('when repository has no downloads', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const mockProps: DetailsProps = {
-            repository: { ...mockRepo, has_downloads: false }
+      beforeEach(() => {
+        act(() => {
+          const mockRepoWithNoDesc = {
+            ...mockRepo, has_downloads: false
           }
-          renderComponent(mockProps)
+          const contextValue = {
+            ...mockRepositoryContext,
+            repository: mockRepoWithNoDesc
+          }
+          renderComponent(contextValue)
         })
       })
 
@@ -65,12 +78,16 @@ describe('Repository Details', () => {
     })
 
     describe('when repository allows forking', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const mockProps: DetailsProps = {
-            repository: { ...mockRepo, allow_forking: true }
+      beforeEach(() => {
+        act(() => {
+          const mockRepoWithNoDesc = {
+            ...mockRepo, allow_forking: true
           }
-          renderComponent(mockProps)
+          const contextValue = {
+            ...mockRepositoryContext,
+            repository: mockRepoWithNoDesc
+          }
+          renderComponent(contextValue)
         })
       })
 
