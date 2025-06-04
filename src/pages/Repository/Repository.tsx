@@ -26,7 +26,7 @@ const Repository: FC = () => {
         (<p data-testid="not-found">Repository not found.</p>)
         : (
           <main id="repository">
-            <Header repository={repository} data-testid="header" />
+            <Header data-testid="header" />
 
             <aside>
               <Details repository={repository} data-testid="details" />

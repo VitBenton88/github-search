@@ -1,8 +1,10 @@
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { act, render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
+import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
-import Header, { type HeaderProps } from '../Header'
+import Header from '../Header'
+import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
 const mockNavigate = vi.fn()
 
@@ -14,18 +16,17 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-const mockDefaultProps: HeaderProps = { repository: mockRepo }
-
 describe('Repository Header', () => {
   const renderComponent = (
+    contextValue: RepositoryContextType = mockRepositoryContext,
     initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
-    propData: HeaderProps = mockDefaultProps
-  ): RenderResult =>
-    render(
-      <MemoryRouter initialEntries={initialEntries}>
-        <Header {...propData} />
-      </MemoryRouter>
-    )
+  ): RenderResult => render(
+    <MemoryRouter initialEntries={initialEntries}>
+      <RepositoryContext.Provider value={contextValue}>
+        <Header />
+      </RepositoryContext.Provider>
+    </MemoryRouter>
+  )
 
   const elements = {
     get created() { return screen.getByTestId('created') },
@@ -70,10 +71,16 @@ describe('Repository Header', () => {
     })
 
     describe('with no description', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const mockProps: HeaderProps = { repository: { ...mockRepo, description: '' } }
-          renderComponent(undefined, mockProps)
+      beforeEach(() => {
+        act(() => {
+          const mockRepoWithNoDesc = {
+            ...mockRepo, description: ''
+          }
+          const contextValue = {
+            ...mockRepositoryContext,
+            repository: mockRepoWithNoDesc
+          }
+          renderComponent(contextValue)
         })
       })
 
