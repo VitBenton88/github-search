@@ -8,10 +8,7 @@ type AccessProps = HTMLAttributes<HTMLDivElement>
 
 const Access: FC<AccessProps> = ({ ...props }) => {
   const { repository } = useContext(RepositoryContext)
-  const {
-    archived,
-    isPrivate
-  } = repository
+  const { archived, isPrivate } = repository
 
   return (
     <section {...props}>
