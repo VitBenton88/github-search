@@ -34,6 +34,7 @@ describe('Repository', () => {
       </RepositoryContext.Provider>
     </MemoryRouter>
   )
+
   const elements = {
     get access() { return screen.queryByTestId('access') },
     get details() { return screen.queryByTestId('details') },
