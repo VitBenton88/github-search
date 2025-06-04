@@ -1,13 +1,22 @@
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { MemoryRouter } from 'react-router-dom'
+import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
-import Links, { type LinksProps } from '../Links'
-
-const mockDefaultProps: LinksProps = { repository: mockRepo }
+import Links from '../Links'
+import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
 describe('Repository Links', () => {
-  const renderComponent = (propData: LinksProps = mockDefaultProps): RenderResult =>
-    render(<Links {...propData} />)
+  const renderComponent = (
+    contextValue: RepositoryContextType = mockRepositoryContext,
+    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
+  ): RenderResult => render(
+    <MemoryRouter initialEntries={initialEntries}>
+      <RepositoryContext.Provider value={contextValue}>
+        <Links />
+      </RepositoryContext.Provider>
+    </MemoryRouter>
+  )
 
   const elements = {
     get githubLink() { return screen.getByTestId('githubLink') },
@@ -17,8 +26,8 @@ describe('Repository Links', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
+      beforeEach(() => {
+        act(() => {
           renderComponent()
         })
       })
@@ -37,12 +46,16 @@ describe('Repository Links', () => {
     })
 
     describe('when repository has no homepage link', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const mockProps: LinksProps = {
-            repository: { ...mockRepo, homepage: '' }
+      beforeEach(() => {
+        act(() => {
+          const mockRepoWithNoDesc = {
+            ...mockRepo, homepage: ''
           }
-          renderComponent(mockProps)
+          const contextValue = {
+            ...mockRepositoryContext,
+            repository: mockRepoWithNoDesc
+          }
+          renderComponent(contextValue)
         })
       })
 

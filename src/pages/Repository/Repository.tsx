@@ -31,7 +31,7 @@ const Repository: FC = () => {
             <aside>
               <Details data-testid="details" />
               <Access data-testid="access" />
-              <Links repository={repository} data-testid="links" />
+              <Links data-testid="links" />
             </aside>
           </main>
         )}

@@ -1,12 +1,12 @@
-import { type FC, type HTMLAttributes } from 'react'
+import { type FC, type HTMLAttributes, useContext } from 'react'
 import Link from '@/components/Link'
-import type { RepositoryType } from '@/types/repository'
+import { RepositoryContext } from '@/context/RepositoryContext'
 
-export type LinksProps = {
-  repository: RepositoryType
-} & HTMLAttributes<HTMLDivElement>
+type LinksProps = HTMLAttributes<HTMLDivElement>
 
-const Links: FC<LinksProps> = ({ repository, ...props }) => {
+const Links: FC<LinksProps> = ({ ...props }) => {
+  const { repository } = useContext(RepositoryContext)
+  const { homepage, html_url } = repository
 
   return (
     <section {...props}>
@@ -15,13 +15,13 @@ const Links: FC<LinksProps> = ({ repository, ...props }) => {
       </header>
 
       <ul>
-        {repository.homepage?.trim() &&
+        {homepage?.trim() &&
           (<li>
-            <Link href={repository.homepage} data-testid="homepageLink">Homepage &rarr;</Link>
+            <Link href={homepage} data-testid="homepageLink">Homepage &rarr;</Link>
           </li>)
         }
         <li>
-          <Link href={repository.html_url} data-testid="githubLink">GitHub &rarr;</Link>
+          <Link href={html_url} data-testid="githubLink">GitHub &rarr;</Link>
         </li>
       </ul>
     </section>
