@@ -70,7 +70,7 @@ describe('Repository Header', () => {
       })
     })
 
-    describe('with no description', () => {
+    describe('when repository has no description', () => {
       beforeEach(() => {
         act(() => {
           const mockRepoWithNoDesc = {
