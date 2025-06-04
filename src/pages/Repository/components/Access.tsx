@@ -4,7 +4,7 @@ import { RepositoryContext } from '@/context/RepositoryContext'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 
-export type AccessProps = HTMLAttributes<HTMLDivElement>
+type AccessProps = HTMLAttributes<HTMLDivElement>
 
 const Access: FC<AccessProps> = ({ ...props }) => {
   const { repository } = useContext(RepositoryContext)
