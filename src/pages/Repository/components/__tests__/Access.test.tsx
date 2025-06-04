@@ -1,16 +1,25 @@
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { MemoryRouter } from 'react-router-dom'
+import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
-import Access, { type AccessProps } from '../Access'
+import Access from '../Access'
 import { REPO_LABELS } from '@/pages/Repository/repository.constants'
+import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 
-const mockDefaultProps: AccessProps = { repository: mockRepo }
-
 describe('Repository Access details', () => {
-  const renderComponent = (propData: AccessProps = mockDefaultProps): RenderResult =>
-    render(<Access {...propData} />)
+  const renderComponent = (
+    contextValue: RepositoryContextType = mockRepositoryContext,
+    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
+  ): RenderResult => render(
+    <MemoryRouter initialEntries={initialEntries}>
+      <RepositoryContext.Provider value={contextValue}>
+        <Access />
+      </RepositoryContext.Provider>
+    </MemoryRouter>
+  )
 
   const elements = {
     get archivedStatus() { return screen.getByTestId('archived-status') },
@@ -20,8 +29,8 @@ describe('Repository Access details', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
+      beforeEach(() => {
+        act(() => {
           renderComponent()
         })
       })
@@ -40,12 +49,16 @@ describe('Repository Access details', () => {
     })
 
     describe('when repository is archived', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const mockProps: AccessProps = {
-            repository: { ...mockRepo, archived: true }
+      beforeEach(() => {
+        act(() => {
+          const mockRepoWithNoDesc = {
+            ...mockRepo, archived: true
           }
-          renderComponent(mockProps)
+          const contextValue = {
+            ...mockRepositoryContext,
+            repository: mockRepoWithNoDesc
+          }
+          renderComponent(contextValue)
         })
       })
 
@@ -55,12 +68,16 @@ describe('Repository Access details', () => {
     })
 
     describe('when repository is private', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const mockProps: AccessProps = {
-            repository: { ...mockRepo, isPrivate: true }
+      beforeEach(() => {
+        act(() => {
+          const mockRepoWithNoDesc = {
+            ...mockRepo, isPrivate: true
           }
-          renderComponent(mockProps)
+          const contextValue = {
+            ...mockRepositoryContext,
+            repository: mockRepoWithNoDesc
+          }
+          renderComponent(contextValue)
         })
       })
 

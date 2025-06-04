@@ -1,14 +1,17 @@
-import { type FC, type HTMLAttributes } from 'react'
-import type { RepositoryType } from '@/types/repository'
+import { type FC, type HTMLAttributes, useContext } from 'react'
 import { REPO_LABELS } from '../repository.constants'
+import { RepositoryContext } from '@/context/RepositoryContext'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 
-export type AccessProps = {
-  repository: RepositoryType
-} & HTMLAttributes<HTMLDivElement>
+export type AccessProps = HTMLAttributes<HTMLDivElement>
 
-const Access: FC<AccessProps> = ({ repository, ...props }) => {
+const Access: FC<AccessProps> = ({ ...props }) => {
+  const { repository } = useContext(RepositoryContext)
+  const {
+    archived,
+    isPrivate
+  } = repository
 
   return (
     <section {...props}>
@@ -17,8 +20,8 @@ const Access: FC<AccessProps> = ({ repository, ...props }) => {
       </header>
 
       <ul>
-        <li data-testid="archived-status">{repository.archived ? ARCHIVED : NOT_ARCHIVED}</li>
-        <li data-testid="private-status">{repository.isPrivate ? PRIVATE : PUBLIC}</li>
+        <li data-testid="archived-status">{archived ? ARCHIVED : NOT_ARCHIVED}</li>
+        <li data-testid="private-status">{isPrivate ? PRIVATE : PUBLIC}</li>
       </ul>
     </section>
   )
