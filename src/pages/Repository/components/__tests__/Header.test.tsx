@@ -1,6 +1,5 @@
 import { act, render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { MemoryRouter } from 'react-router-dom'
 import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
 import Header from '../Header'
@@ -19,13 +18,10 @@ vi.mock('react-router-dom', async () => {
 describe('Repository Header', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepositoryContext,
-    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
   ): RenderResult => render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <RepositoryContext.Provider value={contextValue}>
-        <Header />
-      </RepositoryContext.Provider>
-    </MemoryRouter>
+    <RepositoryContext.Provider value={contextValue}>
+      <Header />
+    </RepositoryContext.Provider>
   )
 
   const elements = {

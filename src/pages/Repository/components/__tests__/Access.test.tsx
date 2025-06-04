@@ -1,6 +1,5 @@
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MemoryRouter } from 'react-router-dom'
 import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
 import Access from '../Access'
@@ -12,13 +11,10 @@ const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 describe('Repository Access details', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepositoryContext,
-    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
   ): RenderResult => render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <RepositoryContext.Provider value={contextValue}>
-        <Access />
-      </RepositoryContext.Provider>
-    </MemoryRouter>
+    <RepositoryContext.Provider value={contextValue}>
+      <Access />
+    </RepositoryContext.Provider>
   )
 
   const elements = {

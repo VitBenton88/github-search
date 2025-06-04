@@ -1,6 +1,5 @@
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { MemoryRouter } from 'react-router-dom'
 import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
 import Links from '../Links'
@@ -9,13 +8,10 @@ import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 describe('Repository Links', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepositoryContext,
-    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
   ): RenderResult => render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <RepositoryContext.Provider value={contextValue}>
-        <Links />
-      </RepositoryContext.Provider>
-    </MemoryRouter>
+    <RepositoryContext.Provider value={contextValue}>
+      <Links />
+    </RepositoryContext.Provider>
   )
 
   const elements = {

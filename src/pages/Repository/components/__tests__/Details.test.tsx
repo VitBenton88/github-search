@@ -1,7 +1,6 @@
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
-import { MemoryRouter } from 'react-router-dom'
 import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
 import Details from '../Details'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
@@ -12,13 +11,10 @@ const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LA
 describe('Repository Details', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepositoryContext,
-    initialEntries: string[] = ['/repo/mock-owner/mock-repo'],
   ): RenderResult => render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <RepositoryContext.Provider value={contextValue}>
-        <Details />
-      </RepositoryContext.Provider>
-    </MemoryRouter>
+    <RepositoryContext.Provider value={contextValue}>
+      <Details />
+    </RepositoryContext.Provider>
   )
 
   const elements = {
