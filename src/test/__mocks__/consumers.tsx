@@ -1,4 +1,5 @@
 import Button from '@/components/Button'
+import { RepositoryContext } from '@/context/RepositoryContext'
 import { SearchContext } from '@/context/SearchContext'
 import { useContext } from 'react'
 
@@ -14,6 +15,23 @@ export const MockSearchConsumer = (): React.ReactNode => {
       <Button
         onClick={() => context.handleSearch('mock search term', false)}
         data-testid="search-button"
+      >
+        Search
+      </Button>
+    </>
+  )
+}
+
+export const MockRepositoryConsumer = (): React.ReactNode => {
+  const context = useContext(RepositoryContext)
+
+  return (
+    <>
+      <div data-testid="repo-id">{context.repository.id}</div>
+      <div data-testid="isLoading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
+      <Button
+        onClick={() => context.handleFetch('mock owner', 'mock name')}
+        data-testid="fetch-button"
       >
         Search
       </Button>
