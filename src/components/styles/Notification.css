@@ -1,0 +1,53 @@
+.notification {
+  animation: pulse-animation 1s linear;
+  background: #333;
+  border: 1px solid transparent;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.notification:before {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+/* Success */
+.notification.success {
+  border-color: #2ecc71;
+}
+
+.notification.success:before {
+  content: '✅';
+}
+
+/* Error */
+.notification.error {
+  border-color: #e74c3c;
+}
+
+.notification.error:before {
+  content: '❌';
+}
+
+/* Warning */
+.notification.warning {
+  border-color: #f39c12;
+}
+
+.notification.warning:before {
+  content: '⚠️';
+}
+
+/* Informational */
+.notification.info {
+  border-color: #3498db;
+}
+
+.notification.info:before {
+  content: 'ℹ️';
+}
