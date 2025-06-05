@@ -1,15 +1,7 @@
 import { createContext, useCallback, useMemo, useState } from 'react'
-import type { RepositoryType } from '@/types/repository'
+import type { fetchRepositoryHandler, RepositoryContextType, RepositoryType } from '@/pages/Repository/types'
 import { getRepository } from '@/api'
 import { defaultRepository } from '@/pages/Repository/repository.constants'
-
-export type fetchHandler = (owner: string, name: string) => Promise<void>
-
-export type RepositoryContextType = {
-  handleFetch: fetchHandler,
-  repository: RepositoryType
-  isLoading: boolean
-}
 
 const defaultValue: RepositoryContextType = {
   handleFetch: async () => { },
@@ -23,7 +15,7 @@ const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType>(defaultValue.repository)
 
-  const handleFetch: fetchHandler = useCallback(async (owner, name) => {
+  const handleFetch: fetchRepositoryHandler = useCallback(async (owner, name) => {
     try {
       const fetchedRepository = await getRepository(owner, name)
       setRepository(fetchedRepository)

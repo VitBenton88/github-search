@@ -1,10 +1,11 @@
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
+import { RepositoryContext } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
 import Access from '../Access'
 import { REPO_LABELS } from '@/pages/Repository/repository.constants'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
+import type { RepositoryContextType } from '../../types'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 

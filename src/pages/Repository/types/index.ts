@@ -19,3 +19,11 @@ export interface RepositoryType extends BasicRepositoryType {
   stargazers_count: number
   updated_at: string
 }
+
+export type fetchRepositoryHandler = (owner: string, name: string) => Promise<void>
+
+export type RepositoryContextType = {
+  handleFetch: fetchRepositoryHandler,
+  repository: RepositoryType
+  isLoading: boolean
+}

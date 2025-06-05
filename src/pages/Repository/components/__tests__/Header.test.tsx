@@ -1,9 +1,10 @@
 import { act, render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
+import { RepositoryContext } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
 import Header from '../Header'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
+import type { RepositoryContextType } from '@/pages/Repository/types'
 
 const mockNavigate = vi.fn()
 

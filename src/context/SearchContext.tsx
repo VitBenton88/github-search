@@ -1,17 +1,7 @@
 import { createContext, useCallback, useMemo, useState } from 'react'
-import type { BasicRepositoryType } from '@/types/repository'
+import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
-
-export type SearchHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
-
-export type SearchContextType = {
-  filterPopular: boolean
-  handleSearch: SearchHandler
-  hasSearched: boolean
-  isLoading: boolean
-  repositories: BasicRepositoryType[]
-  searchTerm: string
-}
+import type { SearchContextType, SearchRepositoriesHandler } from '@/pages/Search/types'
 
 const defaultValue: SearchContextType = {
   filterPopular: false,
@@ -31,7 +21,7 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const [repositories, setRepositories] = useState<BasicRepositoryType[]>([])
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleSearch: SearchHandler = useCallback(async (searchKeyword, filterPopular) => {
+  const handleSearch: SearchRepositoriesHandler = useCallback(async (searchKeyword, filterPopular) => {
     setFilterPopular(filterPopular)
     setHasSearched(true)
     setIsLoading(true)

@@ -3,8 +3,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../Repository'
 import { mockRepo } from '@mocks/repositories'
-import { RepositoryContext, type RepositoryContextType } from '@/context/RepositoryContext'
+import { RepositoryContext } from '@/context/RepositoryContext'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
+import type { RepositoryContextType } from '../types'
 
 const mockFetchHandler = vi.fn().mockResolvedValue(mockRepo)
 const mockRepoContext = {

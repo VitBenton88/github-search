@@ -5,7 +5,7 @@ import { SearchProvider } from '../SearchContext'
 import userEvent from '@testing-library/user-event'
 import { mockRepo } from '@mocks/repositories'
 import { MockSearchConsumer } from '@mocks/consumers'
-import type { RepositoryType } from '@/types/repository'
+import type { RepositoryType } from '@/pages/Repository/types'
 
 const mockRepos: RepositoryType[] = [mockRepo]
 

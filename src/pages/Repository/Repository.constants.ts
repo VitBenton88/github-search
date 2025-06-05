@@ -1,3 +1,5 @@
+import type { RepositoryType } from '@/pages/Repository/types'
+
 export const REPO_LABELS = {
   ALLOWS_FORKING: 'Allows forking',
   ARCHIVED: 'Archived',
@@ -8,8 +10,6 @@ export const REPO_LABELS = {
   PRIVATE: 'Private',
   PUBLIC: 'Public',
 } as const
-
-import type { RepositoryType } from '@/types/repository'
 
 export const defaultRepository: RepositoryType = {
   description: '',

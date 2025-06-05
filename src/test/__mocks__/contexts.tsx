@@ -1,7 +1,7 @@
-import type { SearchContextType } from '@/context/SearchContext'
 import { vi } from 'vitest'
 import { mockBasicRepos, mockRepo } from '@mocks/repositories'
-import type { RepositoryContextType } from '@/context/RepositoryContext'
+import type { RepositoryContextType } from '@/pages/Repository/types'
+import type { SearchContextType } from '@/pages/Search/types'
 
 export const mockSearchContext: SearchContextType = {
   filterPopular: false,

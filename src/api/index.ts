@@ -1,4 +1,4 @@
-import type { BasicRepositoryType, RepositoryType } from '@/types/repository'
+import type { BasicRepositoryType, RepositoryType } from '@/pages/Repository/types'
 
 type GetRepoHandler = (owner: string, name: string) => Promise<RepositoryType>
 type SearchReposHandler = (searchKeyword: string, filterPopular: boolean) => Promise<BasicRepositoryType[]>
