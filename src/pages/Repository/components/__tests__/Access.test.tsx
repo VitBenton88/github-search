@@ -5,7 +5,7 @@ import { mockRepo } from '@mocks/repositories'
 import { Access } from '@/pages/Repository/components'
 import { REPO_LABELS } from '@/pages/Repository/repository.constants'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
-import type { RepositoryContextType } from '@/pages/Repository/types'
+import type { RepositoryContextType } from '@/context/types'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 

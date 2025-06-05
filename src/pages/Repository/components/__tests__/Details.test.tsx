@@ -5,7 +5,7 @@ import { RepositoryContext } from '@/context/RepositoryContext'
 import { Details } from '@/pages/Repository/components'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 import { REPO_LABELS } from '@/pages/Repository/repository.constants'
-import type { RepositoryContextType } from '@/pages/Repository/types'
+import type { RepositoryContextType } from '@/context/types'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 

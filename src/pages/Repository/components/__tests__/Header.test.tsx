@@ -4,7 +4,7 @@ import { RepositoryContext } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
 import { Header } from '@/pages/Repository/components'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
-import type { RepositoryContextType } from '@/pages/Repository/types'
+import type { RepositoryContextType } from '@/context/types'
 
 const mockNavigate = vi.fn()
 

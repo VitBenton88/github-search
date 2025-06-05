@@ -5,7 +5,7 @@ import { SearchForm } from '@/pages/Search/components'
 import userEvent from '@testing-library/user-event'
 import { SearchContext } from '@/context/SearchContext'
 import { mockSearchContext } from '@mocks/contexts'
-import type { SearchContextType } from '@/pages/Search/types'
+import type { SearchContextType } from '@/context/types'
 
 const mockOnSubmit = vi.fn()
 const mockSearchTerm = 'mock search term'
