@@ -1,29 +1,34 @@
-import { render, type RenderResult, waitFor } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import NotFoundRedirect from '..'
-
-const mockNavigate = vi.fn()
-
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom')
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-  }
-})
+import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { beforeEach, describe, expect, it } from 'vitest'
+import NotFoundRedirect from '@/pages/NotFound'
+import { MemoryRouter } from 'react-router-dom'
 
 describe('NotFoundRedirect', () => {
-  const renderComponent = (): RenderResult => render(<NotFoundRedirect />)
+  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
+    render(
+      <MemoryRouter initialEntries={initialEntries}>
+        <NotFoundRedirect />
+      </MemoryRouter>
+    )
+
+  const elements = {
+    get heading() { return screen.getByTestId('heading') },
+    get nav() { return screen.getByTestId('nav') },
+  }
 
   describe('render', () => {
-    beforeEach(async () => {
-      await waitFor(() => {
+    beforeEach(() => {
+      act(() => {
         renderComponent()
       })
     })
 
-    it('should navigate user to home route with error message.', () => {
-      expect(mockNavigate).toHaveBeenCalledWith('/', { state: { error: 'Page not found' }, replace: true })
+    it('should render navigation component.', () => {
+      expect(elements.nav).toBeInTheDocument()
+    })
+
+    it('should render header element.', () => {
+      expect(elements.heading).toBeInTheDocument()
     })
   })
 })

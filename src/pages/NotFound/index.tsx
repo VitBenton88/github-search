@@ -1,14 +1,13 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Nav } from "@/components"
 
 const NotFoundRedirect: React.FC = () => {
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    navigate('/', { state: { error: 'Page not found' }, replace: true })
-  }, [navigate])
-
-  return null
+  return (
+    <>
+      <Nav data-testid="nav" />
+      <h1 data-testid="heading">Page not found!</h1>
+    </>
+  )
 }
 
 export default NotFoundRedirect
