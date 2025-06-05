@@ -2,9 +2,9 @@ import type { BasicRepositoryType, fetchRepositoryHandler, RepositoryType } from
 import type { SearchRepositoriesHandler } from '@/pages/Search/types'
 
 export type RepositoryContextType = {
-  handleFetch: fetchRepositoryHandler,
-  repository: RepositoryType
+  handleFetch: fetchRepositoryHandler
   isLoading: boolean
+  repository: RepositoryType
 }
 
 export type SearchContextType = {
