@@ -1,6 +1,7 @@
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import Form, { type SearchFormProps } from '../Form'
+import { type SearchFormProps } from '../Form'
+import { SearchForm } from '@/pages/Search/components'
 import userEvent from '@testing-library/user-event'
 import { SearchContext } from '@/context/SearchContext'
 import { mockSearchContext } from '@mocks/contexts'
@@ -16,7 +17,7 @@ describe('Search Form', () => {
     propData: SearchFormProps = mockDefaultProps
   ): RenderResult => render(
     <SearchContext.Provider value={contextValue}>
-      <Form {...propData} />
+      <SearchForm {...propData} />
     </SearchContext.Provider>
   )
 

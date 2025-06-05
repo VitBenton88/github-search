@@ -1,6 +1,6 @@
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import Results from '../Results'
+import { SearchResults } from '@/pages/Search/components'
 import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import { mockBasicRepos } from '@mocks/repositories'
@@ -24,7 +24,7 @@ describe('Search Results', () => {
   ): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
-        <Results {...propData} />
+        <SearchResults {...propData} />
       </MemoryRouter>
     )
 

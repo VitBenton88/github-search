@@ -2,7 +2,7 @@ import { act, render, type RenderResult, screen, waitFor } from '@testing-librar
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { RepositoryContext } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
-import Header from '../Header'
+import { Header } from '@/pages/Repository/components'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 import type { RepositoryContextType } from '@/pages/Repository/types'
 

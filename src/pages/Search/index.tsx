@@ -1,8 +1,7 @@
 import { useContext } from 'react'
 import './Search.css'
 import { Loader } from '@/components'
-import SearchForm from './components/Form'
-import SearchResults from './components/Results'
+import { SearchForm, SearchResults } from './components'
 import { SearchContext } from '@/context/SearchContext'
 import { useLocation } from 'react-router-dom'
 

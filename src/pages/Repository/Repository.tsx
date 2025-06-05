@@ -2,10 +2,7 @@ import { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Repository.css'
 import { Loader } from '@/components'
-import Details from './components/Details'
-import Access from './components/Access'
-import Header from './components/Header'
-import Links from './components/Links'
+import { Access, Header, Details, Links } from './components'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
 const Repository: React.FC = () => {

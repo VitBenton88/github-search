@@ -2,7 +2,7 @@ import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { RepositoryContext } from '@/context/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
-import Links from '../Links'
+import { Links } from '@/pages/Repository/components'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 import type { RepositoryContextType } from '@/pages/Repository/types'
 
