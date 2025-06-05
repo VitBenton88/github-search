@@ -1,7 +1,8 @@
 import { createContext, useCallback, useMemo, useState } from 'react'
 import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
-import type { SearchContextType, SearchRepositoriesHandler } from '@/pages/Search/types'
+import type { SearchRepositoriesHandler } from '@/pages/Search/types'
+import type { SearchContextType } from './types'
 
 const defaultValue: SearchContextType = {
   filterPopular: false,

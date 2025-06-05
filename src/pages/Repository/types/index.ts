@@ -5,6 +5,8 @@ export interface BasicRepositoryType {
   owner: string
 }
 
+export type fetchRepositoryHandler = (owner: string, name: string) => Promise<void>
+
 export interface RepositoryType extends BasicRepositoryType {
   allow_forking: boolean
   archived: boolean
@@ -18,12 +20,4 @@ export interface RepositoryType extends BasicRepositoryType {
   size: number
   stargazers_count: number
   updated_at: string
-}
-
-export type fetchRepositoryHandler = (owner: string, name: string) => Promise<void>
-
-export type RepositoryContextType = {
-  handleFetch: fetchRepositoryHandler,
-  repository: RepositoryType
-  isLoading: boolean
 }

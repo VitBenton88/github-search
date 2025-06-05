@@ -1,7 +1,8 @@
 import { createContext, useCallback, useMemo, useState } from 'react'
-import type { fetchRepositoryHandler, RepositoryContextType, RepositoryType } from '@/pages/Repository/types'
+import type { fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/types'
 import { getRepository } from '@/api'
 import { defaultRepository } from '@/pages/Repository/repository.constants'
+import type { RepositoryContextType } from './types'
 
 const defaultValue: RepositoryContextType = {
   handleFetch: async () => { },
