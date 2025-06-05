@@ -1,4 +1,4 @@
-import { Nav } from "@/components"
+import { Nav } from '@/components'
 
 const NotFoundRedirect: React.FC = () => {
 
