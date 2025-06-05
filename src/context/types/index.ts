@@ -1,5 +1,5 @@
-import type { BasicRepositoryType, fetchRepositoryHandler, RepositoryType } from "@/pages/Repository/types"
-import type { SearchRepositoriesHandler } from "@/pages/Search/types"
+import type { BasicRepositoryType, fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/types'
+import type { SearchRepositoriesHandler } from '@/pages/Search/types'
 
 export type RepositoryContextType = {
   handleFetch: fetchRepositoryHandler,
