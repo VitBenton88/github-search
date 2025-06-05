@@ -3,16 +3,12 @@ import './Search.css'
 import { Loader } from '@/components'
 import { SearchForm, SearchResults } from './components'
 import { SearchContext } from '@/context/SearchContext'
-import { useLocation } from 'react-router-dom'
 
 const Search: React.FC = () => {
   const { handleSearch, hasSearched, isLoading, repositories } = useContext(SearchContext)
-  const location = useLocation()
-  const error = location.state?.error
 
   return (
     <main id="search">
-      {!!error && <p data-testid="pageNotFound" >{error}</p>}
       <h1>GitHub Search</h1>
       <SearchForm disableForm={isLoading} onFormSubmit={handleSearch} data-testid="searchForm" />
 

@@ -4,7 +4,7 @@ import { SearchContext } from '@/context/SearchContext'
 import Search from '..'
 import { MemoryRouter } from 'react-router-dom'
 import { mockSearchContext } from '@mocks/contexts'
-import type { SearchContextType } from '../types'
+import type { SearchContextType } from '@/context/types'
 
 describe('Search', () => {
   const renderComponent = (
@@ -21,7 +21,6 @@ describe('Search', () => {
   const elements = {
     get loader() { return screen.queryByTestId('loader') },
     get noSearch() { return screen.queryByTestId('noSearch') },
-    get pageNotFound() { return screen.queryByTestId('pageNotFound') },
     get searchForm() { return screen.getByTestId('searchForm') },
     get searchResults() { return screen.queryByTestId('searchResults') },
   }
@@ -48,10 +47,6 @@ describe('Search', () => {
 
       it('should not render a loader', () => {
         expect(elements.loader).not.toBeInTheDocument()
-      })
-
-      it('should not render page not found message', () => {
-        expect(elements.pageNotFound).not.toBeInTheDocument()
       })
     })
 

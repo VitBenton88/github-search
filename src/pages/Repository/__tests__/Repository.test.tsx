@@ -1,11 +1,11 @@
-import { act, render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../Repository'
 import { mockRepo } from '@mocks/repositories'
 import { RepositoryContext } from '@/context/RepositoryContext'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
-import type { RepositoryContextType } from '../types'
+import type { RepositoryContextType } from '@/context/types'
 
 const mockFetchHandler = vi.fn().mockResolvedValue(mockRepo)
 const mockRepoContext = {
@@ -40,7 +40,7 @@ describe('Repository', () => {
     get access() { return screen.queryByTestId('access') },
     get details() { return screen.queryByTestId('details') },
     get header() { return screen.queryByTestId('header') },
-    get notFoundWarning() { return screen.queryByTestId('not-found') },
+    get loader() { return screen.queryByTestId('loader') },
   }
 
   describe('render', () => {
@@ -63,8 +63,8 @@ describe('Repository', () => {
         expect(elements.details).toBeInTheDocument()
       })
 
-      it('should not render "no repository" warning', () => {
-        expect(elements.notFoundWarning).not.toBeInTheDocument()
+      it('should not render loader component', () => {
+        expect(elements.loader).not.toBeInTheDocument()
       })
 
       it('should fetch repository on render', () => {
@@ -72,27 +72,24 @@ describe('Repository', () => {
       })
     })
 
-    describe('when no repository is found', () => {
+    describe('when no loading', () => {
       beforeEach(() => {
         act(() => {
-          const mockNullFetchHandler = vi.fn().mockResolvedValue(null)
           const contextValue = {
             ...mockRepositoryContext,
-            handleFetch: mockNullFetchHandler
+            isLoading: true
           }
           renderComponent(contextValue)
         })
       })
 
-      it('should only render warning', () => {
-        waitFor(async () => {
-          const { access, details, header, notFoundWarning } = elements
+      it('should only render loader component', () => {
+        const { access, details, header, loader } = elements
 
-          expect(notFoundWarning).toBeInTheDocument()
-          expect(access).not.toBeInTheDocument()
-          expect(details).not.toBeInTheDocument()
-          expect(header).not.toBeInTheDocument()
-        })
+        expect(loader).toBeInTheDocument()
+        expect(access).not.toBeInTheDocument()
+        expect(details).not.toBeInTheDocument()
+        expect(header).not.toBeInTheDocument()
       })
     })
   })
