@@ -8,6 +8,7 @@ import { MockSearchConsumer } from '@mocks/consumers'
 import type { RepositoryType } from '@/pages/Repository/types'
 
 const mockRepos: RepositoryType[] = [mockRepo]
+const mockNotify = vi.fn()
 
 vi.mock('@/api', async () => {
   const actual = await vi.importActual('@/api')
@@ -16,6 +17,10 @@ vi.mock('@/api', async () => {
     searchRepositories: vi.fn(),
   }
 })
+
+vi.mock('@/hooks/useNotification', () => ({
+  useNotification: () => mockNotify,
+}))
 
 describe('SearchContext', () => {
   const renderContext = (children: React.ReactNode = (<MockSearchConsumer />)): RenderResult => {
@@ -69,6 +74,21 @@ describe('SearchContext', () => {
 
       it('should call search method with correct term and filter', () => {
         expect(searchRepositories).toHaveBeenCalledWith('mock search term', false)
+      })
+    })
+
+    describe('when fetch error is thrown', () => {
+      beforeEach(async () => {
+        (searchRepositories as Mock).mockRejectedValue(new Error('Mock Rejection'))
+
+        await waitFor(async () => {
+          renderContext()
+          await userEvent.click(elements.searchBtn)
+        })
+      })
+
+      it('should call notify hook as error', () => {
+        expect(mockNotify).toHaveBeenCalledWith('Mock Rejection', 'error')
       })
     })
   })

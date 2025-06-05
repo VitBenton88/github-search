@@ -3,6 +3,7 @@ import type { fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/
 import { getRepository } from '@/api'
 import { defaultRepository } from '@/pages/Repository/repository.constants'
 import type { RepositoryContextType } from './types'
+import { useNotification } from '@/hooks/useNotification'
 
 const defaultValue: RepositoryContextType = {
   handleFetch: async () => { },
@@ -13,6 +14,7 @@ const defaultValue: RepositoryContextType = {
 const RepositoryContext = createContext<RepositoryContextType>(defaultValue)
 
 const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const notify = useNotification()
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType>(defaultValue.repository)
 
@@ -23,12 +25,12 @@ const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     } catch (error) {
       console.error(error)
       if (error instanceof Error) {
-        alert(error.message)
+        notify(error.message, 'error')
       }
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }, [notify])
 
   const contextValue = useMemo(() => ({
     handleFetch,

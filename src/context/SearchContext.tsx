@@ -3,6 +3,7 @@ import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
 import type { SearchRepositoriesHandler } from '@/pages/Search/types'
 import type { SearchContextType } from './types'
+import { useNotification } from '@/hooks/useNotification'
 
 const defaultValue: SearchContextType = {
   filterPopular: false,
@@ -16,6 +17,7 @@ const defaultValue: SearchContextType = {
 const SearchContext = createContext<SearchContextType>(defaultValue)
 
 const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const notify = useNotification()
   const [hasSearched, setHasSearched] = useState(false)
   const [filterPopular, setFilterPopular] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -35,12 +37,12 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     } catch (error) {
       console.error(error)
       if (error instanceof Error) {
-        alert(error.message)
+        notify(error.message, 'error')
       }
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }, [notify])
 
   const contextValue = useMemo(() => ({
     filterPopular,

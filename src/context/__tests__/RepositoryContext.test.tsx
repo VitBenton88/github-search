@@ -6,6 +6,8 @@ import { mockRepo } from '@mocks/repositories'
 import { MockRepositoryConsumer } from '@mocks/consumers'
 import { RepositoryProvider } from '../RepositoryContext'
 
+const mockNotify = vi.fn()
+
 vi.mock('@/api', async () => {
   const actual = await vi.importActual('@/api')
   return {
@@ -13,6 +15,10 @@ vi.mock('@/api', async () => {
     getRepository: vi.fn(),
   }
 })
+
+vi.mock('@/hooks/useNotification', () => ({
+  useNotification: () => mockNotify,
+}))
 
 describe('SearchContext', () => {
   const renderContext = (children: React.ReactNode = (<MockRepositoryConsumer />)): RenderResult => {
@@ -64,6 +70,21 @@ describe('SearchContext', () => {
 
       it('should render correct id', () => {
         expect(elements.repoId).toHaveTextContent(mockRepo.id)
+      })
+    })
+
+    describe('when fetch error is thrown', () => {
+      beforeEach(async () => {
+        (getRepository as Mock).mockRejectedValue(new Error('Mock Rejection'))
+
+        await waitFor(async () => {
+          renderContext()
+          await userEvent.click(elements.fetchBtn)
+        })
+      })
+
+      it('should call notify hook as error', () => {
+        expect(mockNotify).toHaveBeenCalledWith('Mock Rejection', 'error')
       })
     })
   })
