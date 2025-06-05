@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import Link from '@/components/Link'
+import { Link } from '@/components'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
 type LinksProps = React.HTMLAttributes<HTMLDivElement>

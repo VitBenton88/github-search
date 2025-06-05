@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Repository.css'
-import Loader from '@/components/Loader'
+import { Loader } from '@/components'
 import Details from './components/Details'
 import Access from './components/Access'
 import Header from './components/Header'

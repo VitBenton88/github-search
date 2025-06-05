@@ -1,4 +1,4 @@
-import Nav from '@/components/Nav'
+import { Nav } from '@/components'
 import { RepositoryProvider } from '@/context/RepositoryContext'
 import Repository from './Repository'
 

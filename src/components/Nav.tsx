@@ -1,6 +1,6 @@
 import './styles/Nav.css'
 import { useNavigate } from 'react-router-dom'
-import Button from '@/components/Button'
+import { Button } from '@/components'
 
 type NavProps = React.HTMLAttributes<HTMLDivElement>
 

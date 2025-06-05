@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from 'react'
 import { SearchContext } from '@/context/SearchContext'
-import Button from '@/components/Button'
+import { Button } from '@/components'
 import type { SearchRepositoriesHandler } from '../types'
 
 export type SearchFormProps = {

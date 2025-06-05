@@ -1,4 +1,4 @@
-import Button from '@/components/Button'
+import { Button } from '@/components'
 import { RepositoryContext } from '@/context/RepositoryContext'
 import { SearchContext } from '@/context/SearchContext'
 import { useContext } from 'react'
