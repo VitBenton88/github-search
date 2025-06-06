@@ -24,7 +24,6 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const reposFetch = await searchRepositories(searchKeyword, filterPopular)
       setRepositories(reposFetch)
     } catch (error) {
-      console.error(error)
       if (error instanceof Error) {
         notify(error.message, 'error')
       }

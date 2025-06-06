@@ -38,6 +38,7 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
       })
     )
   } else {
+    console.error(response)
     throw new Error(`Failed to search repositories. ${response.status} ${response.statusText}`)
   }
 }
@@ -92,6 +93,7 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '') => {
       updated_at
     } as RepositoryType
   } else {
+    console.error(response)
     throw new Error(`Failed to fetch repository. ${response.status} ${response.statusText}`)
   }
 }
