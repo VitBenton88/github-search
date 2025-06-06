@@ -46,8 +46,12 @@ describe('api.ts', () => {
 
       await searchRepositories('git', true)
 
+      const query = 'git stars:>1000'
+      // api uses + not space
+      const encodedQuery = encodeURIComponent(query).replace(/%20/g, '+')
+
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('q=git+stars%3A%3E1000')
+        expect.stringContaining(`q=${encodedQuery}`)
       )
     })
 
