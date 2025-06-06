@@ -1,7 +1,6 @@
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
-import userEvent from '@testing-library/user-event'
 import Nav from '../Nav'
 
 const mockNavigate = vi.fn()
@@ -40,9 +39,9 @@ describe('Nav', () => {
   describe('behavior', () => {
     describe('when clicking back button', () => {
       beforeEach(async () => {
-        await waitFor(async () => {
+        await waitFor(() => {
           renderComponent()
-          await userEvent.click(elements.backBtn)
+          elements.backBtn.click()
         })
       })
 

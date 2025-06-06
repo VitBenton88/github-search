@@ -1,8 +1,7 @@
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { act, fireEvent, render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { type SearchFormProps } from '../Form'
 import { SearchForm } from '@/pages/Search/components'
-import userEvent from '@testing-library/user-event'
 import { SearchContext } from '@/context/SearchContext'
 import { mockSearchContext } from '@mocks/contexts'
 import type { SearchContextType } from '@/context/types'
@@ -103,14 +102,11 @@ describe('Search Form', () => {
   describe('behavior', () => {
     describe('when submitting form', () => {
       beforeEach(async () => {
-        act(() => {
+        waitFor(async () => {
           renderComponent()
+          fireEvent.change(elements.searchInput, { target: { value: mockSearchTerm } })
+          elements.submitBtn.click()
         })
-
-        const { searchInput, submitBtn } = elements
-
-        await userEvent.type(searchInput, mockSearchTerm)
-        await userEvent.click(submitBtn)
       })
 
       it('should call onFormSubmit prop function with correct values', async () => {

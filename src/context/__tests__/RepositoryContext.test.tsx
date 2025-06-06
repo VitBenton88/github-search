@@ -1,7 +1,6 @@
 import { getRepository } from '@/api'
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
-import userEvent from '@testing-library/user-event'
 import { mockRepo } from '@mocks/repositories'
 import { MockRepositoryConsumer } from '@mocks/consumers'
 import { RepositoryProvider } from '../RepositoryContext'
@@ -58,9 +57,9 @@ describe('SearchContext', () => {
       beforeEach(async () => {
         (getRepository as Mock).mockResolvedValue(mockRepo)
 
-        await waitFor(async () => {
+        await waitFor(() => {
           renderContext()
-          await userEvent.click(elements.fetchBtn)
+          elements.fetchBtn.click()
         })
       })
 
@@ -77,9 +76,9 @@ describe('SearchContext', () => {
       beforeEach(async () => {
         (getRepository as Mock).mockRejectedValue(new Error('Mock Rejection'))
 
-        await waitFor(async () => {
+        await waitFor(() => {
           renderContext()
-          await userEvent.click(elements.fetchBtn)
+          elements.fetchBtn.click()
         })
       })
 

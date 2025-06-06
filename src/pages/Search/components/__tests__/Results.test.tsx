@@ -2,7 +2,6 @@ import { render, type RenderResult, screen, waitFor } from '@testing-library/rea
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { SearchResults } from '@/pages/Search/components'
 import { MemoryRouter } from 'react-router-dom'
-import userEvent from '@testing-library/user-event'
 import { mockBasicRepos } from '@mocks/repositories'
 import type { SearchResultsProps } from '../Results'
 
@@ -100,9 +99,9 @@ describe('Search Results', () => {
   describe('behavior', () => {
     describe('when clicking a result’s action', () => {
       beforeEach(async () => {
-        await waitFor(async () => {
+        await waitFor(() => {
           renderComponent()
-          await userEvent.click(elements.viewMoreBtns[0])
+          elements.viewMoreBtns[0].click()
         })
       })
 
