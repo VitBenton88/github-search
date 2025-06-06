@@ -51,3 +51,13 @@
 .notification.info:before {
   content: 'ℹ️';
 }
+
+/* User color schemes */
+
+@media (prefers-color-scheme: light) {
+  .notification {
+    background: white;
+    color: black;
+  }
+
+}
