@@ -1,26 +1,15 @@
-import { createContext, useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
 import type { SearchRepositoriesHandler } from '@/pages/Search/types'
-import type { SearchContextType } from './types'
 import { useNotification } from '@/hooks/useNotification'
+import { SearchContext } from './SearchContext'
 
-const defaultValue: SearchContextType = {
-  filterPopular: false,
-  handleSearch: async () => { },
-  hasSearched: false,
-  isLoading: false,
-  repositories: [],
-  searchTerm: '',
-}
-
-const SearchContext = createContext<SearchContextType>(defaultValue)
-
-const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const notify = useNotification()
   const [hasSearched, setHasSearched] = useState(false)
-  const [filterPopular, setFilterPopular] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [filterPopular, setFilterPopular] = useState(false)
   const [repositories, setRepositories] = useState<BasicRepositoryType[]>([])
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -59,5 +48,3 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     </SearchContext.Provider>
   )
 }
-
-export { SearchProvider, SearchContext }

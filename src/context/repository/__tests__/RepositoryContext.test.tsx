@@ -3,7 +3,7 @@ import { render, type RenderResult, screen, waitFor } from '@testing-library/rea
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { mockRepo } from '@mocks/repositories'
 import { MockRepositoryConsumer } from '@mocks/consumers'
-import { RepositoryProvider } from '../RepositoryContext'
+import { RepositoryProvider } from '../RepositoryProvider'
 
 const mockNotify = vi.fn()
 
