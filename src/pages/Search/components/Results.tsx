@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, type JSX } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { Button } from '@/components'
@@ -14,14 +14,14 @@ const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], ite
 
   const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])
 
-  const renderTableRow = (repo: BasicRepositoryType) => (
+  const renderTableRow = (repo: BasicRepositoryType): JSX.Element => (
     <tr key={repo.id} data-testid="result">
       <td data-testid="name">{repo.name}</td>
       <td>{repo.description}</td>
       <td>
         <Button
-          type="button"
           aria-label={`View details for ${repo.name} repository`}
+          type="button"
           onClick={() => handleClick(repo.owner, repo.name)}
           data-testid="viewMoreBtn"
         >
