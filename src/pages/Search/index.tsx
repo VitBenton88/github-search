@@ -10,7 +10,11 @@ const Search: React.FC = () => {
   return (
     <main id="search">
       <h1>GitHub Search</h1>
-      <SearchForm disableForm={isLoading} onFormSubmit={handleSearch} data-testid="searchForm" />
+      <SearchForm
+        disableForm={isLoading}
+        onFormSubmit={handleSearch}
+        data-testid="searchForm"
+      />
 
       {!hasSearched && <p data-testid="noSearch">Enter a keyword to search GitHub.</p>}
 
@@ -22,7 +26,8 @@ const Search: React.FC = () => {
             <SearchResults
               caption="Search results"
               items={repositories}
-              data-testid="searchResults" />
+              data-testid="searchResults"
+            />
           </div>
         )
       )}
