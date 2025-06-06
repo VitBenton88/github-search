@@ -6,7 +6,7 @@ import { Access, Details, Header, Links } from './components'
 import { RepositoryContext } from '@/context/RepositoryContext'
 
 const Repository: React.FC = () => {
-  const { handleFetch, isLoading } = useContext(RepositoryContext)
+  const { handleFetch, isLoading, repository } = useContext(RepositoryContext)
   const { name, owner } = useParams<{ owner: string, name: string }>()
 
   useEffect(() => {
@@ -19,13 +19,19 @@ const Repository: React.FC = () => {
 
   return (
     <main id="repository">
-      <Header data-testid="header" />
+      {!repository.id ? (
+        <h1 data-testid="none-found">Repository not found.</h1>
+      ) : (
+        <>
+          <Header data-testid="header" />
 
-      <aside>
-        <Details data-testid="details" />
-        <Access data-testid="access" />
-        <Links data-testid="links" />
-      </aside>
+          <aside>
+            <Details data-testid="details" />
+            <Access data-testid="access" />
+            <Links data-testid="links" />
+          </aside>
+        </>
+      )}
     </main>
   )
 }

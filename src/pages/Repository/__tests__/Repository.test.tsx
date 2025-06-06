@@ -10,7 +10,8 @@ import type { RepositoryContextType } from '@/context/types'
 const mockFetchHandler = vi.fn().mockResolvedValue(mockRepo)
 const mockRepoContext = {
   ...mockRepositoryContext,
-  handleFetch: mockFetchHandler
+  handleFetch: mockFetchHandler,
+  repository: mockRepo
 }
 
 vi.mock('react-router-dom', async () => {
@@ -41,6 +42,7 @@ describe('Repository', () => {
     get details() { return screen.queryByTestId('details') },
     get header() { return screen.queryByTestId('header') },
     get loader() { return screen.queryByTestId('loader') },
+    get notFound() { return screen.queryByTestId('none-found') },
   }
 
   describe('render', () => {
@@ -67,12 +69,38 @@ describe('Repository', () => {
         expect(elements.loader).not.toBeInTheDocument()
       })
 
+      it('should not render "none found" message', () => {
+        expect(elements.notFound).not.toBeInTheDocument()
+      })
+
       it('should fetch repository on render', () => {
         expect(mockFetchHandler).toHaveBeenCalledWith(mockRepo.owner, mockRepo.name)
       })
     })
 
-    describe('when no loading', () => {
+    describe('with no repository present', () => {
+      beforeEach(() => {
+        act(() => {
+          const contextValue = {
+            ...mockRepositoryContext,
+            repository: { ...mockRepo, id: '' }
+          }
+          renderComponent(contextValue)
+        })
+      })
+
+      it('should only render "none found" message', () => {
+        const { access, details, header, loader, notFound } = elements
+
+        expect(notFound).toBeInTheDocument()
+        expect(loader).not.toBeInTheDocument()
+        expect(access).not.toBeInTheDocument()
+        expect(details).not.toBeInTheDocument()
+        expect(header).not.toBeInTheDocument()
+      })
+    })
+
+    describe('when loading', () => {
       beforeEach(() => {
         act(() => {
           const contextValue = {
@@ -84,12 +112,13 @@ describe('Repository', () => {
       })
 
       it('should only render loader component', () => {
-        const { access, details, header, loader } = elements
+        const { access, details, header, loader, notFound } = elements
 
         expect(loader).toBeInTheDocument()
         expect(access).not.toBeInTheDocument()
         expect(details).not.toBeInTheDocument()
         expect(header).not.toBeInTheDocument()
+        expect(notFound).not.toBeInTheDocument()
       })
     })
   })
