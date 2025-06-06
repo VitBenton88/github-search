@@ -1,7 +1,7 @@
 import { useCallback, useContext, useState } from 'react'
-import { SearchContext } from '@/context/search/SearchContext'
-import { Button } from '@/components'
 import type { SearchRepositoriesHandler } from '../types'
+import { Button } from '@/components'
+import { SearchContext } from '@/context/search/SearchContext'
 
 export type SearchFormProps = {
   disableForm: boolean

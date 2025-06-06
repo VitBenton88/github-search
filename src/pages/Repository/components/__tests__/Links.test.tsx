@@ -1,10 +1,10 @@
+import { mockRepo } from '@mocks/repositories'
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
+import type { RepositoryContextType } from '@/context/types'
 import { RepositoryContext } from '@/context/repository/RepositoryContext'
-import { mockRepo } from '@mocks/repositories'
 import { Links } from '@/pages/Repository/components'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
-import type { RepositoryContextType } from '@/context/types'
 
 describe('Repository Links', () => {
   const renderComponent = (

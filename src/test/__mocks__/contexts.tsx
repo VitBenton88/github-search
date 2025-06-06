@@ -1,5 +1,5 @@
-import { vi } from 'vitest'
 import { mockBasicRepos, mockRepo } from '@mocks/repositories'
+import { vi } from 'vitest'
 import type { RepositoryContextType, SearchContextType } from '@/context/types'
 
 export const mockSearchContext: SearchContextType = {

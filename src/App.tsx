@@ -1,7 +1,7 @@
 import '@/App.css'
 import { Route, Routes } from 'react-router-dom'
-import { SearchProvider } from '@/context/search/SearchProvider'
 import { NotificationProvider } from '@/context/notification/NotificationProvider'
+import { SearchProvider } from '@/context/search/SearchProvider'
 import NotFoundRedirect from '@/pages/NotFound'
 import Repository from '@/pages/Repository'
 import Search from '@/pages/Search'

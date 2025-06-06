@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from 'react'
+import { defaultValue, RepositoryContext } from './RepositoryContext'
 import type { fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/types'
 import { getRepository } from '@/api'
 import { useNotification } from '@/hooks/useNotification'
-import { defaultValue, RepositoryContext } from './RepositoryContext'
 
 export const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const notify = useNotification()

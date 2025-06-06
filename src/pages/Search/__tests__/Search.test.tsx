@@ -1,10 +1,10 @@
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
-import { SearchContext } from '@/context/search/SearchContext'
-import Search from '..'
-import { MemoryRouter } from 'react-router-dom'
 import { mockSearchContext } from '@mocks/contexts'
+import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import { beforeEach, describe, expect, it } from 'vitest'
+import Search from '..'
 import type { SearchContextType } from '@/context/types'
+import { SearchContext } from '@/context/search/SearchContext'
 
 describe('Search', () => {
   const renderComponent = (

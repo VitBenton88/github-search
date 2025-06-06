@@ -1,9 +1,9 @@
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { SearchResults } from '@/pages/Search/components'
-import { MemoryRouter } from 'react-router-dom'
 import { mockBasicRepos } from '@mocks/repositories'
+import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { SearchResultsProps } from '../Results'
+import { SearchResults } from '@/pages/Search/components'
 
 const mockNavigate = vi.fn()
 const mockDefaultProps: SearchResultsProps = { caption: 'Search results', items: mockBasicRepos }

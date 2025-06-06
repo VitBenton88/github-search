@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
-import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { useNavigate } from 'react-router-dom'
+import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { Button } from '@/components'
 
 export type SearchResultsProps = {

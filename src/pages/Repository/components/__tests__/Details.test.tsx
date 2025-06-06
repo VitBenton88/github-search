@@ -1,11 +1,11 @@
+import { mockRepo } from '@mocks/repositories'
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { mockRepo } from '@mocks/repositories'
+import type { RepositoryContextType } from '@/context/types'
 import { RepositoryContext } from '@/context/repository/RepositoryContext'
 import { Details } from '@/pages/Repository/components'
-import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 import { REPO_LABELS } from '@/pages/Repository/repository.constants'
-import type { RepositoryContextType } from '@/context/types'
+import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 

@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useState } from 'react'
-import type { BasicRepositoryType } from '@/pages/Repository/types'
-import { searchRepositories } from '@/api'
-import type { SearchRepositoriesHandler } from '@/pages/Search/types'
-import { useNotification } from '@/hooks/useNotification'
 import { SearchContext } from './SearchContext'
+import type { BasicRepositoryType } from '@/pages/Repository/types'
+import type { SearchRepositoriesHandler } from '@/pages/Search/types'
+import { searchRepositories } from '@/api'
+import { useNotification } from '@/hooks/useNotification'
 
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const notify = useNotification()

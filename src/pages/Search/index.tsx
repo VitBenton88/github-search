@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import './Search.css'
-import { Loader } from '@/components'
 import { SearchForm, SearchResults } from './components'
+import { Loader } from '@/components'
 import { SearchContext } from '@/context/search/SearchContext'
 
 const Search: React.FC = () => {

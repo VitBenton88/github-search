@@ -1,8 +1,8 @@
-import { defineConfig as defineViteConfig, mergeConfig } from 'vite'
-import { defineConfig as defineVitestConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
+import react from '@vitejs/plugin-react'
+import { defineConfig as defineViteConfig, mergeConfig } from 'vite'
+import { defineConfig as defineVitestConfig } from 'vitest/config'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

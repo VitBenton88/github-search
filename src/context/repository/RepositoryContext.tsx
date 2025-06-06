@@ -1,6 +1,6 @@
 import { createContext } from 'react'
-import { defaultRepository } from '@/pages/Repository/repository.constants'
 import type { RepositoryContextType } from '../types'
+import { defaultRepository } from '@/pages/Repository/repository.constants'
 
 export const defaultValue: RepositoryContextType = {
   handleFetch: async () => { },
