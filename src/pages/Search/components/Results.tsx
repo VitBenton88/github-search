@@ -1,4 +1,4 @@
-import { useCallback, type JSX } from 'react'
+import { type JSX, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { Button } from '@/components'
