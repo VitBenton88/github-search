@@ -1,5 +1,5 @@
 import { Nav } from '@/components'
-import { RepositoryProvider } from '@/context/RepositoryContext'
+import { RepositoryProvider } from '@/context/repository/RepositoryProvider'
 import Repository from './Repository'
 
 const RepositoryWrapper: React.FC = () => {

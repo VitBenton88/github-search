@@ -1,6 +1,6 @@
 import { act, render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { RepositoryContext } from '@/context/RepositoryContext'
+import { RepositoryContext } from '@/context/repository/RepositoryContext'
 import { mockRepo } from '@mocks/repositories'
 import { Header } from '@/pages/Repository/components'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'

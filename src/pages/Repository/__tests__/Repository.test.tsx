@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import Repository from '../Repository'
 import { mockRepo } from '@mocks/repositories'
-import { RepositoryContext } from '@/context/RepositoryContext'
+import { RepositoryContext } from '@/context/repository/RepositoryContext'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 import type { RepositoryContextType } from '@/context/types'
 

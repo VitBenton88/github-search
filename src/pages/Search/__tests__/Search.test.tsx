@@ -1,6 +1,6 @@
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { SearchContext } from '@/context/SearchContext'
+import { SearchContext } from '@/context/search/SearchContext'
 import Search from '..'
 import { MemoryRouter } from 'react-router-dom'
 import { mockSearchContext } from '@mocks/contexts'

@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { Link } from '@/components'
-import { RepositoryContext } from '@/context/RepositoryContext'
+import { RepositoryContext } from '@/context/repository/RepositoryContext'
 
 type HeaderProps = React.HTMLAttributes<HTMLDivElement>
 

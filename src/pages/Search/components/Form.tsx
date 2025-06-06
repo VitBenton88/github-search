@@ -1,5 +1,5 @@
 import { useCallback, useContext, useState } from 'react'
-import { SearchContext } from '@/context/SearchContext'
+import { SearchContext } from '@/context/search/SearchContext'
 import { Button } from '@/components'
 import type { SearchRepositoriesHandler } from '../types'
 
