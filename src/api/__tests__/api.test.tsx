@@ -47,7 +47,7 @@ describe('api.ts', () => {
       await searchRepositories('git', true)
 
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('q=git+stars:>1000')
+        expect.stringContaining('q=git+stars%3A%3E1000')
       )
     })
 

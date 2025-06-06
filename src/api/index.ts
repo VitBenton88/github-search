@@ -11,23 +11,32 @@ const BASE_URL = 'https://api.github.com'
  * @param popularFilter - Filter search query for popular repositories (>1k stars).
  */
 export const searchRepositories: SearchReposHandler = async (searchKeyword = '', popularFilter = false) => {
-  let fetchUrl = `${BASE_URL}/search/repositories?q=${searchKeyword}`
+  const url = new URL(`${BASE_URL}/search/repositories`)
+  url.searchParams.set('q', searchKeyword)
 
   if (popularFilter) {
-    fetchUrl += '+stars:>1000'
+    url.searchParams.set('q', `${searchKeyword} stars:>1000`)
   }
 
+  const fetchUrl = url.toString()
   const response = await fetch(fetchUrl)
 
   if (response.ok) {
     const { items } = await response.json()
 
-    return items.map((repo: { description: string; id: string; name: string; owner: { login: string }; }) => ({
-      description: repo.description,
-      id: repo.id,
-      name: repo.name,
-      owner: repo.owner.login,
-    }))
+    return items.map(
+      (repo: {
+        description: string
+        id: string
+        name: string
+        owner: { login: string }
+      }): BasicRepositoryType => ({
+        description: repo.description,
+        id: repo.id,
+        name: repo.name,
+        owner: repo.owner.login
+      })
+    )
   } else {
     throw new Error(`Failed to search repositories. ${response.status} ${response.statusText}`)
   }
@@ -39,8 +48,9 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
  * @param name - Repository's name.
  */
 export const getRepository: GetRepoHandler = async (owner = '', name = '') => {
-  const fetchUrl = `${BASE_URL}/repos/${owner}/${name}`
+  const url = new URL(`${BASE_URL}/repos/${owner}/${name}`)
 
+  const fetchUrl = url.toString()
   const response = await fetch(fetchUrl)
 
   if (response.ok) {
@@ -80,7 +90,7 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '') => {
       size,
       stargazers_count,
       updated_at
-    }
+    } as RepositoryType
   } else {
     throw new Error(`Failed to fetch repository. ${response.status} ${response.statusText}`)
   }
