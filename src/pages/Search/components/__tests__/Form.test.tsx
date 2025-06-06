@@ -8,7 +8,10 @@ import { SearchForm } from '@/pages/Search/components'
 
 const mockOnSubmit = vi.fn()
 const mockSearchTerm = 'mock search term'
-const mockDefaultProps: SearchFormProps = { disableForm: false, onFormSubmit: mockOnSubmit }
+const mockDefaultProps: SearchFormProps = {
+  disableForm: false,
+  onFormSubmit: mockOnSubmit
+}
 
 describe('Search Form', () => {
   const renderComponent = (
