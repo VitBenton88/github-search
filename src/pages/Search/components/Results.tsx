@@ -5,10 +5,11 @@ import { Button } from '@/components'
 
 export type SearchResultsProps = {
   caption: string,
+  headers: string[]
   items: BasicRepositoryType[]
 } & React.HTMLAttributes<HTMLDivElement>
 
-const Results: React.FC<SearchResultsProps> = ({ caption = '', items = [], ...props }) => {
+const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], items = [], ...props }) => {
   const navigate = useNavigate()
 
   const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])
@@ -38,13 +39,15 @@ const Results: React.FC<SearchResultsProps> = ({ caption = '', items = [], ...pr
 
         {caption && (<caption data-testid="caption">{caption}</caption>)}
 
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+        {headers.length > 0 && (
+          <thead data-testid="table-head">
+            <tr>
+              {headers.map(header => (
+                <th key={header} data-testid="table-header">{header}</th>
+              ))}
+            </tr>
+          </thead>
+        )}
 
         <tbody>
           {items.map(renderTableRow)}

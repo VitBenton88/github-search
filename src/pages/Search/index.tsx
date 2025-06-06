@@ -25,6 +25,7 @@ const Search: React.FC = () => {
           <div className="fade-up">
             <SearchResults
               caption="Search results"
+              headers={['Name', 'Description', 'Action']}
               items={repositories}
               data-testid="searchResults"
             />

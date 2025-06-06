@@ -6,7 +6,11 @@ import type { SearchResultsProps } from '../Results'
 import { SearchResults } from '@/pages/Search/components'
 
 const mockNavigate = vi.fn()
-const mockDefaultProps: SearchResultsProps = { caption: 'Search results', items: mockBasicRepos }
+const mockDefaultProps: SearchResultsProps = {
+  caption: 'Search results',
+  headers: ['Name', 'Description', 'Action'],
+  items: mockBasicRepos
+}
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom')
@@ -33,6 +37,8 @@ describe('Search Results', () => {
     get noneFound() { return screen.queryByTestId('noneFound') },
     get results() { return screen.queryAllByTestId('result') },
     get table() { return screen.queryByTestId('table') },
+    get tableHead() { return screen.queryByTestId('table-head') },
+    get tableHeaders() { return screen.queryAllByTestId('table-header') },
     get viewMoreBtns() { return screen.getAllByTestId('viewMoreBtn') },
   }
 
@@ -44,8 +50,12 @@ describe('Search Results', () => {
         })
       })
 
-      it('should render a table element', () => {
-        expect(elements.table).toBeInTheDocument()
+      it('should render a table element with headers', () => {
+        const { table, tableHead, tableHeaders } = elements
+
+        expect(table).toBeInTheDocument()
+        expect(tableHead).toBeInTheDocument()
+        expect(tableHeaders.length).toBe(mockDefaultProps.headers.length)
       })
 
       it('should render the correct caption', () => {
@@ -62,6 +72,23 @@ describe('Search Results', () => {
 
       it('should not render a "none found" warning', () => {
         expect(elements.noneFound).not.toBeInTheDocument()
+      })
+    })
+
+    describe('with no table headers', () => {
+      beforeEach(async () => {
+        await waitFor(() => {
+          const propData = { ...mockDefaultProps, headers: [] }
+          renderComponent(undefined, propData)
+        })
+      })
+
+      it('should render a table element with no headers', () => {
+        const { table, tableHead, tableHeaders } = elements
+
+        expect(table).toBeInTheDocument()
+        expect(tableHead).not.toBeInTheDocument()
+        expect(tableHeaders.length).toBe(0)
       })
     })
 
