@@ -11,7 +11,8 @@ const Header: React.FC<HeaderProps> = ({ ...props }) => {
     description,
     name,
     owner,
-    owner_url, stargazers_count,
+    owner_url,
+    stargazers_count,
     updated_at
   } = repository
 
