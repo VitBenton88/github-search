@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import type { RepositoryContextType } from '@/context/types'
+import type { RepositoryContextType } from '@/context/repository/types'
 import type { fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/types'
 import { getRepository } from '@/api'
 import { RepositoryContext } from '@/context/repository'

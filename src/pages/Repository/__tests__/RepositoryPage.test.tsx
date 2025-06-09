@@ -3,7 +3,7 @@ import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import RepositoryPage from '../RepositoryPage'
-import type { RepositoryContextType } from '@/context/types'
+import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
