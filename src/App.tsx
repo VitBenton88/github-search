@@ -2,7 +2,7 @@ import '@/App.css'
 import { Route, Routes } from 'react-router-dom'
 import { NotificationProvider } from '@/context/notification/NotificationProvider'
 import { SearchProvider } from '@/context/search/SearchProvider'
-import NotFoundRedirect from '@/pages/NotFound'
+import NotFound from '@/pages/NotFound'
 import Repository from '@/pages/Repository'
 import Search from '@/pages/Search'
 
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Search />} />
           <Route path="/repo/:owner/:name" element={<Repository />} />
-          <Route path="*" element={<NotFoundRedirect />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </SearchProvider>
     </NotificationProvider>

@@ -1,6 +1,6 @@
 import { Nav } from '@/components'
 
-const NotFoundRedirect: React.FC = () => {
+const NotFound: React.FC = () => {
 
   return (
     <>
@@ -10,4 +10,4 @@ const NotFoundRedirect: React.FC = () => {
   )
 }
 
-export default NotFoundRedirect
+export default NotFound
