@@ -17,7 +17,7 @@ const Details: React.FC<DetailsProps> = ({ ...props }) => {
 
   return (
     <section {...props}>
-      <header data-testid="heading">
+      <header data-testid="header">
         <h4>Details:</h4>
       </header>
 

@@ -20,7 +20,7 @@ describe('Repository Access details', () => {
 
   const elements = {
     get archivedStatus() { return screen.getByTestId('archived-status') },
-    get heading() { return screen.getByTestId('heading') },
+    get header() { return screen.getByTestId('header') },
     get privateStatus() { return screen.getByTestId('private-status') },
   }
 
@@ -33,7 +33,7 @@ describe('Repository Access details', () => {
       })
 
       it('should render header', () => {
-        expect(elements.heading).toBeInTheDocument()
+        expect(elements.header).toBeInTheDocument()
       })
 
       it('should render correct archived status', () => {

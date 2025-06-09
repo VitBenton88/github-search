@@ -20,7 +20,7 @@ const Repository: React.FC = () => {
   return (
     <main id="repository">
       {!repository.id ? (
-        <h1 data-testid="none-found">Repository not found.</h1>
+        <h1 data-testid="not-found">Repository not found.</h1>
       ) : (
         <>
           <Header data-testid="header" />

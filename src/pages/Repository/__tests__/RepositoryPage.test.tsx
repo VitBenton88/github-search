@@ -40,9 +40,9 @@ describe('RepositoryPage', () => {
   const elements = {
     get access() { return screen.queryByTestId('access') },
     get details() { return screen.queryByTestId('details') },
-    get header() { return screen.queryByTestId('header') },
+    get header() { return screen.queryAllByTestId('header') },
     get loader() { return screen.queryByTestId('loader') },
-    get notFound() { return screen.queryByTestId('none-found') },
+    get notFound() { return screen.queryByTestId('not-found') },
   }
 
   describe('render', () => {
@@ -54,7 +54,7 @@ describe('RepositoryPage', () => {
       })
 
       it('should render header', () => {
-        expect(elements.header).toBeInTheDocument()
+        expect(elements.header[0]).toBeInTheDocument()
       })
 
       it('should render repository access details', () => {
@@ -69,7 +69,7 @@ describe('RepositoryPage', () => {
         expect(elements.loader).not.toBeInTheDocument()
       })
 
-      it('should not render "none found" message', () => {
+      it('should not render "not found" message', () => {
         expect(elements.notFound).not.toBeInTheDocument()
       })
 
@@ -96,7 +96,7 @@ describe('RepositoryPage', () => {
         expect(loader).not.toBeInTheDocument()
         expect(access).not.toBeInTheDocument()
         expect(details).not.toBeInTheDocument()
-        expect(header).not.toBeInTheDocument()
+        expect(header[0]).toBeUndefined()
       })
     })
 
@@ -117,7 +117,7 @@ describe('RepositoryPage', () => {
         expect(loader).toBeInTheDocument()
         expect(access).not.toBeInTheDocument()
         expect(details).not.toBeInTheDocument()
-        expect(header).not.toBeInTheDocument()
+        expect(header[0]).toBeUndefined()
         expect(notFound).not.toBeInTheDocument()
       })
     })

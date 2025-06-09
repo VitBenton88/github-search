@@ -12,7 +12,7 @@ const Access: React.FC<AccessProps> = ({ ...props }) => {
 
   return (
     <section {...props}>
-      <header data-testid="heading">
+      <header data-testid="header">
         <h4>Access:</h4>
       </header>
 

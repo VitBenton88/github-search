@@ -21,7 +21,7 @@ describe('Repository Details', () => {
   const elements = {
     get downloads() { return screen.getByTestId('downloads') },
     get forking() { return screen.getByTestId('forking') },
-    get heading() { return screen.getByTestId('heading') },
+    get header() { return screen.getByTestId('header') },
     get language() { return screen.getByTestId('language') },
     get size() { return screen.getByTestId('size') },
   }
@@ -35,7 +35,7 @@ describe('Repository Details', () => {
       })
 
       it('should render header', () => {
-        expect(elements.heading).toBeInTheDocument()
+        expect(elements.header).toBeInTheDocument()
       })
 
       it('should render correct downloads status', () => {

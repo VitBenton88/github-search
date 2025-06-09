@@ -29,7 +29,7 @@ describe('NotFound', () => {
       expect(elements.nav).toBeInTheDocument()
     })
 
-    it('should render header element.', () => {
+    it('should render heading element.', () => {
       expect(elements.heading).toBeInTheDocument()
     })
   })
