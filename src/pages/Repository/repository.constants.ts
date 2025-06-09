@@ -1,5 +1,3 @@
-import type { RepositoryType } from '@/pages/Repository/types'
-
 export const REPO_LABELS = {
   ALLOWS_FORKING: 'Allows forking',
   ARCHIVED: 'Archived',
@@ -9,23 +7,4 @@ export const REPO_LABELS = {
   NOT_ARCHIVED: 'Not archived',
   PRIVATE: 'Private',
   PUBLIC: 'Public',
-} as const
-
-export const defaultRepository: RepositoryType = {
-  description: '',
-  id: '',
-  name: '',
-  owner: '',
-  allow_forking: false,
-  archived: false,
-  created_at: '',
-  has_downloads: false,
-  homepage: '',
-  html_url: '',
-  isPrivate: false,
-  language: '',
-  owner_url: '',
-  size: 0,
-  stargazers_count: 0,
-  updated_at: '',
 } as const
