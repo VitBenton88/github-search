@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { defaultValue, RepositoryContext } from './RepositoryContext'
+import type { RepositoryContextType } from '@/context/types'
 import type { fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/types'
 import { getRepository } from '@/api'
 import { useNotification } from '@/hooks/useNotification'
@@ -22,7 +23,7 @@ export const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
   }, [notify])
 
-  const contextValue = useMemo(() => ({
+  const contextValue = useMemo((): RepositoryContextType => ({
     handleFetch,
     isLoading,
     repository,

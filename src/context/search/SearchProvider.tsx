@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { SearchContext } from './SearchContext'
+import type { SearchContextType } from '@/context/types'
 import type { BasicRepositoryType } from '@/pages/Repository/types'
 import type { SearchRepositoriesHandler } from '@/pages/Search/types'
 import { searchRepositories } from '@/api'
@@ -32,7 +33,7 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [notify])
 
-  const contextValue = useMemo(() => ({
+  const contextValue = useMemo((): SearchContextType => ({
     filterPopular,
     handleSearch,
     hasSearched,
