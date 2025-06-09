@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import type { RepositoryContextType } from '../types'
+import type { RepositoryContextType } from '@/context/types'
 import { defaultRepository } from '@/pages/Repository/repository.constants'
 
 export const defaultValue: RepositoryContextType = {

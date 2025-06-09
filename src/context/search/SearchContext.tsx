@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import type { SearchContextType } from '../types'
+import type { SearchContextType } from '@/context/types'
 
 const defaultValue: SearchContextType = {
   filterPopular: false,

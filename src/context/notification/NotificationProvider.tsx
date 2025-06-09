@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 import { NotificationContext } from './NotificationContext'
-import type { Notification, NotificationType } from '../types'
+import type { Notification, NotificationType } from '@/context/types'
 import NotificationComponent from '@/components/Notification'
 
 export const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
