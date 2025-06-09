@@ -2,7 +2,7 @@
 
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { NotificationProvider } from '../NotificationProvider'
+import { NotificationProvider } from '@/context/notification'
 import { useNotification } from '@/hooks/useNotification'
 
 const TestComponent = () => {

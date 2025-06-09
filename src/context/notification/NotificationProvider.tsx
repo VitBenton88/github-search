@@ -1,9 +1,9 @@
 import { useCallback, useRef, useState } from 'react'
-import { NotificationContext } from './NotificationContext'
+import { NotificationContext } from '@/context/notification'
 import type { Notification, NotificationType } from '@/context/types'
 import NotificationComponent from '@/components/Notification'
 
-export const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
+const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [notification, setNotification] = useState<Notification | null>(null)
 
@@ -39,3 +39,5 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
     </NotificationContext.Provider>
   )
 }
+
+export default NotificationProvider

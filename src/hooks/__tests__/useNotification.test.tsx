@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { NotificationContext } from '@/context/notification/NotificationContext'
+import { NotificationContext } from '@/context/notification'
 import { useNotification } from '@/hooks/useNotification'
 
 const MockComponent = () => {
