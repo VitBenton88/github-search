@@ -19,7 +19,7 @@ vi.mock('@/hooks/useNotification', () => ({
   useNotification: () => mockNotify,
 }))
 
-describe('SearchContext', () => {
+describe('RepositoryContext', () => {
   const renderContext = (children: React.ReactNode = (<MockRepositoryConsumer />)): RenderResult => {
     return render(
       <RepositoryProvider>
