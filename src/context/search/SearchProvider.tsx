@@ -1,12 +1,12 @@
 import { useCallback, useMemo, useState } from 'react'
-import { SearchContext } from './SearchContext'
 import type { SearchContextType } from '@/context/types'
 import type { BasicRepositoryType } from '@/pages/Repository/types'
 import type { SearchRepositoriesHandler } from '@/pages/Search/types'
 import { searchRepositories } from '@/api'
+import { SearchContext } from '@/context/search'
 import { useNotification } from '@/hooks/useNotification'
 
-export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const notify = useNotification()
   const [hasSearched, setHasSearched] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -48,3 +48,5 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     </SearchContext.Provider>
   )
 }
+
+export default SearchProvider

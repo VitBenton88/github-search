@@ -3,7 +3,7 @@ import { act, fireEvent, render, type RenderResult, screen, waitFor } from '@tes
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { type SearchFormProps } from '../Form'
 import type { SearchContextType } from '@/context/types'
-import { SearchContext } from '@/context/search/SearchContext'
+import { SearchContext } from '@/context/search'
 import { SearchForm } from '@/pages/Search/components'
 
 const mockOnSubmit = vi.fn()

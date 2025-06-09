@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
 import Search from '..'
 import type { SearchContextType } from '@/context/types'
-import { SearchContext } from '@/context/search/SearchContext'
+import { SearchContext } from '@/context/search'
 
 describe('Search', () => {
   const renderComponent = (

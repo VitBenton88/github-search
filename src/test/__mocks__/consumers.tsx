@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Button } from '@/components'
 import { RepositoryContext } from '@/context/repository'
-import { SearchContext } from '@/context/search/SearchContext'
+import { SearchContext } from '@/context/search'
 
 export const MockSearchConsumer = (): React.ReactNode => {
   const context = useContext(SearchContext)
