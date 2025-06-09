@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react'
-import type { Notification, NotificationType } from '@/context/types'
+import type { Notification, NotificationType } from '@/context/notification/types'
 import NotificationComponent from '@/components/Notification'
 import { NotificationContext } from '@/context/notification'
 
