@@ -1,4 +1,4 @@
-import type { SearchContextType } from '@/context/types'
+import type { SearchContextType } from '@/context/search/types'
 
 export const defaultSearchContext: SearchContextType = {
   filterPopular: false,

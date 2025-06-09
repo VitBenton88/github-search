@@ -3,7 +3,7 @@ import { render, type RenderResult, screen, waitFor } from '@testing-library/rea
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
 import Search from '..'
-import type { SearchContextType } from '@/context/types'
+import type { SearchContextType } from '@/context/search/types'
 import { SearchContext } from '@/context/search'
 
 describe('Search', () => {
