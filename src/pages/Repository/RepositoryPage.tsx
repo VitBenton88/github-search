@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import './Repository.css'
 import { Access, Details, Header, Links } from './components'
 import { Loader } from '@/components'
-import { RepositoryContext } from '@/context/repository/RepositoryContext'
+import { RepositoryContext } from '@/context/repository'
 
 const Repository: React.FC = () => {
   const { handleFetch, isLoading, repository } = useContext(RepositoryContext)

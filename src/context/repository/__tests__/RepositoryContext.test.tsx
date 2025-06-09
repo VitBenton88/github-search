@@ -2,7 +2,7 @@ import { MockRepositoryConsumer } from '@mocks/consumers'
 import { mockRepo } from '@mocks/repositories'
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
-import { RepositoryProvider } from '../RepositoryProvider'
+import { RepositoryProvider } from '@/context/repository'
 import { getRepository } from '@/api'
 
 const mockNotify = vi.fn()

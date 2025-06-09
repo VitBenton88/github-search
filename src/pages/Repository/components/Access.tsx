@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { REPO_LABELS } from '../repository.constants'
-import { RepositoryContext } from '@/context/repository/RepositoryContext'
+import { RepositoryContext } from '@/context/repository'
 
 const { ARCHIVED, NOT_ARCHIVED, PRIVATE, PUBLIC } = REPO_LABELS
 

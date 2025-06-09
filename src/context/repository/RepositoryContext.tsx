@@ -8,4 +8,6 @@ export const defaultValue: RepositoryContextType = {
   repository: defaultRepository,
 }
 
-export const RepositoryContext = createContext<RepositoryContextType>(defaultValue)
+const RepositoryContext = createContext<RepositoryContextType>(defaultValue)
+
+export default RepositoryContext

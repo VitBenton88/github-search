@@ -1,11 +1,12 @@
 import { useCallback, useMemo, useState } from 'react'
-import { defaultValue, RepositoryContext } from './RepositoryContext'
+import { RepositoryContext } from '@/context/repository'
+import { defaultValue } from './RepositoryContext'
 import type { RepositoryContextType } from '@/context/types'
 import type { fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/types'
 import { getRepository } from '@/api'
 import { useNotification } from '@/hooks/useNotification'
 
-export const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const notify = useNotification()
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType>(defaultValue.repository)
@@ -35,3 +36,5 @@ export const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     </RepositoryContext.Provider>
   )
 }
+
+export default RepositoryProvider

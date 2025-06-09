@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { REPO_LABELS } from '../repository.constants'
-import { RepositoryContext } from '@/context/repository/RepositoryContext'
+import { RepositoryContext } from '@/context/repository'
 
 const { ALLOWS_FORKING, FORBIDS_FORKING, HAS_DOWNLOADS, NO_DOWNLOADS } = REPO_LABELS
 

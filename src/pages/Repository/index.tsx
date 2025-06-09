@@ -1,6 +1,6 @@
 import RepositoryPage from './RepositoryPage'
 import { Nav } from '@/components'
-import { RepositoryProvider } from '@/context/repository/RepositoryProvider'
+import { RepositoryProvider } from '@/context/repository'
 
 const RepositoryWrapper: React.FC = () => {
   return (

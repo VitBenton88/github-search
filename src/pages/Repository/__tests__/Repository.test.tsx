@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { RepositoryContextType } from '@/context/types'
 import { NotificationContext } from '@/context/notification'
-import { RepositoryContext } from '@/context/repository/RepositoryContext'
+import { RepositoryContext } from '@/context/repository'
 import Repository from '@/pages/Repository'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
