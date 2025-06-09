@@ -5,7 +5,7 @@ import { RepositoryProvider } from '@/context/repository/RepositoryProvider'
 const RepositoryWrapper: React.FC = () => {
   return (
     <>
-      <Nav />
+      <Nav data-testid="nav" />
       <RepositoryProvider>
         <RepositoryPage />
       </RepositoryProvider>
