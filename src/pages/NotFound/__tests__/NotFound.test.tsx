@@ -1,13 +1,13 @@
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
-import NotFoundRedirect from '@/pages/NotFound'
+import NotFound from '@/pages/NotFound'
 
-describe('NotFoundRedirect', () => {
+describe('NotFound', () => {
   const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
-        <NotFoundRedirect />
+        <NotFound />
       </MemoryRouter>
     )
 
