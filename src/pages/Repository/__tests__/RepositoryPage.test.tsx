@@ -2,7 +2,7 @@ import { mockRepo } from '@mocks/repositories'
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import Repository from '../Repository'
+import RepositoryPage from '../RepositoryPage'
 import type { RepositoryContextType } from '@/context/types'
 import { RepositoryContext } from '@/context/repository/RepositoryContext'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
@@ -25,14 +25,14 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-describe('Repository', () => {
+describe('RepositoryPage', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepoContext,
     initialEntries: string[] = [`/repo/${mockRepo.owner}/${mockRepo.name}`],
   ): RenderResult => render(
     <MemoryRouter initialEntries={initialEntries}>
       <RepositoryContext.Provider value={contextValue}>
-        <Repository />
+        <RepositoryPage />
       </RepositoryContext.Provider>
     </MemoryRouter>
   )
