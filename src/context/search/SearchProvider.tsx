@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import type { SearchContextType } from '@/context/types'
-import type { SearchRepositoriesHandler } from '@/context/types'
+import type { SearchContextType, SearchRepositoriesHandler } from '@/context/types'
 import type { BasicRepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
 import { SearchContext } from '@/context/search'
