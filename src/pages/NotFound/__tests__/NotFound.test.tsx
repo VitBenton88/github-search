@@ -4,7 +4,9 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import NotFound from '@/pages/NotFound'
 
 describe('NotFound', () => {
-  const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
+  const renderComponent = (
+    initialEntries: string[] = ['/repo/mock-owner/mock-repo']
+  ): RenderResult =>
     render(
       <MemoryRouter initialEntries={initialEntries}>
         <NotFound />
