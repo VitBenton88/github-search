@@ -1,1 +1,0 @@
-export type SearchRepositoriesHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>

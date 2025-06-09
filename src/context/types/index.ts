@@ -1,5 +1,4 @@
 import type { BasicRepositoryType, fetchRepositoryHandler, RepositoryType } from '@/pages/Repository/types'
-import type { SearchRepositoriesHandler } from '@/pages/Search/types'
 
 export type NotificationType = 'success' | 'error' | 'info'
 
@@ -18,6 +17,8 @@ export type RepositoryContextType = {
   isLoading: boolean
   repository: RepositoryType
 }
+
+export type SearchRepositoriesHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
 
 export type SearchContextType = {
   filterPopular: boolean
