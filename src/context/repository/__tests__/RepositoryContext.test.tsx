@@ -30,7 +30,7 @@ describe('RepositoryContext', () => {
 
   const elements = {
     get fetchBtn() { return screen.getByTestId('fetch-button') },
-    get isLoading() { return screen.getByTestId('isLoading') },
+    get isLoading() { return screen.getByTestId('is-loading') },
     get repoId() { return screen.getByTestId('repo-id') },
   }
 

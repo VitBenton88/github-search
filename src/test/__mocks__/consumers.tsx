@@ -28,7 +28,7 @@ export const MockRepositoryConsumer = (): React.ReactNode => {
   return (
     <>
       <div data-testid="repo-id">{context.repository.id}</div>
-      <div data-testid="isLoading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
+      <div data-testid="is-loading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
       <Button
         onClick={() => context.handleFetch('mock owner', 'mock name')}
         data-testid="fetch-button"
