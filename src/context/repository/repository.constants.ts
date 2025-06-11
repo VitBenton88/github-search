@@ -18,10 +18,10 @@ const defaultRepository: RepositoryType = {
   size: 0,
   stargazers_count: 0,
   updated_at: '',
-} as const
+}
 
 export const defaultRepositoryContext: RepositoryContextType = {
   handleFetch: async () => { },
   isLoading: true,
   repository: defaultRepository,
-} as const
+}
