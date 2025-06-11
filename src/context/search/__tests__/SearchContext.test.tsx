@@ -31,11 +31,11 @@ describe('SearchContext', () => {
   }
 
   const elements = {
-    get hasSearched() { return screen.getByTestId('hasSearched') },
-    get isLoading() { return screen.getByTestId('isLoading') },
+    get hasSearched() { return screen.getByTestId('has-searched') },
+    get isLoading() { return screen.getByTestId('is-loading') },
     get repositories() { return screen.getByTestId('repositories') },
     get searchBtn() { return screen.getByTestId('search-button') },
-    get searchTerm() { return screen.getByTestId('searchTerm') },
+    get searchTerm() { return screen.getByTestId('search-term') },
   }
 
   describe('render', () => {

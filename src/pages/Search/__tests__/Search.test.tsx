@@ -20,9 +20,9 @@ describe('Search', () => {
 
   const elements = {
     get loader() { return screen.queryByTestId('loader') },
-    get noSearch() { return screen.queryByTestId('noSearch') },
-    get searchForm() { return screen.getByTestId('searchForm') },
-    get searchResults() { return screen.queryByTestId('searchResults') },
+    get noSearch() { return screen.queryByTestId('no-search') },
+    get searchForm() { return screen.getByTestId('search-form') },
+    get searchResults() { return screen.queryByTestId('search-results') },
   }
 
   describe('render', () => {

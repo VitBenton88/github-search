@@ -13,10 +13,10 @@ const Search: React.FC = () => {
       <SearchForm
         disableForm={isLoading}
         onFormSubmit={handleSearch}
-        data-testid="searchForm"
+        data-testid="search-form"
       />
 
-      {!hasSearched && <p data-testid="noSearch">Enter a keyword to search GitHub.</p>}
+      {!hasSearched && <p data-testid="no-search">Enter a keyword to search GitHub.</p>}
 
       {hasSearched && (
         isLoading ? (
@@ -27,7 +27,7 @@ const Search: React.FC = () => {
               caption="Search results"
               headers={['Name', 'Description', 'Action']}
               items={repositories}
-              data-testid="searchResults"
+              data-testid="search-results"
             />
           </div>
         )

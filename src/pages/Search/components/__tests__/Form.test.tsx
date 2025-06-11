@@ -26,9 +26,9 @@ describe('Search Form', () => {
   const elements = {
     get fieldset() { return screen.getByTestId('fieldset') },
     get form() { return screen.getByTestId('form') },
-    get popularCheckbox() { return screen.getByTestId('popularCheckbox') },
-    get searchInput() { return screen.getByTestId('searchInput') },
-    get submitBtn() { return screen.getByTestId('submitBtn') },
+    get popularCheckbox() { return screen.getByTestId('popular-checkbox') },
+    get searchInput() { return screen.getByTestId('search-input') },
+    get submitBtn() { return screen.getByTestId('submit-btn') },
   }
 
   describe('render', () => {

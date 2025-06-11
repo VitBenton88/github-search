@@ -34,12 +34,12 @@ describe('Search Results', () => {
   const elements = {
     get caption() { return screen.queryByTestId('caption') },
     get names() { return screen.queryAllByTestId('name') },
-    get noneFound() { return screen.queryByTestId('noneFound') },
+    get noneFound() { return screen.queryByTestId('none-found') },
     get results() { return screen.queryAllByTestId('result') },
     get table() { return screen.queryByTestId('table') },
     get tableHead() { return screen.queryByTestId('table-head') },
     get tableHeaders() { return screen.queryAllByTestId('table-header') },
-    get viewMoreBtns() { return screen.getAllByTestId('viewMoreBtn') },
+    get viewMoreBtns() { return screen.getAllByTestId('view-more-btn') },
   }
 
   describe('render', () => {

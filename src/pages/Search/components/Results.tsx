@@ -23,7 +23,7 @@ const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], ite
           aria-label={`View details for ${repo.name} repository`}
           type="button"
           onClick={() => handleClick(repo.owner, repo.name)}
-          data-testid="viewMoreBtn"
+          data-testid="view-more-btn"
         >
           View
         </Button>
@@ -31,7 +31,7 @@ const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], ite
     </tr>
   )
 
-  if (!items.length) return (<p data-testid="noneFound">No repositories found.</p>)
+  if (!items.length) return (<p data-testid="none-found">No repositories found.</p>)
 
   return (
     <div className="results-wrapper" {...props}>

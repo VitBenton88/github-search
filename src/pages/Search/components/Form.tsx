@@ -33,19 +33,19 @@ const Form: React.FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }
           value={searchKeyword}
           onChange={e => setSearchKeyword(e.target.value)}
           required
-          data-testid="searchInput"
+          data-testid="search-input"
         />
         <label>
           <input
             type="checkbox"
             checked={filterPopular}
             onChange={e => setFilterPopular(e.target.checked)}
-            data-testid="popularCheckbox"
+            data-testid="popular-checkbox"
           />
           Popular
         </label>
 
-        <Button type="submit" data-testid="submitBtn">Search</Button>
+        <Button type="submit" data-testid="submit-btn">Search</Button>
       </fieldset>
     </form>
   )

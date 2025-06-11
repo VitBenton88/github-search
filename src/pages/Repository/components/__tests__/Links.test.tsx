@@ -16,9 +16,9 @@ describe('Repository Links', () => {
   )
 
   const elements = {
-    get githubLink() { return screen.getByTestId('githubLink') },
+    get githubLink() { return screen.getByTestId('github-link') },
     get header() { return screen.getByTestId('header') },
-    get homepageLink() { return screen.queryByTestId('homepageLink') },
+    get homepageLink() { return screen.queryByTestId('homepage-link') },
   }
 
   describe('render', () => {
