@@ -112,7 +112,7 @@ export interface RepositoryApiResponse {
   updated_at: string;
   permissions: Permissions;
   allow_rebase_merge: boolean;
-  template_repository?: Repository;
+  template_repository?: RepositoryApiResponse;
   temp_clone_token?: string;
   allow_squash_merge?: boolean;
   allow_auto_merge?: boolean;
@@ -123,6 +123,6 @@ export interface RepositoryApiResponse {
   subscribers_count?: number;
   network_count?: number;
   organization?: RepoOwner;
-  parent?: Repository;
+  parent?: RepositoryApiResponse;
   license?: License;
 }
