@@ -1,8 +1,5 @@
-import type { RepositoryApiResponse } from '@/api/types'
+import type { GetRepoHandler, RepositoryApiResponse, SearchReposHandler } from '@/api/types'
 import type { BasicRepositoryType, RepositoryType } from '@/pages/Repository/types'
-
-type GetRepoHandler = (owner: string, name: string) => Promise<RepositoryType>
-type SearchReposHandler = (searchKeyword: string, filterPopular: boolean) => Promise<BasicRepositoryType[]>
 
 const BASE_URL = 'https://api.github.com'
 
