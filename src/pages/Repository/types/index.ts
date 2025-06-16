@@ -1,6 +1,6 @@
 export interface BasicRepositoryType {
   description: string
-  id: string
+  id: number
   name: string
   owner: string
 }

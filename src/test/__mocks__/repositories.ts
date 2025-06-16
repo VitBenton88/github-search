@@ -1,7 +1,7 @@
 import type { BasicRepositoryType, RepositoryType } from '@/pages/Repository/types'
 
 export const mockRepo: RepositoryType = {
-  id: '1',
+  id: 1,
   name: 'mock-repo',
   stargazers_count: 42,
   description: 'A test repo',
@@ -26,6 +26,6 @@ export const mockBasicRepo: BasicRepositoryType = {
 export const mockBasicRepos: BasicRepositoryType[] = [
   mockBasicRepo,
   {
-    id: '2', name: 'mock-repo2', description: 'mock description', owner: 'mock-owner2'
+    id: 2, name: 'mock-repo2', description: 'mock description', owner: 'mock-owner2'
   }
 ]
