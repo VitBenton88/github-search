@@ -86,8 +86,8 @@ export interface RepositoryApiResponse {
   mirror_url: string | null;
   hooks_url: string;
   svn_url: string;
-  homepage: string | null;
-  language: string | null;
+  homepage?: string;
+  language?: string;
   forks_count: number;
   forks: number;
   stargazers_count: number;
@@ -118,7 +118,7 @@ export interface RepositoryApiResponse {
   allow_auto_merge?: boolean;
   delete_branch_on_merge?: boolean;
   allow_merge_commit?: boolean;
-  allow_forking?: boolean;
+  allow_forking: boolean;
   web_commit_signoff_required?: boolean;
   subscribers_count?: number;
   network_count?: number;

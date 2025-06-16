@@ -12,10 +12,10 @@ export interface RepositoryType extends BasicRepositoryType {
   archived: boolean
   created_at: string
   has_downloads: boolean
-  homepage: string
+  homepage: string | undefined
   html_url: string
   isPrivate: boolean
-  language: string
+  language: string | undefined
   owner_url: string
   size: number
   stargazers_count: number
