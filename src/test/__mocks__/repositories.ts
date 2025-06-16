@@ -1,22 +1,27 @@
+import { mockRepoApiRepsonse } from '@mocks/api'
 import type { BasicRepositoryType, RepositoryType } from '@/pages/Repository/types'
 
+const {
+  id, name, stargazers_count, description, owner, created_at, updated_at, language, size, has_downloads, allow_forking, archived, private: isPrivate, homepage, html_url
+} = mockRepoApiRepsonse
+
 export const mockRepo: RepositoryType = {
-  id: 1,
-  name: 'mock-repo',
-  stargazers_count: 42,
-  description: 'A test repo',
-  owner: 'mock-owner',
-  owner_url: 'https://github.com/mock-owner',
-  created_at: '1980-01-01T00:00:00.000Z',
-  updated_at: '1981-01-01T00:00:00.000Z',
-  language: 'TypeScript',
-  size: 1234,
-  has_downloads: true,
-  allow_forking: false,
-  archived: false,
-  isPrivate: false,
-  homepage: 'https://example.com',
-  html_url: 'https://github.com/mock-owner/mock-repo'
+  id,
+  name,
+  stargazers_count,
+  description,
+  owner: owner.login,
+  owner_url: owner.html_url,
+  created_at,
+  updated_at,
+  language,
+  size,
+  has_downloads,
+  allow_forking,
+  archived,
+  isPrivate,
+  homepage,
+  html_url
 }
 
 export const mockBasicRepo: BasicRepositoryType = {
@@ -26,6 +31,6 @@ export const mockBasicRepo: BasicRepositoryType = {
 export const mockBasicRepos: BasicRepositoryType[] = [
   mockBasicRepo,
   {
-    id: 2, name: 'mock-repo2', description: 'mock description', owner: 'mock-owner2'
+    id: 2, name: 'mock-repo', description: 'mock description', owner: 'mock-owner'
   }
 ]
