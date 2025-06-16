@@ -1,3 +1,4 @@
+import type { RepositoryApiResponse } from '@/api/types'
 import type { BasicRepositoryType, RepositoryType } from '@/pages/Repository/types'
 
 type GetRepoHandler = (owner: string, name: string) => Promise<RepositoryType>
@@ -25,12 +26,7 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
     const { items } = await response.json()
 
     return items.map(
-      (repo: {
-        description: string
-        id: string
-        name: string
-        owner: { login: string }
-      }): BasicRepositoryType => ({
+      (repo: RepositoryApiResponse): BasicRepositoryType => ({
         description: repo.description,
         id: repo.id,
         name: repo.name,
@@ -72,7 +68,7 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '') => {
       size,
       stargazers_count,
       updated_at
-    } = await response.json()
+    }: RepositoryApiResponse = await response.json()
 
     return {
       allow_forking,
