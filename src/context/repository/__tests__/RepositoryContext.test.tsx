@@ -68,7 +68,7 @@ describe('RepositoryContext', () => {
       })
 
       it('should render correct id', () => {
-        expect(elements.repoId).toHaveTextContent(mockRepo.id)
+        expect(elements.repoId).toHaveTextContent(mockRepo.id.toString())
       })
     })
 
