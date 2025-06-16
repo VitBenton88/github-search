@@ -1,26 +1,18 @@
 import { mockBasicRepo, mockRepo } from '@mocks/repositories'
 import { describe, expect, it, type Mock, vi } from 'vitest'
 import { getRepository, searchRepositories } from '@/api'
+import { mockRepoApiRepsonse } from '@/test/__mocks__/api'
 
 const mockFetch = vi.fn()
 
 global.fetch = mockFetch as Mock
-
-const mockRepoData = {
-  ...mockRepo,
-  private: false,
-  owner: {
-    login: mockRepo.owner,
-    html_url: mockRepo.owner_url
-  }
-}
 
 describe('api.ts', () => {
   describe('searchRepositories', () => {
     it('returns basic repository data', async () => {
       const mockResponse = {
         items: [
-          mockRepoData
+          mockRepoApiRepsonse
         ]
       }
 
@@ -72,7 +64,7 @@ describe('api.ts', () => {
     it('returns full repository data', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => mockRepoData
+        json: async () => mockRepoApiRepsonse
       })
       const result = await getRepository(mockRepo.owner, mockRepo.name)
 
