@@ -10,7 +10,9 @@ describe('Loader', () => {
   }
 
   describe('render', () => {
-    beforeEach(renderComponent)
+    beforeEach(() => {
+      renderComponent()
+    })
 
     it('should render a loader element', () => {
       expect(elements.loader).toBeInTheDocument()

@@ -13,7 +13,9 @@ describe('Button', () => {
   }
 
   describe('render', () => {
-    beforeEach(renderComponent)
+    beforeEach(() => {
+      renderComponent()
+    })
 
     it('should render a button element', () => {
       expect(elements.button).toBeInTheDocument()
