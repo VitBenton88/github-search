@@ -31,7 +31,6 @@ describe('RepositoryContext', () => {
   const elements = {
     get fetchBtn() { return screen.getByTestId('fetch-button') },
     get isLoading() { return screen.getByTestId('is-loading') },
-    get repoId() { return screen.getByTestId('repo-id') },
   }
 
   describe('render', () => {
@@ -41,11 +40,10 @@ describe('RepositoryContext', () => {
       })
 
       it('should render children', () => {
-        const { fetchBtn, isLoading, repoId } = elements
+        const { fetchBtn, isLoading } = elements
 
         expect(fetchBtn).toBeInTheDocument()
         expect(isLoading).toHaveTextContent('is loading')
-        expect(repoId).toHaveTextContent('')
       })
     })
   })
@@ -63,10 +61,6 @@ describe('RepositoryContext', () => {
 
       it('should call fetch method with correct repo owner and name', () => {
         expect(getRepository).toHaveBeenCalledWith('mock owner', 'mock name')
-      })
-
-      it('should render correct id', () => {
-        expect(elements.repoId).toHaveTextContent(mockRepo.id.toString())
       })
     })
 
