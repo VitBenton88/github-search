@@ -1,11 +1,11 @@
 import { useCallback, useContext, useState } from 'react'
-import type { SearchRepositoriesHandler } from '@/context/search/types'
+import type { SearchHandler } from '@/context/search/types'
 import { Button } from '@/components'
 import { SearchContext } from '@/context/search'
 
 export type SearchFormProps = {
   disableForm: boolean
-  onFormSubmit: SearchRepositoriesHandler
+  onFormSubmit: SearchHandler
 } & React.HTMLAttributes<HTMLFormElement>
 
 const Form: React.FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }) => {

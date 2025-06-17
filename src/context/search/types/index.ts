@@ -1,4 +1,4 @@
-export type SearchRepositoriesHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
+export type SearchHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
 
 export interface SearchResultType {
   description: string
@@ -9,7 +9,7 @@ export interface SearchResultType {
 
 export type SearchContextType = {
   filterPopular: boolean
-  handleSearch: SearchRepositoriesHandler
+  handleSearch: SearchHandler
   hasSearched: boolean
   isLoading: boolean
   repositories: SearchResultType[]

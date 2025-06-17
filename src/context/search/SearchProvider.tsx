@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import type { SearchContextType, SearchRepositoriesHandler } from '@/context/search/types'
+import type { SearchContextType, SearchHandler } from '@/context/search/types'
 import type { SearchResultType } from '@/context/search/types'
 import { searchRepositories } from '@/api'
 import { SearchContext } from '@/context/search'
@@ -13,7 +13,7 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const [repositories, setRepositories] = useState<SearchResultType[]>([])
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleSearch: SearchRepositoriesHandler = useCallback(async (searchKeyword, filterPopular) => {
+  const handleSearch: SearchHandler = useCallback(async (searchKeyword, filterPopular) => {
     setFilterPopular(filterPopular)
     setHasSearched(true)
     setIsLoading(true)
