@@ -5,8 +5,6 @@ export interface BasicRepositoryType {
   owner: string
 }
 
-export type fetchRepositoryHandler = (owner: string, name: string) => Promise<void>
-
 export interface RepositoryType extends BasicRepositoryType {
   allow_forking: boolean
   archived: boolean
