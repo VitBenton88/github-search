@@ -1,4 +1,4 @@
-export interface RepositoryOwner {
+export type RepositoryOwner = {
   login: string;
   id: number;
   node_id: string;

@@ -1,6 +1,6 @@
 export type fetchRepositoryHandler = (owner: string, name: string) => Promise<void>
 
-export interface RepositoryType {
+export type RepositoryType = {
   id: number
   description: string
   name: string

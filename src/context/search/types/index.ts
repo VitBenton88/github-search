@@ -1,6 +1,6 @@
 export type SearchHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
 
-export interface SearchResultType {
+export type SearchResultType = {
   description: string
   id: number
   name: string

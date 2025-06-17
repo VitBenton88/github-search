@@ -1,4 +1,4 @@
-export interface License {
+export type License = {
   key: string;
   name: string;
   url: string;
