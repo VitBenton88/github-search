@@ -1,5 +1,6 @@
 import type { GetRepoHandler, RepositoryApiResponse, SearchReposHandler } from '@/api/types'
-import type { BasicRepositoryType, RepositoryType } from '@/pages/Repository/types'
+import type { RepositoryType } from '@/context/repository/types'
+import type { BasicRepositoryType } from '@/context/search/types'
 
 const BASE_URL = 'https://api.github.com'
 

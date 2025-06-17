@@ -1,5 +1,4 @@
-import type { RepositoryContextType } from '@/context/repository/types'
-import type { RepositoryType } from '@/pages/Repository/types'
+import type { RepositoryContextType, RepositoryType } from '@/context/repository/types'
 
 const defaultRepository: RepositoryType = {
   description: '',

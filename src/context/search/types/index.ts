@@ -1,4 +1,9 @@
-import type { BasicRepositoryType } from '@/pages/Repository/types'
+export interface BasicRepositoryType {
+  description: string
+  id: number
+  name: string
+  owner: string
+}
 
 export type SearchRepositoriesHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
 
