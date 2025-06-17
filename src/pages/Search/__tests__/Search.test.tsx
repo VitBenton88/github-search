@@ -2,9 +2,9 @@ import { mockSearchContext } from '@mocks/contexts'
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
-import Search from '..'
 import type { SearchContextType } from '@/context/search/types'
 import { SearchContext } from '@/context/search'
+import Search from '@/pages/Search'
 
 describe('Search', () => {
   const renderComponent = (
