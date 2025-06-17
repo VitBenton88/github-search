@@ -1,5 +1,5 @@
 import { mockSearchContext } from '@mocks/contexts'
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { SearchContextType } from '@/context/search/types'
@@ -27,10 +27,8 @@ describe('Search', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderComponent()
-        })
+      beforeEach(() => {
+        renderComponent()
       })
 
       it('should render a search form', () => {
@@ -51,10 +49,8 @@ describe('Search', () => {
     })
 
     describe('with a search', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderComponent({ ...mockSearchContext, hasSearched: true })
-        })
+      beforeEach(() => {
+        renderComponent({ ...mockSearchContext, hasSearched: true })
       })
 
       it('should not render a search prompt', () => {

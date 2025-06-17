@@ -1,5 +1,5 @@
 import { mockBasicRepos } from '@mocks/repositories'
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { SearchResultsProps } from '../Results'
@@ -44,10 +44,8 @@ describe('Search Results', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderComponent()
-        })
+      beforeEach(() => {
+        renderComponent()
       })
 
       it('should render a table element with headers', () => {
@@ -76,11 +74,9 @@ describe('Search Results', () => {
     })
 
     describe('with no table headers', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const propData = { ...mockDefaultProps, headers: [] }
-          renderComponent(undefined, propData)
-        })
+      beforeEach(() => {
+        const propData = { ...mockDefaultProps, headers: [] }
+        renderComponent(undefined, propData)
       })
 
       it('should render a table element with no headers', () => {
@@ -93,11 +89,9 @@ describe('Search Results', () => {
     })
 
     describe('with no items', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const propData = { ...mockDefaultProps, items: [] }
-          renderComponent(undefined, propData)
-        })
+      beforeEach(() => {
+        const propData = { ...mockDefaultProps, items: [] }
+        renderComponent(undefined, propData)
       })
 
       it('should not render a table element', () => {
@@ -110,11 +104,9 @@ describe('Search Results', () => {
     })
 
     describe('with no caption', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          const propData = { ...mockDefaultProps, caption: '' }
-          renderComponent(undefined, propData)
-        })
+      beforeEach(() => {
+        const propData = { ...mockDefaultProps, caption: '' }
+        renderComponent(undefined, propData)
       })
 
       it('should not render a caption element', () => {
@@ -125,11 +117,9 @@ describe('Search Results', () => {
 
   describe('behavior', () => {
     describe('when clicking a result’s action', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderComponent()
-          elements.viewMoreBtns[0].click()
-        })
+      beforeEach(() => {
+        renderComponent()
+        elements.viewMoreBtns[0].click()
       })
 
       it('should navigate user to correct destination', () => {

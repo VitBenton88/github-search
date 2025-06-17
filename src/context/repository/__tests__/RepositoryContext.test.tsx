@@ -36,10 +36,8 @@ describe('RepositoryContext', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderContext()
-        })
+      beforeEach(() => {
+        renderContext()
       })
 
       it('should render children', () => {

@@ -1,5 +1,5 @@
 import { mockRepo } from '@mocks/repositories'
-import { act, render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
@@ -36,10 +36,8 @@ describe('Repository Header', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderComponent()
-        })
+      beforeEach(() => {
+        renderComponent()
       })
 
       it('should render correct created date', () => {
@@ -69,16 +67,14 @@ describe('Repository Header', () => {
 
     describe('when repository has no description', () => {
       beforeEach(() => {
-        act(() => {
-          const mockRepoWithNoDesc = {
-            ...mockRepo, description: ''
-          }
-          const contextValue = {
-            ...mockRepositoryContext,
-            repository: mockRepoWithNoDesc
-          }
-          renderComponent(contextValue)
-        })
+        const mockRepoWithNoDesc = {
+          ...mockRepo, description: ''
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNoDesc
+        }
+        renderComponent(contextValue)
       })
 
       it('should not render repository description', () => {

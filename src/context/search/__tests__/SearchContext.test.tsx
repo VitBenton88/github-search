@@ -1,6 +1,6 @@
 import { MockSearchConsumer } from '@mocks/consumers'
 import { mockRepo } from '@mocks/repositories'
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import type { RepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
@@ -40,10 +40,8 @@ describe('SearchContext', () => {
 
   describe('render', () => {
     describe('default', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderContext()
-        })
+      beforeEach(() => {
+        renderContext()
       })
 
       it('should render children', () => {
@@ -62,13 +60,11 @@ describe('SearchContext', () => {
 
   describe('behavior', () => {
     describe('when searching', () => {
-      beforeEach(async () => {
+      beforeEach(() => {
         (searchRepositories as Mock).mockResolvedValue(mockRepos)
 
-        await waitFor(() => {
-          renderContext()
-          elements.searchBtn.click()
-        })
+        renderContext()
+        elements.searchBtn.click()
       })
 
       it('should call search method with correct term and filter', () => {
@@ -77,13 +73,11 @@ describe('SearchContext', () => {
     })
 
     describe('when fetch error is thrown', () => {
-      beforeEach(async () => {
+      beforeEach(() => {
         (searchRepositories as Mock).mockRejectedValue(new Error('Mock Rejection'))
 
-        await waitFor(() => {
-          renderContext()
-          elements.searchBtn.click()
-        })
+        renderContext()
+        elements.searchBtn.click()
       })
 
       it('should call notify hook as error', () => {

@@ -1,5 +1,5 @@
 import { mockSearchContext } from '@mocks/contexts'
-import { act, fireEvent, render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { type SearchFormProps } from '../Form'
 import type { SearchContextType } from '@/context/search/types'
@@ -34,9 +34,7 @@ describe('Search Form', () => {
   describe('render', () => {
     describe('default', () => {
       beforeEach(() => {
-        act(() => {
-          renderComponent()
-        })
+        renderComponent()
       })
 
       it('should render an enabled form', () => {
@@ -61,10 +59,8 @@ describe('Search Form', () => {
 
     describe('with form disabled', () => {
       beforeEach(() => {
-        act(() => {
-          const propData = { ...mockDefaultProps, disableForm: true }
-          renderComponent(undefined, propData)
-        })
+        const propData = { ...mockDefaultProps, disableForm: true }
+        renderComponent(undefined, propData)
       })
 
       it('should render a disabled form', () => {
@@ -77,10 +73,8 @@ describe('Search Form', () => {
 
     describe('with a saved search term in context', () => {
       beforeEach(() => {
-        act(() => {
-          const contextData = { ...mockSearchContext, hasSearched: true, searchTerm: mockSearchTerm }
-          renderComponent(contextData, mockDefaultProps)
-        })
+        const contextData = { ...mockSearchContext, hasSearched: true, searchTerm: mockSearchTerm }
+        renderComponent(contextData, mockDefaultProps)
       })
 
       it('should render search input with value', () => {
@@ -90,10 +84,8 @@ describe('Search Form', () => {
 
     describe('with a saved search filter in context', () => {
       beforeEach(() => {
-        act(() => {
-          const contextData = { ...mockSearchContext, hasSearched: true, filterPopular: true }
-          renderComponent(contextData, mockDefaultProps)
-        })
+        const contextData = { ...mockSearchContext, hasSearched: true, filterPopular: true }
+        renderComponent(contextData, mockDefaultProps)
       })
 
       it('should render filter input with correct value', () => {
@@ -104,12 +96,10 @@ describe('Search Form', () => {
 
   describe('behavior', () => {
     describe('when submitting form', () => {
-      beforeEach(async () => {
-        waitFor(async () => {
-          renderComponent()
-          fireEvent.change(elements.searchInput, { target: { value: mockSearchTerm } })
-          elements.submitBtn.click()
-        })
+      beforeEach(() => {
+        renderComponent()
+        fireEvent.change(elements.searchInput, { target: { value: mockSearchTerm } })
+        elements.submitBtn.click()
       })
 
       it('should call onFormSubmit prop function with correct values', async () => {
