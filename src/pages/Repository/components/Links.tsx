@@ -15,11 +15,11 @@ const Links: React.FC<LinksProps> = ({ ...props }) => {
       </header>
 
       <ul>
-        {homepage?.trim() &&
-          (<li>
+        {homepage?.trim() && (
+          <li>
             <Link href={homepage} data-testid="homepage-link">Homepage &rarr;</Link>
-          </li>)
-        }
+          </li>
+        )}
         <li>
           <Link href={html_url} data-testid="github-link">GitHub &rarr;</Link>
         </li>
