@@ -45,12 +45,12 @@ describe('Repository Access details', () => {
 
     describe('when repository is archived', () => {
       beforeEach(() => {
-        const mockRepoWithNoDesc = {
+        const mockRepoIsArchived = {
           ...mockRepo, archived: true
         }
         const contextValue = {
           ...mockRepositoryContext,
-          repository: mockRepoWithNoDesc
+          repository: mockRepoIsArchived
         }
         renderComponent(contextValue)
       })
@@ -62,12 +62,12 @@ describe('Repository Access details', () => {
 
     describe('when repository is private', () => {
       beforeEach(() => {
-        const mockRepoWithNoDesc = {
+        const mockRepoIsPrivate = {
           ...mockRepo, isPrivate: true
         }
         const contextValue = {
           ...mockRepositoryContext,
-          repository: mockRepoWithNoDesc
+          repository: mockRepoIsPrivate
         }
         renderComponent(contextValue)
       })

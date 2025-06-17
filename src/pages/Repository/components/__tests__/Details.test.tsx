@@ -55,12 +55,12 @@ describe('Repository Details', () => {
 
     describe('when repository has no downloads', () => {
       beforeEach(() => {
-        const mockRepoWithNoDesc = {
+        const mockRepoWithNoDownloads = {
           ...mockRepo, has_downloads: false
         }
         const contextValue = {
           ...mockRepositoryContext,
-          repository: mockRepoWithNoDesc
+          repository: mockRepoWithNoDownloads
         }
         renderComponent(contextValue)
       })
@@ -72,12 +72,12 @@ describe('Repository Details', () => {
 
     describe('when repository allows forking', () => {
       beforeEach(() => {
-        const mockRepoWithNoDesc = {
+        const mockRepoAllowsForking = {
           ...mockRepo, allow_forking: true
         }
         const contextValue = {
           ...mockRepositoryContext,
-          repository: mockRepoWithNoDesc
+          repository: mockRepoAllowsForking
         }
         renderComponent(contextValue)
       })

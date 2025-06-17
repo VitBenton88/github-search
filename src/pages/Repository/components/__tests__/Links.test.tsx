@@ -42,12 +42,12 @@ describe('Repository Links', () => {
 
     describe('when repository has no homepage link', () => {
       beforeEach(() => {
-        const mockRepoWithNoDesc = {
+        const mockRepoWithNoHomeLink = {
           ...mockRepo, homepage: ''
         }
         const contextValue = {
           ...mockRepositoryContext,
-          repository: mockRepoWithNoDesc
+          repository: mockRepoWithNoHomeLink
         }
         renderComponent(contextValue)
       })
