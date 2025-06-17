@@ -48,6 +48,8 @@ describe('api.ts', () => {
     })
 
     it('throws an error on failed response', async () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
       mockFetch.mockResolvedValueOnce({
         ok: false,
         status: 500,
@@ -57,6 +59,8 @@ describe('api.ts', () => {
       await expect(searchRepositories('fail', false)).rejects.toThrow(
         'Failed to search repositories. 500 Server Error'
       )
+
+      consoleSpy.mockRestore()
     })
   })
 
@@ -72,6 +76,8 @@ describe('api.ts', () => {
     })
 
     it('throws an error on failed fetch', async () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
       mockFetch.mockResolvedValueOnce({
         ok: false,
         status: 404,
@@ -81,6 +87,8 @@ describe('api.ts', () => {
       await expect(getRepository('bad', 'repo')).rejects.toThrow(
         'Failed to fetch repository. 404 Not Found'
       )
+
+      consoleSpy.mockRestore()
     })
   })
 })
