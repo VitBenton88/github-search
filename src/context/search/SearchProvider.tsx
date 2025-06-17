@@ -10,19 +10,19 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const [hasSearched, setHasSearched] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [filterPopular, setFilterPopular] = useState(false)
-  const [results, setRepositories] = useState<SearchResultType[]>([])
+  const [results, setResults] = useState<SearchResultType[]>([])
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch: SearchHandler = useCallback(async (searchKeyword, filterPopular) => {
     setFilterPopular(filterPopular)
     setHasSearched(true)
     setIsLoading(true)
-    setRepositories([])
+    setResults([])
     setSearchTerm(searchKeyword)
 
     try {
       const reposFetch = await searchRepositories(searchKeyword, filterPopular)
-      setRepositories(reposFetch)
+      setResults(reposFetch)
     } catch (error) {
       if (error instanceof Error) {
         notify(error.message, 'error')
