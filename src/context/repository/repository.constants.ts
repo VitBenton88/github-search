@@ -3,7 +3,7 @@ import type { RepositoryType } from '@/pages/Repository/types'
 
 const defaultRepository: RepositoryType = {
   description: '',
-  id: '',
+  id: 0,
   name: '',
   owner: '',
   allow_forking: false,
