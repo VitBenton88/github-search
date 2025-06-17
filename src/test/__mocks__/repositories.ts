@@ -1,9 +1,9 @@
-import { mockRepoApiRepsonse } from '@mocks/api'
+import { mockRepoApiResponse } from '@mocks/api'
 import type { BasicRepositoryType, RepositoryType } from '@/pages/Repository/types'
 
 const {
   id, name, stargazers_count, description, owner, created_at, updated_at, language, size, has_downloads, allow_forking, archived, private: isPrivate, homepage, html_url
-} = mockRepoApiRepsonse
+} = mockRepoApiResponse
 
 export const mockRepo: RepositoryType = {
   id,

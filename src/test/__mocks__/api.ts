@@ -1,6 +1,6 @@
 import type { RepositoryApiResponse } from '@/api/types'
 
-export const mockRepoApiRepsonse: RepositoryApiResponse = {
+export const mockRepoApiResponse: RepositoryApiResponse = {
   id: 1296269,
   node_id: 'MDEwOlJlcG9zaXRvcnkxMjk2MjY5',
   name: 'Hello-World',
