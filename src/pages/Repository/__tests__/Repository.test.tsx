@@ -1,5 +1,5 @@
 import { mockRepo } from '@mocks/repositories'
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
@@ -35,9 +35,7 @@ describe('Repository', () => {
   describe('render', () => {
     describe('default', () => {
       beforeEach(() => {
-        act(() => {
-          renderComponent()
-        })
+        renderComponent()
       })
 
       it('should render a navigation component', () => {

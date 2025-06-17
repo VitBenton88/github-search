@@ -1,5 +1,5 @@
 import { mockRepo } from '@mocks/repositories'
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
@@ -24,9 +24,7 @@ describe('Repository Links', () => {
   describe('render', () => {
     describe('default', () => {
       beforeEach(() => {
-        act(() => {
-          renderComponent()
-        })
+        renderComponent()
       })
 
       it('should render header', () => {
@@ -44,16 +42,14 @@ describe('Repository Links', () => {
 
     describe('when repository has no homepage link', () => {
       beforeEach(() => {
-        act(() => {
-          const mockRepoWithNoDesc = {
-            ...mockRepo, homepage: ''
-          }
-          const contextValue = {
-            ...mockRepositoryContext,
-            repository: mockRepoWithNoDesc
-          }
-          renderComponent(contextValue)
-        })
+        const mockRepoWithNoDesc = {
+          ...mockRepo, homepage: ''
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNoDesc
+        }
+        renderComponent(contextValue)
       })
 
       it('should not render link for repository’s homepage', () => {

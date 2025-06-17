@@ -1,4 +1,4 @@
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import Notification, { type NotificationProps } from '../Notification'
 
@@ -18,9 +18,7 @@ describe('Notification', () => {
 
   describe('render', () => {
     beforeEach(() => {
-      act(() => {
-        renderComponent()
-      })
+      renderComponent()
     })
 
     it('should render a notification parent element with correct class', () => {

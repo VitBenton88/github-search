@@ -1,5 +1,5 @@
 import { mockRepo } from '@mocks/repositories'
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
@@ -29,9 +29,7 @@ describe('Repository Details', () => {
   describe('render', () => {
     describe('default', () => {
       beforeEach(() => {
-        act(() => {
-          renderComponent()
-        })
+        renderComponent()
       })
 
       it('should render header', () => {
@@ -47,7 +45,7 @@ describe('Repository Details', () => {
       })
 
       it('should render correct programming language', () => {
-        expect(elements.language).toHaveTextContent(mockRepo.language)
+        expect(elements.language).toHaveTextContent(mockRepo.language!)
       })
 
       it('should render correct size', () => {
@@ -57,16 +55,14 @@ describe('Repository Details', () => {
 
     describe('when repository has no downloads', () => {
       beforeEach(() => {
-        act(() => {
-          const mockRepoWithNoDesc = {
-            ...mockRepo, has_downloads: false
-          }
-          const contextValue = {
-            ...mockRepositoryContext,
-            repository: mockRepoWithNoDesc
-          }
-          renderComponent(contextValue)
-        })
+        const mockRepoWithNoDesc = {
+          ...mockRepo, has_downloads: false
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNoDesc
+        }
+        renderComponent(contextValue)
       })
 
       it('should render correct downloads status', () => {
@@ -76,16 +72,14 @@ describe('Repository Details', () => {
 
     describe('when repository allows forking', () => {
       beforeEach(() => {
-        act(() => {
-          const mockRepoWithNoDesc = {
-            ...mockRepo, allow_forking: true
-          }
-          const contextValue = {
-            ...mockRepositoryContext,
-            repository: mockRepoWithNoDesc
-          }
-          renderComponent(contextValue)
-        })
+        const mockRepoWithNoDesc = {
+          ...mockRepo, allow_forking: true
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNoDesc
+        }
+        renderComponent(contextValue)
       })
 
       it('should render correct forking status', () => {

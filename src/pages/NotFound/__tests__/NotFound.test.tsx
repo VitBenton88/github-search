@@ -1,4 +1,4 @@
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
 import NotFound from '@/pages/NotFound'
@@ -20,9 +20,7 @@ describe('NotFound', () => {
 
   describe('render', () => {
     beforeEach(() => {
-      act(() => {
-        renderComponent()
-      })
+      renderComponent()
     })
 
     it('should render navigation component.', () => {

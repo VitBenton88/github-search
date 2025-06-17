@@ -1,5 +1,5 @@
 import { mockRepo } from '@mocks/repositories'
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import RepositoryPage from '../RepositoryPage'
@@ -48,9 +48,7 @@ describe('RepositoryPage', () => {
   describe('render', () => {
     describe('default', () => {
       beforeEach(() => {
-        act(() => {
-          renderComponent()
-        })
+        renderComponent()
       })
 
       it('should render header', () => {
@@ -80,13 +78,11 @@ describe('RepositoryPage', () => {
 
     describe('with no repository present', () => {
       beforeEach(() => {
-        act(() => {
-          const contextValue = {
-            ...mockRepositoryContext,
-            repository: { ...mockRepo, id: '' }
-          }
-          renderComponent(contextValue)
-        })
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: { ...mockRepo, id: 0 }
+        }
+        renderComponent(contextValue)
       })
 
       it('should only render "none found" message', () => {
@@ -102,13 +98,11 @@ describe('RepositoryPage', () => {
 
     describe('when loading', () => {
       beforeEach(() => {
-        act(() => {
-          const contextValue = {
-            ...mockRepositoryContext,
-            isLoading: true
-          }
-          renderComponent(contextValue)
-        })
+        const contextValue = {
+          ...mockRepositoryContext,
+          isLoading: true
+        }
+        renderComponent(contextValue)
       })
 
       it('should only render loader component', () => {

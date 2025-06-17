@@ -1,5 +1,5 @@
 import { mockRepo } from '@mocks/repositories'
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
@@ -27,9 +27,7 @@ describe('Repository Access details', () => {
   describe('render', () => {
     describe('default', () => {
       beforeEach(() => {
-        act(() => {
-          renderComponent()
-        })
+        renderComponent()
       })
 
       it('should render header', () => {
@@ -47,16 +45,14 @@ describe('Repository Access details', () => {
 
     describe('when repository is archived', () => {
       beforeEach(() => {
-        act(() => {
-          const mockRepoWithNoDesc = {
-            ...mockRepo, archived: true
-          }
-          const contextValue = {
-            ...mockRepositoryContext,
-            repository: mockRepoWithNoDesc
-          }
-          renderComponent(contextValue)
-        })
+        const mockRepoWithNoDesc = {
+          ...mockRepo, archived: true
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNoDesc
+        }
+        renderComponent(contextValue)
       })
 
       it('should render correct archived status', () => {
@@ -66,16 +62,14 @@ describe('Repository Access details', () => {
 
     describe('when repository is private', () => {
       beforeEach(() => {
-        act(() => {
-          const mockRepoWithNoDesc = {
-            ...mockRepo, isPrivate: true
-          }
-          const contextValue = {
-            ...mockRepositoryContext,
-            repository: mockRepoWithNoDesc
-          }
-          renderComponent(contextValue)
-        })
+        const mockRepoWithNoDesc = {
+          ...mockRepo, isPrivate: true
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNoDesc
+        }
+        renderComponent(contextValue)
       })
 
       it('should render correct access status', () => {
