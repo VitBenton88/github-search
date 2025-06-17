@@ -1,6 +1,6 @@
 import { MockSearchConsumer } from '@mocks/consumers'
 import { mockRepo } from '@mocks/repositories'
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import type { RepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
@@ -60,12 +60,11 @@ describe('SearchContext', () => {
 
   describe('behavior', () => {
     describe('when searching', () => {
-      beforeEach(() => {
+      beforeEach(async () => {
         (searchRepositories as Mock).mockResolvedValue(mockRepos)
 
-        renderContext()
-
-        act(() => {
+        await waitFor(() => {
+          renderContext()
           elements.searchBtn.click()
         })
       })
@@ -76,12 +75,11 @@ describe('SearchContext', () => {
     })
 
     describe('when fetch error is thrown', () => {
-      beforeEach(() => {
+      beforeEach(async () => {
         (searchRepositories as Mock).mockRejectedValue(new Error('Mock Rejection'))
 
-        renderContext()
-
-        act(() => {
+        await waitFor(() => {
+          renderContext()
           elements.searchBtn.click()
         })
       })

@@ -31,7 +31,9 @@ describe('NotificationProvider', () => {
 
       renderProvider()
 
-      elements.button.click()
+      act(() => {
+        elements.button.click()
+      })
     })
 
     it('should render a notification that gets dismissed', () => {
