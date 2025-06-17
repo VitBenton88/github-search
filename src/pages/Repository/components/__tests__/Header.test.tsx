@@ -1,4 +1,4 @@
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
@@ -45,19 +45,19 @@ describe('Repository Header', () => {
       })
 
       it('should render correct repository description', () => {
-        expect(elements.description).toHaveTextContent(mockRepo.description)
+        expect(elements.description).toHaveTextContent(mockRepository.description)
       })
 
       it('should render correct repository owner link', () => {
-        expect(elements.ownerLink).toHaveAttribute('href', mockRepo.owner_url)
+        expect(elements.ownerLink).toHaveAttribute('href', mockRepository.owner_url)
       })
 
       it('should render correct repository star count', () => {
-        expect(elements.starCount).toHaveTextContent(`⭐ ${mockRepo.stargazers_count}`)
+        expect(elements.starCount).toHaveTextContent(`⭐ ${mockRepository.stargazers_count}`)
       })
 
       it('should render correct page title', () => {
-        expect(elements.title).toHaveTextContent(mockRepo.name)
+        expect(elements.title).toHaveTextContent(mockRepository.name)
       })
 
       it('should render correct updated date', () => {
@@ -68,7 +68,7 @@ describe('Repository Header', () => {
     describe('when repository has no description', () => {
       beforeEach(() => {
         const mockRepoWithNoDesc = {
-          ...mockRepo, description: ''
+          ...mockRepository, description: ''
         }
         const contextValue = {
           ...mockRepositoryContext,

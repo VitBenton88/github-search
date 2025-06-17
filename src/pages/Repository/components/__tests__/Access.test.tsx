@@ -1,4 +1,4 @@
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
@@ -46,7 +46,7 @@ describe('Repository Access details', () => {
     describe('when repository is archived', () => {
       beforeEach(() => {
         const mockRepoIsArchived = {
-          ...mockRepo, archived: true
+          ...mockRepository, archived: true
         }
         const contextValue = {
           ...mockRepositoryContext,
@@ -63,7 +63,7 @@ describe('Repository Access details', () => {
     describe('when repository is private', () => {
       beforeEach(() => {
         const mockRepoIsPrivate = {
-          ...mockRepo, isPrivate: true
+          ...mockRepository, isPrivate: true
         }
         const contextValue = {
           ...mockRepositoryContext,

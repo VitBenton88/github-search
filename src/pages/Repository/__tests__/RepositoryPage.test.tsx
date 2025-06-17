@@ -1,4 +1,4 @@
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -7,11 +7,11 @@ import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
-const mockFetchHandler = vi.fn().mockResolvedValue(mockRepo)
+const mockFetchHandler = vi.fn().mockResolvedValue(mockRepository)
 const mockRepoContext = {
   ...mockRepositoryContext,
   handleFetch: mockFetchHandler,
-  repository: mockRepo
+  repository: mockRepository
 }
 
 vi.mock('react-router-dom', async () => {
@@ -19,8 +19,8 @@ vi.mock('react-router-dom', async () => {
   return {
     ...actual,
     useParams: () => ({
-      name: mockRepo.name,
-      owner: mockRepo.owner
+      name: mockRepository.name,
+      owner: mockRepository.owner
     })
   }
 })
@@ -28,7 +28,7 @@ vi.mock('react-router-dom', async () => {
 describe('RepositoryPage', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepoContext,
-    initialEntries: string[] = [`/repo/${mockRepo.owner}/${mockRepo.name}`],
+    initialEntries: string[] = [`/repo/${mockRepository.owner}/${mockRepository.name}`],
   ): RenderResult => render(
     <MemoryRouter initialEntries={initialEntries}>
       <RepositoryContext.Provider value={contextValue}>
@@ -72,7 +72,7 @@ describe('RepositoryPage', () => {
       })
 
       it('should fetch repository on render', () => {
-        expect(mockFetchHandler).toHaveBeenCalledWith(mockRepo.owner, mockRepo.name)
+        expect(mockFetchHandler).toHaveBeenCalledWith(mockRepository.owner, mockRepository.name)
       })
     })
 
@@ -80,7 +80,7 @@ describe('RepositoryPage', () => {
       beforeEach(() => {
         const contextValue = {
           ...mockRepositoryContext,
-          repository: { ...mockRepo, id: 0 }
+          repository: { ...mockRepository, id: 0 }
         }
         renderComponent(contextValue)
       })

@@ -1,4 +1,4 @@
-import { mockBasicRepos } from '@mocks/repositories'
+import { mockMultipleSearchResults } from '@mocks/repositories'
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -9,7 +9,7 @@ const mockNavigate = vi.fn()
 const mockDefaultProps: SearchResultsProps = {
   caption: 'Search results',
   headers: ['Name', 'Description', 'Action'],
-  items: mockBasicRepos
+  items: mockMultipleSearchResults
 }
 
 vi.mock('react-router-dom', async () => {
@@ -65,7 +65,7 @@ describe('Search Results', () => {
       })
 
       it('should render item data correctly', () => {
-        expect(elements.names[0]).toHaveTextContent(mockBasicRepos[0].name)
+        expect(elements.names[0]).toHaveTextContent(mockMultipleSearchResults[0].name)
       })
 
       it('should not render a "none found" warning', () => {
@@ -126,7 +126,7 @@ describe('Search Results', () => {
       })
 
       it('should navigate user to correct destination', () => {
-        const { name, owner } = mockBasicRepos[0]
+        const { name, owner } = mockMultipleSearchResults[0]
 
         expect(mockNavigate).toHaveBeenCalledWith(`/repo/${owner}/${name}`)
       })

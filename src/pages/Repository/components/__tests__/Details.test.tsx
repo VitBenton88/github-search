@@ -1,4 +1,4 @@
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
@@ -45,18 +45,18 @@ describe('Repository Details', () => {
       })
 
       it('should render correct programming language', () => {
-        expect(elements.language).toHaveTextContent(mockRepo.language!)
+        expect(elements.language).toHaveTextContent(mockRepository.language!)
       })
 
       it('should render correct size', () => {
-        expect(elements.size).toHaveTextContent(`${mockRepo.size} bytes`)
+        expect(elements.size).toHaveTextContent(`${mockRepository.size} bytes`)
       })
     })
 
     describe('when repository has no downloads', () => {
       beforeEach(() => {
         const mockRepoWithNoDownloads = {
-          ...mockRepo, has_downloads: false
+          ...mockRepository, has_downloads: false
         }
         const contextValue = {
           ...mockRepositoryContext,
@@ -73,7 +73,7 @@ describe('Repository Details', () => {
     describe('when repository allows forking', () => {
       beforeEach(() => {
         const mockRepoAllowsForking = {
-          ...mockRepo, allow_forking: true
+          ...mockRepository, allow_forking: true
         }
         const contextValue = {
           ...mockRepositoryContext,

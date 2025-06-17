@@ -1,4 +1,4 @@
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -11,13 +11,13 @@ import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 const mockRepoContext = {
   ...mockRepositoryContext,
   handleFetch: vi.fn(),
-  repository: mockRepo
+  repository: mockRepository
 }
 
 describe('Repository', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepoContext,
-    initialEntries: string[] = [`/repo/${mockRepo.owner}/${mockRepo.name}`],
+    initialEntries: string[] = [`/repo/${mockRepository.owner}/${mockRepository.name}`],
   ): RenderResult => render(
     <NotificationContext.Provider value={{ notify: vi.fn(), notification: null }}>
       <MemoryRouter initialEntries={initialEntries}>

@@ -1,4 +1,4 @@
-import { mockBasicRepo, mockRepo } from '@mocks/repositories'
+import { mockRepository, mockSearchResult } from '@mocks/repositories'
 import { describe, expect, it, type Mock, vi } from 'vitest'
 import { getRepository, searchRepositories } from '@/api'
 import { mockRepoApiResponse } from '@/test/__mocks__/api'
@@ -9,7 +9,7 @@ global.fetch = mockFetch as Mock
 
 describe('api.ts', () => {
   describe('searchRepositories', () => {
-    it('returns basic repository data', async () => {
+    it('returns repository data as search results', async () => {
       const mockResponse = {
         items: [
           mockRepoApiResponse
@@ -23,7 +23,7 @@ describe('api.ts', () => {
 
       const result = await searchRepositories('test', false)
 
-      expect(result).toEqual([mockBasicRepo])
+      expect(result).toEqual([mockSearchResult])
 
       expect(mockFetch).toHaveBeenCalledWith(
         expect.stringContaining('q=test')
@@ -70,9 +70,9 @@ describe('api.ts', () => {
         ok: true,
         json: async () => mockRepoApiResponse
       })
-      const result = await getRepository(mockRepo.owner, mockRepo.name)
+      const result = await getRepository(mockRepository.owner, mockRepository.name)
 
-      expect(result).toEqual(mockRepo)
+      expect(result).toEqual(mockRepository)
     })
 
     it('throws an error on failed fetch', async () => {

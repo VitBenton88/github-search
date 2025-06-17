@@ -1,4 +1,4 @@
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
@@ -32,18 +32,18 @@ describe('Repository Links', () => {
       })
 
       it('should render correct homepage link', () => {
-        expect(elements.homepageLink).toHaveAttribute('href', mockRepo.homepage)
+        expect(elements.homepageLink).toHaveAttribute('href', mockRepository.homepage)
       })
 
       it('should render correct github link', () => {
-        expect(elements.githubLink).toHaveAttribute('href', mockRepo.html_url)
+        expect(elements.githubLink).toHaveAttribute('href', mockRepository.html_url)
       })
     })
 
     describe('when repository has no homepage link', () => {
       beforeEach(() => {
         const mockRepoWithNoHomeLink = {
-          ...mockRepo, homepage: ''
+          ...mockRepository, homepage: ''
         }
         const contextValue = {
           ...mockRepositoryContext,

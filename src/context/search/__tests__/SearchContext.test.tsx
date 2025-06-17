@@ -1,12 +1,12 @@
 import { MockSearchConsumer } from '@mocks/consumers'
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import type { RepositoryType } from '@/context/repository/types'
 import { searchRepositories } from '@/api'
 import { SearchProvider } from '@/context/search'
 
-const mockRepos: RepositoryType[] = [mockRepo]
+const mockRepos: RepositoryType[] = [mockRepository]
 const mockNotify = vi.fn()
 
 vi.mock('@/api', async () => {

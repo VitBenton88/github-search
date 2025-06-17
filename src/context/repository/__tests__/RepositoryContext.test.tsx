@@ -1,5 +1,5 @@
 import { MockRepositoryConsumer } from '@mocks/consumers'
-import { mockRepo } from '@mocks/repositories'
+import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { getRepository } from '@/api'
@@ -51,7 +51,7 @@ describe('RepositoryContext', () => {
   describe('behavior', () => {
     describe('when searching', () => {
       beforeEach(async () => {
-        (getRepository as Mock).mockResolvedValue(mockRepo)
+        (getRepository as Mock).mockResolvedValue(mockRepository)
 
         await waitFor(() => {
           renderContext()
