@@ -2,9 +2,9 @@ import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import RepositoryPage from '../RepositoryPage'
 import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
+import RepositoryMain from '@/pages/Repository/RepositoryMain'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
 const mockFetchHandler = vi.fn().mockResolvedValue(mockRepository)
@@ -25,14 +25,14 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-describe('RepositoryPage', () => {
+describe('RepositoryMain', () => {
   const renderComponent = (
     contextValue: RepositoryContextType = mockRepoContext,
     initialEntries: string[] = [`/repo/${mockRepository.owner}/${mockRepository.name}`],
   ): RenderResult => render(
     <MemoryRouter initialEntries={initialEntries}>
       <RepositoryContext.Provider value={contextValue}>
-        <RepositoryPage />
+        <RepositoryMain />
       </RepositoryContext.Provider>
     </MemoryRouter>
   )

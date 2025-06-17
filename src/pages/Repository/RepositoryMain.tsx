@@ -5,7 +5,7 @@ import { Loader } from '@/components'
 import { RepositoryContext } from '@/context/repository'
 import { Access, Details, Header, Links } from '@/pages/Repository/components'
 
-const Repository: React.FC = () => {
+const RepositoryMain: React.FC = () => {
   const { handleFetch, isLoading, repository } = useContext(RepositoryContext)
   const { name, owner } = useParams<{ owner: string, name: string }>()
 
@@ -36,4 +36,4 @@ const Repository: React.FC = () => {
   )
 }
 
-export default Repository
+export default RepositoryMain
