@@ -1,5 +1,5 @@
 import { mockSearchContext } from '@mocks/contexts'
-import { fireEvent, render, type RenderResult, screen } from '@testing-library/react'
+import { act, fireEvent, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { type SearchFormProps } from '../Form'
 import type { SearchContextType } from '@/context/search/types'
@@ -99,7 +99,10 @@ describe('Search Form', () => {
       beforeEach(() => {
         renderComponent()
         fireEvent.change(elements.searchInput, { target: { value: mockSearchTerm } })
-        elements.submitBtn.click()
+
+        act(() => {
+          elements.submitBtn.click()
+        })
       })
 
       it('should call onFormSubmit prop function with correct values', async () => {

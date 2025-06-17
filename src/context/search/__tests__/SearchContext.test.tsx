@@ -1,6 +1,6 @@
 import { MockSearchConsumer } from '@mocks/consumers'
 import { mockRepo } from '@mocks/repositories'
-import { render, type RenderResult, screen } from '@testing-library/react'
+import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import type { RepositoryType } from '@/pages/Repository/types'
 import { searchRepositories } from '@/api'
@@ -64,7 +64,10 @@ describe('SearchContext', () => {
         (searchRepositories as Mock).mockResolvedValue(mockRepos)
 
         renderContext()
-        elements.searchBtn.click()
+
+        act(() => {
+          elements.searchBtn.click()
+        })
       })
 
       it('should call search method with correct term and filter', () => {
@@ -77,7 +80,10 @@ describe('SearchContext', () => {
         (searchRepositories as Mock).mockRejectedValue(new Error('Mock Rejection'))
 
         renderContext()
-        elements.searchBtn.click()
+
+        act(() => {
+          elements.searchBtn.click()
+        })
       })
 
       it('should call notify hook as error', () => {

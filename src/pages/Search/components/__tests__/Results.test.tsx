@@ -1,5 +1,5 @@
 import { mockBasicRepos } from '@mocks/repositories'
-import { render, type RenderResult, screen } from '@testing-library/react'
+import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { SearchResultsProps } from '../Results'
@@ -119,7 +119,10 @@ describe('Search Results', () => {
     describe('when clicking a result’s action', () => {
       beforeEach(() => {
         renderComponent()
-        elements.viewMoreBtns[0].click()
+
+        act(() => {
+          elements.viewMoreBtns[0].click()
+        })
       })
 
       it('should navigate user to correct destination', () => {
