@@ -12,6 +12,6 @@ export type SearchContextType = {
   handleSearch: SearchHandler
   hasSearched: boolean
   isLoading: boolean
-  repositories: SearchResultType[]
+  results: SearchResultType[]
   searchTerm: string
 }

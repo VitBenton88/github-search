@@ -33,7 +33,7 @@ describe('SearchContext', () => {
   const elements = {
     get hasSearched() { return screen.getByTestId('has-searched') },
     get isLoading() { return screen.getByTestId('is-loading') },
-    get repositories() { return screen.getByTestId('repositories') },
+    get results() { return screen.getByTestId('results') },
     get searchBtn() { return screen.getByTestId('search-button') },
     get searchTerm() { return screen.getByTestId('search-term') },
   }
@@ -46,12 +46,12 @@ describe('SearchContext', () => {
 
       it('should render children', () => {
         const {
-          hasSearched, isLoading, repositories, searchBtn, searchTerm
+          hasSearched, isLoading, results, searchBtn, searchTerm
         } = elements
 
         expect(hasSearched).toHaveTextContent('has not searched')
         expect(isLoading).toHaveTextContent('is not loading')
-        expect(repositories).toHaveTextContent('0')
+        expect(results).toHaveTextContent('0')
         expect(searchBtn).toBeInTheDocument()
         expect(searchTerm).toHaveTextContent('')
       })

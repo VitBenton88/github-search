@@ -10,7 +10,7 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const [hasSearched, setHasSearched] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [filterPopular, setFilterPopular] = useState(false)
-  const [repositories, setRepositories] = useState<SearchResultType[]>([])
+  const [results, setRepositories] = useState<SearchResultType[]>([])
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch: SearchHandler = useCallback(async (searchKeyword, filterPopular) => {
@@ -37,9 +37,9 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     handleSearch,
     hasSearched,
     isLoading,
-    repositories,
+    results,
     searchTerm,
-  }), [filterPopular, handleSearch, hasSearched, isLoading, repositories, searchTerm])
+  }), [filterPopular, handleSearch, hasSearched, isLoading, results, searchTerm])
 
   return (
     <SearchContext.Provider value={contextValue}>

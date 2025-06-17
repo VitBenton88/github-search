@@ -8,8 +8,8 @@ export const mockSearchContext: SearchContextType = {
   handleSearch: vi.fn(),
   hasSearched: false,
   isLoading: false,
-  searchTerm: '',
-  repositories: mockMultipleSearchResults
+  results: mockMultipleSearchResults,
+  searchTerm: ''
 }
 
 export const mockRepositoryContext: RepositoryContextType = {

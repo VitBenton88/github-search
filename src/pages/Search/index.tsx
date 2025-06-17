@@ -5,7 +5,7 @@ import { SearchContext } from '@/context/search'
 import { SearchForm, SearchResults } from '@/pages/Search/components'
 
 const Search: React.FC = () => {
-  const { handleSearch, hasSearched, isLoading, repositories } = useContext(SearchContext)
+  const { handleSearch, hasSearched, isLoading, results } = useContext(SearchContext)
 
   return (
     <main id="search">
@@ -26,7 +26,7 @@ const Search: React.FC = () => {
             <SearchResults
               caption="Search results"
               headers={['Name', 'Description', 'Action']}
-              items={repositories}
+              items={results}
               data-testid="search-results"
             />
           </div>

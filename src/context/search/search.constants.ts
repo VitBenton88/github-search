@@ -5,6 +5,6 @@ export const defaultSearchContext: SearchContextType = {
   handleSearch: async () => { },
   hasSearched: false,
   isLoading: false,
-  repositories: [],
+  results: [],
   searchTerm: '',
 }

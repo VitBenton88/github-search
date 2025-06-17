@@ -8,7 +8,7 @@ export const MockSearchConsumer = (): React.ReactNode => {
 
   return (
     <>
-      <div data-testid="repositories">{context.repositories.length}</div>
+      <div data-testid="results">{context.results.length}</div>
       <div data-testid="has-searched">{context.hasSearched ? 'has searched' : 'has not searched'}</div>
       <div data-testid="is-loading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
       <div data-testid="search-term">{context.searchTerm}</div>
