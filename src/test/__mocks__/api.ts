@@ -72,7 +72,7 @@ export const mockRepoApiRepsonse: RepositoryApiResponse = {
   hooks_url: 'https://api.github.com/repos/octocat/Hello-World/hooks',
   svn_url: 'https://svn.github.com/octocat/Hello-World',
   homepage: 'https://github.com',
-  language: 'TypeScipt',
+  language: 'TypeScript',
   forks_count: 9,
   forks: 9,
   stargazers_count: 80,
