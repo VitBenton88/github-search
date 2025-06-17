@@ -1,4 +1,4 @@
-export type fetchHandler = (owner: string, name: string) => Promise<void>
+export type FetchHandler = (owner: string, name: string) => Promise<void>
 
 export type RepositoryType = {
   id: number
@@ -20,7 +20,7 @@ export type RepositoryType = {
 }
 
 export type RepositoryContextType = {
-  handleFetch: fetchHandler
+  handleFetch: FetchHandler
   isLoading: boolean
   repository: RepositoryType
 }
