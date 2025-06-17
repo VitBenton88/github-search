@@ -1,12 +1,12 @@
 import { type JSX, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import type { BasicRepositoryType } from '@/context/search/types'
+import type { SearchResultType } from '@/context/search/types'
 import { Button } from '@/components'
 
 export type SearchResultsProps = {
   caption: string,
   headers: string[]
-  items: BasicRepositoryType[]
+  items: SearchResultType[]
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], items = [], ...props }) => {
@@ -14,7 +14,7 @@ const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], ite
 
   const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])
 
-  const renderTableRow = (repo: BasicRepositoryType): JSX.Element => (
+  const renderTableRow = (repo: SearchResultType): JSX.Element => (
     <tr key={repo.id} data-testid="result">
       <td data-testid="name">{repo.name}</td>
       <td>{repo.description}</td>

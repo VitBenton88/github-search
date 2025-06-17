@@ -1,6 +1,6 @@
 import type { GetRepoHandler, RepositoryApiResponse, SearchReposHandler } from '@/api/types'
 import type { RepositoryType } from '@/context/repository/types'
-import type { BasicRepositoryType } from '@/context/search/types'
+import type { SearchResultType } from '@/context/search/types'
 
 const BASE_URL = 'https://api.github.com'
 
@@ -24,7 +24,7 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
     const { items } = await response.json()
 
     return items.map(
-      (repo: RepositoryApiResponse): BasicRepositoryType => ({
+      (repo: RepositoryApiResponse): SearchResultType => ({
         description: repo.description,
         id: repo.id,
         name: repo.name,

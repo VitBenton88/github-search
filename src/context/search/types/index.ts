@@ -1,4 +1,4 @@
-export interface BasicRepositoryType {
+export interface SearchResultType {
   description: string
   id: number
   name: string
@@ -12,6 +12,6 @@ export type SearchContextType = {
   handleSearch: SearchRepositoriesHandler
   hasSearched: boolean
   isLoading: boolean
-  repositories: BasicRepositoryType[]
+  repositories: SearchResultType[]
   searchTerm: string
 }
