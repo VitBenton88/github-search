@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { getRepository } from '@/api'
 import { RepositoryProvider } from '@/context/repository'
 
-const mockNotify = vi.fn()
+const mockNotify: Mock = vi.fn()
 
 vi.mock('@/api', async () => {
   const actual = await vi.importActual('@/api')

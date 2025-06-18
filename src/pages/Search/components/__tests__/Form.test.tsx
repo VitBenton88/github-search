@@ -1,12 +1,12 @@
 import { mockSearchContext } from '@mocks/contexts'
 import { act, fireEvent, render, type RenderResult, screen } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import { type SearchFormProps } from '../Form'
 import type { SearchContextType } from '@/context/search/types'
 import { SearchContext } from '@/context/search'
 import { SearchForm } from '@/pages/Search/components'
 
-const mockOnSubmit = vi.fn()
+const mockOnSubmit: Mock = vi.fn()
 const mockSearchTerm = 'mock search term'
 const mockDefaultProps: SearchFormProps = {
   disableForm: false,

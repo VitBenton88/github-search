@@ -1,11 +1,11 @@
 import { mockMultipleSearchResults } from '@mocks/repositories'
 import { act, render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import type { SearchResultsProps } from '../Results'
 import { SearchResults } from '@/pages/Search/components'
 
-const mockNavigate = vi.fn()
+const mockNavigate: Mock = vi.fn()
 const mockDefaultProps: SearchResultsProps = {
   caption: 'Search results',
   headers: ['Name', 'Description', 'Action'],

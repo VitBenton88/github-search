@@ -1,9 +1,9 @@
 import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import Nav from '../Nav'
 
-const mockNavigate = vi.fn()
+const mockNavigate: Mock = vi.fn()
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom')

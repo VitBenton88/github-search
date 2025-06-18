@@ -1,13 +1,13 @@
 import { mockRepository } from '@mocks/repositories'
 import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
 import RepositoryMain from '@/pages/Repository/RepositoryMain'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
-const mockFetchHandler = vi.fn().mockResolvedValue(mockRepository)
+const mockFetchHandler: Mock = vi.fn().mockResolvedValue(mockRepository)
 const mockRepoContext = {
   ...mockRepositoryContext,
   handleFetch: mockFetchHandler,

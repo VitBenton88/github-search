@@ -7,7 +7,7 @@ import { searchRepositories } from '@/api'
 import { SearchProvider } from '@/context/search'
 
 const mockRepos: RepositoryType[] = [mockRepository]
-const mockNotify = vi.fn()
+const mockNotify: Mock = vi.fn()
 
 vi.mock('@/api', async () => {
   const actual = await vi.importActual('@/api')

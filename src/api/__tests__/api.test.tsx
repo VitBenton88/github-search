@@ -1,9 +1,9 @@
 import { mockRepository, mockSearchResult } from '@mocks/repositories'
-import { describe, expect, it, type Mock, vi } from 'vitest'
+import { describe, expect, it, type Mock, type MockInstance, vi } from 'vitest'
 import { getRepository, searchRepositories } from '@/api'
 import { mockRepoApiResponse } from '@/test/__mocks__/api'
 
-const mockFetch = vi.fn()
+const mockFetch: Mock = vi.fn()
 
 global.fetch = mockFetch as Mock
 
@@ -48,7 +48,7 @@ describe('api.ts', () => {
     })
 
     it('throws an error on failed response', async () => {
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+      const consoleSpy: MockInstance = vi.spyOn(console, 'error').mockImplementation(() => { })
 
       mockFetch.mockResolvedValueOnce({
         ok: false,
@@ -76,7 +76,7 @@ describe('api.ts', () => {
     })
 
     it('throws an error on failed fetch', async () => {
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+      const consoleSpy: MockInstance = vi.spyOn(console, 'error').mockImplementation(() => { })
 
       mockFetch.mockResolvedValueOnce({
         ok: false,
