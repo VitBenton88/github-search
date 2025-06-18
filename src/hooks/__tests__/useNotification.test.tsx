@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { NotificationContext } from '@/context/notification'
 import { useNotification } from '@/hooks/useNotification'
 
-const MockComponent = () => {
+const MockComponent = (): React.ReactNode => {
   const notify = useNotification()
   notify('Mock message', 'success')
   return <div>Test</div>
