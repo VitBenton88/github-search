@@ -11,6 +11,7 @@ const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [repository, setRepository] = useState<RepositoryType>(defaultRepositoryContext.repository)
 
   const handleFetch: FetchHandler = useCallback(async (owner, name) => {
+    setIsLoading(true)
     try {
       const fetchedRepository = await getRepository(owner, name)
       setRepository(fetchedRepository)
