@@ -20,7 +20,7 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
       reset()
     }, timeout)
 
-  }, [setNotification, timeoutRef])
+  }, [])
 
   const reset = () => {
     setNotification(null)

@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from '@/components'
 import { RepositoryContext } from '@/context/repository'
 
@@ -16,10 +16,7 @@ const Header: React.FC<HeaderProps> = ({ ...props }) => {
     updated_at
   } = repository
 
-  const formatDisplayDate = useCallback((isoString: string): string => {
-    const date = new Date(isoString)
-    return date.toLocaleString()
-  }, [])
+  const formatDisplayDate = (isoString: string): string => new Date(isoString).toLocaleString()
 
   return (
     <header {...props}>
