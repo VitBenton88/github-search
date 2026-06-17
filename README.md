@@ -5,7 +5,6 @@ A responsive and accessible web application that allows users to search for GitH
 ## 🚀 Features
 
 - 🔍 **Search GitHub Repositories**: Enter keywords to find repositories.
-- ⭐ **Manage Favorites**: Toggle favorites for easy access.
 - 📄 **Repository Details**: View comprehensive information about selected repositories.
 - 🎨 **Responsive Design**: Optimized for various screen sizes.
 - ♿ **Accessibility**: Keyboard and screen-reader friendly.
