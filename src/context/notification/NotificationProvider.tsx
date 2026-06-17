@@ -10,22 +10,15 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
   const notify = useCallback((message: string, type: NotificationType, timeout = 4000) => {
     setNotification({ message, type })
 
-    // Clear existing timeout if it's still pending
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
     }
 
-    // Set a new timeout to clear the message
     timeoutRef.current = setTimeout(() => {
-      reset()
+      setNotification(null)
+      timeoutRef.current = null
     }, timeout)
-
   }, [])
-
-  const reset = () => {
-    setNotification(null)
-    timeoutRef.current = null
-  }
 
   return (
     <NotificationContext.Provider value={{ notify, notification }}>

@@ -25,7 +25,7 @@ const Details: React.FC<DetailsProps> = ({ ...props }) => {
         {language?.trim() && (
           <li data-testid="language">Language: {language}</li>
         )}
-        <li data-testid="size">Size: {size} bytes</li>
+        <li data-testid="size">Size: {size} KB</li>
         <li data-testid="downloads">{has_downloads ? HAS_DOWNLOADS : NO_DOWNLOADS}</li>
         <li data-testid="forking">{allow_forking ? ALLOWS_FORKING : FORBIDS_FORKING}</li>
       </ul>

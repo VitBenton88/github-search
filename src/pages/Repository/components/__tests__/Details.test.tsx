@@ -49,7 +49,7 @@ describe('Repository Details', () => {
       })
 
       it('should render correct size', () => {
-        expect(elements.size).toHaveTextContent(`${mockRepository.size} bytes`)
+        expect(elements.size).toHaveTextContent(`${mockRepository.size} KB`)
       })
     })
 
