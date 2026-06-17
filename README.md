@@ -17,15 +17,16 @@ A responsive and accessible web application that allows users to search for GitH
 - **TypeScript**: Typed superset of JavaScript for enhanced code quality.
 - **Vite**: Fast build tool and development server.
 - **ESLint**: Linting utility for maintaining code standards.
-- **Jest**: Testing framework for ensuring code reliability.
+- **Vitest**: Testing framework for ensuring code reliability.
+- **React Router**: Client-side routing for navigation between views.
 - **GitHub REST API**: [Official GitHub REST API documentation](https://docs.github.com/en/rest?apiVersion=2022-11-28) used for fetching repository data.
 
 ## 📦 Getting Started
 
 ### Prerequisites
 
-- **Node.js** (version 14 or higher)
-- **npm** (version 6 or higher)
+- **Node.js** (version 18 or higher)
+- **npm** (version 8 or higher)
 
 ### Installation
 
@@ -34,13 +35,16 @@ A responsive and accessible web application that allows users to search for GitH
    ```bash
    git clone https://github.com/VitBenton88/github-search.git
    cd github-search
+   ```
 
 2. **Install dependencies**:
 
    ```bash
    npm install
+   ```
 
 3. **Start the development server**:
 
    ```bash
    npm run dev
+   ```
