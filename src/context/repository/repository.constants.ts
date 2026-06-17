@@ -21,6 +21,6 @@ const defaultRepository: RepositoryType = {
 
 export const defaultRepositoryContext: RepositoryContextType = {
   handleFetch: async () => { },
-  isLoading: true,
+  isLoading: false,
   repository: defaultRepository,
 }

@@ -43,7 +43,7 @@ describe('RepositoryContext', () => {
         const { fetchBtn, isLoading } = elements
 
         expect(fetchBtn).toBeInTheDocument()
-        expect(isLoading).toHaveTextContent('is loading')
+        expect(isLoading).toHaveTextContent('is not loading')
       })
     })
   })

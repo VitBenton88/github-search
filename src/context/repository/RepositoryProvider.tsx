@@ -7,7 +7,7 @@ import { useNotification } from '@/hooks/useNotification'
 
 const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const notify = useNotification()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [repository, setRepository] = useState<RepositoryType>(defaultRepositoryContext.repository)
 
   const handleFetch: FetchHandler = useCallback(async (owner, name) => {
