@@ -8,6 +8,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const viteConfig = defineViteConfig({
+  base: '/github-search/',
   plugins: [react()],
   resolve: {
     alias: {
