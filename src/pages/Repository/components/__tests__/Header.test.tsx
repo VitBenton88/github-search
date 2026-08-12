@@ -41,7 +41,7 @@ describe('Repository Header', () => {
       })
 
       it('should render correct created date', () => {
-        expect(elements.created).toHaveTextContent('Created: 1/26/2011, 2:01:12 PM')
+        expect(elements.created).toHaveTextContent('Created: 1/26/2011, 7:01:12 PM')
       })
 
       it('should render correct repository description', () => {
@@ -61,7 +61,7 @@ describe('Repository Header', () => {
       })
 
       it('should render correct updated date', () => {
-        expect(elements.updated).toHaveTextContent('Updated: 1/26/2011, 2:14:43 PM')
+        expect(elements.updated).toHaveTextContent('Updated: 1/26/2011, 7:14:43 PM')
       })
     })
 
