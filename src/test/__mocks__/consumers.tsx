@@ -13,7 +13,7 @@ export const MockSearchConsumer = (): React.ReactNode => {
       <div data-testid="is-loading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
       <div data-testid="search-term">{context.searchTerm}</div>
       <Button
-        onClick={() => context.handleSearch('mock search term', false)}
+        onClick={() => { void context.handleSearch('mock search term', false) }}
         data-testid="search-button"
       >
         Search
@@ -29,7 +29,7 @@ export const MockRepositoryConsumer = (): React.ReactNode => {
     <>
       <div data-testid="is-loading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
       <Button
-        onClick={() => context.handleFetch('mock owner', 'mock name')}
+        onClick={() => { void context.handleFetch('mock owner', 'mock name') }}
         data-testid="fetch-button"
       >
         Search

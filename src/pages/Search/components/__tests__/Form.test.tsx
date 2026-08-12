@@ -109,7 +109,7 @@ describe('Search Form', () => {
         })
       })
 
-      it('should call onFormSubmit prop function with correct values', async () => {
+      it('should call onFormSubmit prop function with correct values', () => {
         expect(mockOnSubmit).toHaveBeenCalledWith(mockSearchTerm, false)
       })
     })

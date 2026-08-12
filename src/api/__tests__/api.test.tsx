@@ -5,7 +5,7 @@ import { mockRepoApiResponse } from '@/test/__mocks__/api'
 
 const mockFetch: Mock = vi.fn()
 
-global.fetch = mockFetch as Mock
+global.fetch = mockFetch
 
 describe('api.ts', () => {
   describe('searchRepositories', () => {
@@ -18,7 +18,7 @@ describe('api.ts', () => {
 
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => mockResponse
+        json: () => Promise.resolve(mockResponse)
       })
 
       const result = await searchRepositories('test', false)
@@ -34,7 +34,7 @@ describe('api.ts', () => {
     it('passes an abort signal through to fetch when one is provided', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => ({ items: [] })
+        json: () => Promise.resolve({ items: [] })
       })
 
       const controller = new AbortController()
@@ -50,7 +50,7 @@ describe('api.ts', () => {
     it('appends stars filter when popularFilter is true', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => ({ items: [] })
+        json: () => Promise.resolve({ items: [] })
       })
 
       await searchRepositories('git', true)
@@ -104,7 +104,7 @@ describe('api.ts', () => {
     it('returns full repository data', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => mockRepoApiResponse
+        json: () => Promise.resolve(mockRepoApiResponse)
       })
       const result = await getRepository(mockRepository.owner, mockRepository.name)
 
@@ -114,7 +114,7 @@ describe('api.ts', () => {
     it('passes an abort signal through to fetch when one is provided', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => mockRepoApiResponse
+        json: () => Promise.resolve(mockRepoApiResponse)
       })
 
       const controller = new AbortController()

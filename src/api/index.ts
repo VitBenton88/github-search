@@ -41,10 +41,10 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
   const response = await fetch(fetchUrl, { signal })
 
   if (response.ok) {
-    const { items } = await response.json()
+    const { items } = await response.json() as { items: RepositoryApiResponse[] }
 
     return items.map(
-      (repo: RepositoryApiResponse): SearchResultType => ({
+      (repo): SearchResultType => ({
         description: repo.description,
         id: repo.id,
         name: repo.name,
@@ -86,7 +86,7 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '', signa
       size,
       stargazers_count,
       updated_at
-    }: RepositoryApiResponse = await response.json()
+    } = await response.json() as RepositoryApiResponse
 
     return {
       allow_forking,

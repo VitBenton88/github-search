@@ -13,7 +13,7 @@ const RepositoryMain: React.FC = () => {
   useEffect(() => {
     if (!owner || !name) return
 
-    handleFetch(owner, name)
+    void handleFetch(owner, name)
   }, [owner, name, handleFetch])
 
   const pageTitle = isLoading

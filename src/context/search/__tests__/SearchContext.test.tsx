@@ -98,8 +98,8 @@ describe('SearchContext', () => {
         return (
           <>
             <div data-testid="results">{context.results.map((result) => result.name).join(',')}</div>
-            <button data-testid="first-search" onClick={() => context.handleSearch('first', false)}>first</button>
-            <button data-testid="second-search" onClick={() => context.handleSearch('second', false)}>second</button>
+            <button data-testid="first-search" onClick={() => { void context.handleSearch('first', false) }}>first</button>
+            <button data-testid="second-search" onClick={() => { void context.handleSearch('second', false) }}>second</button>
           </>
         )
       }
@@ -127,12 +127,12 @@ describe('SearchContext', () => {
         })
 
         // Resolve out of order: the newer ("second") request finishes before the stale ("first") one.
-        await act(async () => {
-          resolveSecond(secondResults)
-          resolveFirst(firstResults)
-        })
+        resolveSecond(secondResults)
+        resolveFirst(firstResults)
 
-        expect(screen.getByTestId('results')).toHaveTextContent('second-repo')
+        await waitFor(() => {
+          expect(screen.getByTestId('results')).toHaveTextContent('second-repo')
+        })
         expect(screen.getByTestId('results')).not.toHaveTextContent('first-repo')
       })
     })

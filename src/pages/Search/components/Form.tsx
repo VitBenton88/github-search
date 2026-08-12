@@ -21,7 +21,7 @@ const Form: React.FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }
   const handleFormSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault()
 
-    onFormSubmit(searchKeyword, filterPopular)
+    void onFormSubmit(searchKeyword, filterPopular)
   }, [searchKeyword, filterPopular, onFormSubmit])
 
   return (

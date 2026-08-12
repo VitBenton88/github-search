@@ -88,8 +88,8 @@ describe('RepositoryContext', () => {
         return (
           <>
             <div data-testid="repo-name">{context.repository.name}</div>
-            <button data-testid="fetch-first" onClick={() => context.handleFetch('owner', 'first')}>first</button>
-            <button data-testid="fetch-second" onClick={() => context.handleFetch('owner', 'second')}>second</button>
+            <button data-testid="fetch-first" onClick={() => { void context.handleFetch('owner', 'first') }}>first</button>
+            <button data-testid="fetch-second" onClick={() => { void context.handleFetch('owner', 'second') }}>second</button>
           </>
         )
       }
@@ -113,12 +113,12 @@ describe('RepositoryContext', () => {
         })
 
         // Resolve out of order: the newer ("second") request finishes before the stale ("first") one.
-        await act(async () => {
-          resolveSecond(secondRepo)
-          resolveFirst(firstRepo)
-        })
+        resolveSecond(secondRepo)
+        resolveFirst(firstRepo)
 
-        expect(screen.getByTestId('repo-name')).toHaveTextContent('second-repo')
+        await waitFor(() => {
+          expect(screen.getByTestId('repo-name')).toHaveTextContent('second-repo')
+        })
         expect(screen.getByTestId('repo-name')).not.toHaveTextContent('first-repo')
       })
     })
