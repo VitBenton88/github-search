@@ -39,6 +39,10 @@ describe('Search', () => {
         expect(elements.noSearch).toBeInTheDocument()
       })
 
+      it('should set document.title to the site title', () => {
+        expect(document.title).toBe('GitHub Search')
+      })
+
       it('should not render results', () => {
         expect(elements.searchResults).not.toBeInTheDocument()
       })

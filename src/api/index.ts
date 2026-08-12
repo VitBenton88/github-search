@@ -1,8 +1,27 @@
 import type { GetRepoHandler, RepositoryApiResponse, SearchReposHandler } from '@/api/types'
-import type { RepositoryType } from '@/context/repository/types'
 import type { SearchResultType } from '@/context/search/types'
 
 const BASE_URL = 'https://api.github.com'
+
+const isRateLimited = (response: Response): boolean =>
+  (response.status === 403 || response.status === 429) && response.headers.get('x-ratelimit-remaining') === '0'
+
+/**
+ * Build a user-facing error message for a failed response, special-casing
+ * GitHub's rate limit so it isn't confused with a generic request failure.
+ */
+const buildErrorMessage = (action: string, response: Response): string => {
+  if (isRateLimited(response)) {
+    const resetHeader = response.headers.get('x-ratelimit-reset')
+    const resetTime = resetHeader ? new Date(Number(resetHeader) * 1000).toLocaleTimeString() : null
+
+    return resetTime
+      ? `GitHub API rate limit exceeded. Try again after ${resetTime}.`
+      : 'GitHub API rate limit exceeded. Please try again later.'
+  }
+
+  return `Failed to ${action}. ${response.status} ${response.statusText}`
+}
 
 /**
  * Search repositories.
@@ -33,7 +52,7 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
       })
     )
   } else {
-    throw new Error(`Failed to search repositories. ${response.status} ${response.statusText}`)
+    throw new Error(buildErrorMessage('search repositories', response))
   }
 }
 
@@ -63,7 +82,7 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '', signa
       private:
       isPrivate,
       name,
-      owner,
+      owner: repoOwner,
       size,
       stargazers_count,
       updated_at
@@ -81,13 +100,13 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '', signa
       isPrivate,
       language,
       name,
-      owner: owner.login,
-      owner_url: owner.html_url,
+      owner: repoOwner.login,
+      owner_url: repoOwner.html_url,
       size,
       stargazers_count,
       updated_at
-    } as RepositoryType
+    }
   } else {
-    throw new Error(`Failed to fetch repository. ${response.status} ${response.statusText}`)
+    throw new Error(buildErrorMessage('fetch repository', response))
   }
 }

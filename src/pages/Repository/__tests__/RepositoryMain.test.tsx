@@ -75,6 +75,24 @@ describe('RepositoryMain', () => {
       it('should fetch repository on render', () => {
         expect(mockFetchHandler).toHaveBeenCalledWith(mockRepository.owner, mockRepository.name)
       })
+
+      it('should set document.title to the "owner/name" of the loaded repository', () => {
+        expect(document.title).toBe(`${mockRepository.owner}/${mockRepository.name} · GitHub Search`)
+      })
+
+      it('should expose a correct heading hierarchy for assistive technology', () => {
+        const headings = screen.getAllByRole('heading').map((heading) => ({
+          level: Number(heading.tagName.replace('H', '')),
+          text: heading.textContent
+        }))
+
+        expect(headings).toEqual([
+          { level: 1, text: mockRepository.name },
+          { level: 2, text: 'Details' },
+          { level: 2, text: 'Access' },
+          { level: 2, text: 'Links' }
+        ])
+      })
     })
 
     describe('with no repository present', () => {
@@ -95,6 +113,10 @@ describe('RepositoryMain', () => {
         expect(details).not.toBeInTheDocument()
         expect(header[0]).toBeUndefined()
       })
+
+      it('should set document.title to reflect the repository was not found', () => {
+        expect(document.title).toBe('Repository not found · GitHub Search')
+      })
     })
 
     describe('when loading', () => {
@@ -114,6 +136,16 @@ describe('RepositoryMain', () => {
         expect(details).not.toBeInTheDocument()
         expect(header[0]).toBeUndefined()
         expect(notFound).not.toBeInTheDocument()
+      })
+
+      it('should still render within the <main> landmark so route-change focus management can find it', () => {
+        const main = screen.getByRole('main')
+
+        expect(main).toContainElement(elements.loader)
+      })
+
+      it('should set document.title to reflect the loading state', () => {
+        expect(document.title).toBe('Loading… · GitHub Search')
       })
     })
 

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import './Repository.css'
 import { Loader } from '@/components'
 import { RepositoryContext } from '@/context/repository'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { Access, Details, Header, Links } from '@/pages/Repository/components'
 
 const RepositoryMain: React.FC = () => {
@@ -15,11 +16,19 @@ const RepositoryMain: React.FC = () => {
     handleFetch(owner, name)
   }, [owner, name, handleFetch])
 
-  if (isLoading) return (<Loader data-testid="loader" />)
+  const pageTitle = isLoading
+    ? 'Loading…'
+    : repository.id
+      ? `${repository.owner}/${repository.name}`
+      : 'Repository not found'
+
+  useDocumentTitle(pageTitle)
 
   return (
     <main id="repository">
-      {!repository.id ? (
+      {isLoading ? (
+        <Loader data-testid="loader" />
+      ) : !repository.id ? (
         <h1 data-testid="not-found">Repository not found.</h1>
       ) : (
         <>

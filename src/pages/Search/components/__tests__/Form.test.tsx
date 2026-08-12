@@ -48,6 +48,10 @@ describe('Search Form', () => {
         expect(elements.searchInput).toHaveAttribute('value', '')
       })
 
+      it('should render search input with an accessible name', () => {
+        expect(screen.getByLabelText(/keyword/i)).toBe(elements.searchInput)
+      })
+
       it('should render popular checkbox with no value', () => {
         expect(elements.popularCheckbox).not.toHaveAttribute('checked')
       })

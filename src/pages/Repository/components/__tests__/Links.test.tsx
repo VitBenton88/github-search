@@ -56,5 +56,22 @@ describe('Repository Links', () => {
         expect(elements.homepageLink).not.toBeInTheDocument()
       })
     })
+
+    describe('when repository homepage is null (as returned by the GitHub API)', () => {
+      beforeEach(() => {
+        const mockRepoWithNullHomepage = {
+          ...mockRepository, homepage: null
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNullHomepage
+        }
+        renderComponent(contextValue)
+      })
+
+      it('should not render link for repository’s homepage', () => {
+        expect(elements.homepageLink).not.toBeInTheDocument()
+      })
+    })
   })
 })

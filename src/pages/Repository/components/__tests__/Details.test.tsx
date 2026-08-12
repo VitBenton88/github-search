@@ -86,5 +86,22 @@ describe('Repository Details', () => {
         expect(elements.forking).toHaveTextContent(ALLOWS_FORKING)
       })
     })
+
+    describe('when repository language is null (as returned by the GitHub API)', () => {
+      beforeEach(() => {
+        const mockRepoWithNullLanguage = {
+          ...mockRepository, language: null
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNullLanguage
+        }
+        renderComponent(contextValue)
+      })
+
+      it('should not render a language entry', () => {
+        expect(screen.queryByTestId('language')).not.toBeInTheDocument()
+      })
+    })
   })
 })

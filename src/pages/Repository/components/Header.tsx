@@ -23,11 +23,11 @@ const Header: React.FC<HeaderProps> = ({ ...props }) => {
       <h1 data-testid="title">{name}</h1>
       <small aria-label={`${stargazers_count} stars`} data-testid="star-count">⭐ {stargazers_count}</small>
       {description?.trim() && (
-        <h2 data-testid="description">{description}</h2>
+        <p data-testid="description">{description}</p>
       )}
-      <h3>Owner: <Link href={owner_url} data-testid="owner-link">{owner} &rarr;</Link></h3>
-      <h4 data-testid="created">Created: {formatDisplayDate(created_at)}</h4>
-      <h4 data-testid="updated">Updated: {formatDisplayDate(updated_at)}</h4>
+      <p>Owner: <Link href={owner_url} data-testid="owner-link">{owner} &rarr;</Link></p>
+      <p data-testid="created">Created: {formatDisplayDate(created_at)}</p>
+      <p data-testid="updated">Updated: {formatDisplayDate(updated_at)}</p>
     </header>
   )
 }
