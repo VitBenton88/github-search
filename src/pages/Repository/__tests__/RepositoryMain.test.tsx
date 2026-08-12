@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import type { RepositoryContextType } from '@/context/repository/types'
 import { RepositoryContext } from '@/context/repository'
+import { defaultRepositoryContext } from '@/context/repository/repository.constants'
 import RepositoryMain from '@/pages/Repository/RepositoryMain'
 import { mockRepositoryContext } from '@/test/__mocks__/contexts'
 
@@ -113,6 +114,22 @@ describe('RepositoryMain', () => {
         expect(details).not.toBeInTheDocument()
         expect(header[0]).toBeUndefined()
         expect(notFound).not.toBeInTheDocument()
+      })
+    })
+
+    describe('in the default (idle, not-yet-fetched) context state', () => {
+      beforeEach(() => {
+        renderComponent(defaultRepositoryContext)
+      })
+
+      it('should render the loader, not "not found", before any fetch has been attempted', () => {
+        const { access, details, header, loader, notFound } = elements
+
+        expect(loader).toBeInTheDocument()
+        expect(notFound).not.toBeInTheDocument()
+        expect(access).not.toBeInTheDocument()
+        expect(details).not.toBeInTheDocument()
+        expect(header[0]).toBeUndefined()
       })
     })
   })

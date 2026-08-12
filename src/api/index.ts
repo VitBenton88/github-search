@@ -8,8 +8,9 @@ const BASE_URL = 'https://api.github.com'
  * Search repositories.
  * @param searchKeyword - Keyword for search query.
  * @param popularFilter - Filter search query for popular repositories (>1k stars).
+ * @param signal - Optional AbortSignal to cancel the request.
  */
-export const searchRepositories: SearchReposHandler = async (searchKeyword = '', popularFilter = false) => {
+export const searchRepositories: SearchReposHandler = async (searchKeyword = '', popularFilter = false, signal) => {
   const url = new URL(`${BASE_URL}/search/repositories`)
   url.searchParams.set('q', searchKeyword)
 
@@ -18,7 +19,7 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
   }
 
   const fetchUrl = url.toString()
-  const response = await fetch(fetchUrl)
+  const response = await fetch(fetchUrl, { signal })
 
   if (response.ok) {
     const { items } = await response.json()
@@ -40,12 +41,13 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
  * Get an individual repository's data.
  * @param owner - Name of repository's owner.
  * @param name - Repository's name.
+ * @param signal - Optional AbortSignal to cancel the request.
  */
-export const getRepository: GetRepoHandler = async (owner = '', name = '') => {
+export const getRepository: GetRepoHandler = async (owner = '', name = '', signal) => {
   const url = new URL(`${BASE_URL}/repos/${owner}/${name}`)
 
   const fetchUrl = url.toString()
-  const response = await fetch(fetchUrl)
+  const response = await fetch(fetchUrl, { signal })
 
   if (response.ok) {
     const {

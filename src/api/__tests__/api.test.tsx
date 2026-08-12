@@ -26,7 +26,24 @@ describe('api.ts', () => {
       expect(result).toEqual([mockSearchResult])
 
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('q=test')
+        expect.stringContaining('q=test'),
+        expect.objectContaining({ signal: undefined })
+      )
+    })
+
+    it('passes an abort signal through to fetch when one is provided', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ items: [] })
+      })
+
+      const controller = new AbortController()
+
+      await searchRepositories('test', false, controller.signal)
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.any(String),
+        { signal: controller.signal }
       )
     })
 
@@ -43,7 +60,8 @@ describe('api.ts', () => {
       const encodedQuery = encodeURIComponent(query).replace(/%20/g, '+')
 
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining(`q=${encodedQuery}`)
+        expect.stringContaining(`q=${encodedQuery}`),
+        expect.objectContaining({ signal: undefined })
       )
     })
 
@@ -73,6 +91,22 @@ describe('api.ts', () => {
       const result = await getRepository(mockRepository.owner, mockRepository.name)
 
       expect(result).toEqual(mockRepository)
+    })
+
+    it('passes an abort signal through to fetch when one is provided', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockRepoApiResponse
+      })
+
+      const controller = new AbortController()
+
+      await getRepository(mockRepository.owner, mockRepository.name, controller.signal)
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.any(String),
+        { signal: controller.signal }
+      )
     })
 
     it('throws an error on failed fetch', async () => {
