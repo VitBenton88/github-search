@@ -23,7 +23,14 @@ const vitestConfig = defineVitestConfig({
     globals: true,
     include: ['src/**/__tests__/**/*.test.{ts,tsx}'],
     environment: 'jsdom',
-    setupFiles: './src/test/vitest.setup.ts'
+    setupFiles: './src/test/vitest.setup.ts',
+    // Pin timezone/locale so date-formatting assertions are deterministic
+    // across dev machines and CI (which runs in UTC), instead of depending
+    // on whatever timezone/locale happens to run the test.
+    env: {
+      TZ: 'UTC',
+      LANG: 'en-US'
+    }
   }
 })
 
