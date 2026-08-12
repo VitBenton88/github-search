@@ -31,4 +31,11 @@ describe('Notification', () => {
       expect(elements.message).toHaveTextContent(mockDefaultProps.message)
     })
   })
+
+  it('should reject a "type" value outside the NotificationType union at compile time', () => {
+    // @ts-expect-error 'not-a-real-type' is not a valid NotificationType
+    const invalidProps: NotificationProps = { message: 'mock message', type: 'not-a-real-type' }
+
+    expect(invalidProps.type).toBe('not-a-real-type')
+  })
 })

@@ -1,6 +1,6 @@
 # GitHub Repository Search App
 
-A responsive and accessible web application that allows users to search for GitHub repositories, view detailed information, and manage favorites. Built with React, TypeScript, and Vite, this project emphasizes performance, accessibility, and user experience.
+A responsive and accessible web application that allows users to search for GitHub repositories and view detailed information about them. Built with React, TypeScript, and Vite, this project emphasizes performance, accessibility, and user experience.
 
 ## 🚀 Features
 
@@ -24,7 +24,7 @@ A responsive and accessible web application that allows users to search for GitH
 
 ### Prerequisites
 
-- **Node.js** (version 18 or higher)
+- **Node.js** (version 20 or higher)
 - **npm** (version 8 or higher)
 
 ### Installation

@@ -5,7 +5,7 @@ import { mockRepoApiResponse } from '@/test/__mocks__/api'
 
 const mockFetch: Mock = vi.fn()
 
-global.fetch = mockFetch as Mock
+global.fetch = mockFetch
 
 describe('api.ts', () => {
   describe('searchRepositories', () => {
@@ -18,7 +18,7 @@ describe('api.ts', () => {
 
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => mockResponse
+        json: () => Promise.resolve(mockResponse)
       })
 
       const result = await searchRepositories('test', false)
@@ -26,14 +26,31 @@ describe('api.ts', () => {
       expect(result).toEqual([mockSearchResult])
 
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('q=test')
+        expect.stringContaining('q=test'),
+        expect.objectContaining({ signal: undefined })
+      )
+    })
+
+    it('passes an abort signal through to fetch when one is provided', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({ items: [] })
+      })
+
+      const controller = new AbortController()
+
+      await searchRepositories('test', false, controller.signal)
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.any(String),
+        { signal: controller.signal }
       )
     })
 
     it('appends stars filter when popularFilter is true', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => ({ items: [] })
+        json: () => Promise.resolve({ items: [] })
       })
 
       await searchRepositories('git', true)
@@ -43,7 +60,8 @@ describe('api.ts', () => {
       const encodedQuery = encodeURIComponent(query).replace(/%20/g, '+')
 
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining(`q=${encodedQuery}`)
+        expect.stringContaining(`q=${encodedQuery}`),
+        expect.objectContaining({ signal: undefined })
       )
     })
 
@@ -53,11 +71,29 @@ describe('api.ts', () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
         status: 500,
-        statusText: 'Server Error'
+        statusText: 'Server Error',
+        headers: new Headers()
       })
 
       await expect(searchRepositories('fail', false)).rejects.toThrow(
         'Failed to search repositories. 500 Server Error'
+      )
+
+      consoleSpy.mockRestore()
+    })
+
+    it('throws a rate-limit specific error when GitHub rate limit is exceeded', async () => {
+      const consoleSpy: MockInstance = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 403,
+        statusText: 'Forbidden',
+        headers: new Headers({ 'x-ratelimit-remaining': '0' })
+      })
+
+      await expect(searchRepositories('fail', false)).rejects.toThrow(
+        /rate limit/i
       )
 
       consoleSpy.mockRestore()
@@ -68,11 +104,27 @@ describe('api.ts', () => {
     it('returns full repository data', async () => {
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => mockRepoApiResponse
+        json: () => Promise.resolve(mockRepoApiResponse)
       })
       const result = await getRepository(mockRepository.owner, mockRepository.name)
 
       expect(result).toEqual(mockRepository)
+    })
+
+    it('passes an abort signal through to fetch when one is provided', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve(mockRepoApiResponse)
+      })
+
+      const controller = new AbortController()
+
+      await getRepository(mockRepository.owner, mockRepository.name, controller.signal)
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.any(String),
+        { signal: controller.signal }
+      )
     })
 
     it('throws an error on failed fetch', async () => {
@@ -81,11 +133,29 @@ describe('api.ts', () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
         status: 404,
-        statusText: 'Not Found'
+        statusText: 'Not Found',
+        headers: new Headers()
       })
 
       await expect(getRepository('bad', 'repo')).rejects.toThrow(
         'Failed to fetch repository. 404 Not Found'
+      )
+
+      consoleSpy.mockRestore()
+    })
+
+    it('throws a rate-limit specific error when GitHub rate limit is exceeded', async () => {
+      const consoleSpy: MockInstance = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 403,
+        statusText: 'Forbidden',
+        headers: new Headers({ 'x-ratelimit-remaining': '0' })
+      })
+
+      await expect(getRepository('bad', 'repo')).rejects.toThrow(
+        /rate limit/i
       )
 
       consoleSpy.mockRestore()

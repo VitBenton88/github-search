@@ -22,7 +22,7 @@ const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], ite
         <Button
           aria-label={`View details for ${repo.name} repository`}
           type="button"
-          onClick={() => handleClick(repo.owner, repo.name)}
+          onClick={() => { void handleClick(repo.owner, repo.name) }}
           data-testid="view-more-btn"
         >
           View

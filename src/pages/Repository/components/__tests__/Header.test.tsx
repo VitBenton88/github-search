@@ -45,7 +45,7 @@ describe('Repository Header', () => {
       })
 
       it('should render correct repository description', () => {
-        expect(elements.description).toHaveTextContent(mockRepository.description)
+        expect(elements.description).toHaveTextContent(mockRepository.description!)
       })
 
       it('should render correct repository owner link', () => {
@@ -73,6 +73,23 @@ describe('Repository Header', () => {
         const contextValue = {
           ...mockRepositoryContext,
           repository: mockRepoWithNoDesc
+        }
+        renderComponent(contextValue)
+      })
+
+      it('should not render repository description', () => {
+        expect(elements.description).not.toBeInTheDocument()
+      })
+    })
+
+    describe('when repository description is null (as returned by the GitHub API)', () => {
+      beforeEach(() => {
+        const mockRepoWithNullDesc = {
+          ...mockRepository, description: null
+        }
+        const contextValue = {
+          ...mockRepositoryContext,
+          repository: mockRepoWithNullDesc
         }
         renderComponent(contextValue)
       })

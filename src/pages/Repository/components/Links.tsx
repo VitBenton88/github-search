@@ -11,7 +11,7 @@ const Links: React.FC<LinksProps> = ({ ...props }) => {
   return (
     <section {...props}>
       <header data-testid="header">
-        <h4>Links:</h4>
+        <h2>Links</h2>
       </header>
 
       <ul>

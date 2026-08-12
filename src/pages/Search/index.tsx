@@ -2,10 +2,13 @@ import { useContext } from 'react'
 import './Search.css'
 import { Loader } from '@/components'
 import { SearchContext } from '@/context/search'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { SearchForm, SearchResults } from '@/pages/Search/components'
 
 const Search: React.FC = () => {
   const { handleSearch, hasSearched, isLoading, results } = useContext(SearchContext)
+
+  useDocumentTitle()
 
   return (
     <main id="search">

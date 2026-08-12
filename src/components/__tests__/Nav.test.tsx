@@ -1,17 +1,7 @@
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { render, type RenderResult, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import Nav from '../Nav'
-
-const mockNavigate: Mock = vi.fn()
-
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom')
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-  }
-})
 
 describe('Nav', () => {
   const renderComponent = (initialEntries: string[] = ['/repo/mock-owner/mock-repo']): RenderResult =>
@@ -22,7 +12,7 @@ describe('Nav', () => {
     )
 
   const elements = {
-    get backBtn() { return screen.getByTestId('back-btn') },
+    get backLink() { return screen.getByTestId('back-link') },
     get nav() { return screen.getByTestId('nav') },
   }
 
@@ -34,20 +24,10 @@ describe('Nav', () => {
     it('should render a nav element', () => {
       expect(elements.nav).toBeInTheDocument()
     })
-  })
 
-  describe('behavior', () => {
-    describe('when clicking back button', () => {
-      beforeEach(async () => {
-        await waitFor(() => {
-          renderComponent()
-          elements.backBtn.click()
-        })
-      })
-
-      it('should navigate user to home route', () => {
-        expect(mockNavigate).toHaveBeenCalledWith('/')
-      })
+    it('should render a link back to the search page', () => {
+      expect(elements.backLink).toHaveAttribute('href', '/')
+      expect(elements.backLink.tagName).toBe('A')
     })
   })
 })

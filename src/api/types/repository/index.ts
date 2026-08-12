@@ -10,7 +10,7 @@ export default interface RepositoryApiResponse {
   owner: RepositoryOwner;
   private: boolean;
   html_url: string;
-  description: string;
+  description: string | null;
   fork: boolean;
   url: string;
   archive_url: string;
@@ -54,8 +54,8 @@ export default interface RepositoryApiResponse {
   mirror_url: string | null;
   hooks_url: string;
   svn_url: string;
-  homepage?: string;
-  language?: string;
+  homepage: string | null;
+  language: string | null;
   forks_count: number;
   forks: number;
   stargazers_count: number;

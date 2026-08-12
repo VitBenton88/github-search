@@ -21,13 +21,15 @@ const Form: React.FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }
   const handleFormSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault()
 
-    onFormSubmit(searchKeyword, filterPopular)
+    void onFormSubmit(searchKeyword, filterPopular)
   }, [searchKeyword, filterPopular, onFormSubmit])
 
   return (
     <form onSubmit={handleFormSubmit} data-testid="form" {...props}>
       <fieldset disabled={disableForm} data-testid="fieldset">
+        <label htmlFor="search-keyword" className="visually-hidden">Search keyword</label>
         <input
+          id="search-keyword"
           type="text"
           placeholder="Enter keyword"
           value={searchKeyword}

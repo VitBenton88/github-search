@@ -1,7 +1,7 @@
 export type SearchHandler = (searchKeyword: string, filterPopular: boolean) => Promise<void>
 
 export type SearchResultType = {
-  description: string
+  description: string | null
   id: number
   name: string
   owner: string

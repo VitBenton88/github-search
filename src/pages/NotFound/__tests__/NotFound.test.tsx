@@ -30,5 +30,9 @@ describe('NotFound', () => {
     it('should render heading element.', () => {
       expect(elements.heading).toBeInTheDocument()
     })
+
+    it('should set document.title to reflect the page was not found.', () => {
+      expect(document.title).toBe('Page not found · GitHub Search')
+    })
   })
 })

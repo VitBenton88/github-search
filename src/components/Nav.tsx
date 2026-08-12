@@ -1,17 +1,14 @@
 import './styles/Nav.css'
-import { useNavigate } from 'react-router-dom'
-import { Button } from '@/components'
+import { Link } from 'react-router-dom'
 
 type NavProps = React.HTMLAttributes<HTMLDivElement>
 
 const Nav: React.FC<NavProps> = ({ ...props }) => {
-  const navigate = useNavigate()
-
   return (
     <nav data-testid="nav" {...props}>
-      <Button type="button" onClick={() => navigate('/')} data-testid="back-btn">
+      <Link to="/" data-testid="back-link">
         &larr; Back to search
-      </Button>
+      </Link>
     </nav>
   )
 }

@@ -1,9 +1,11 @@
 import { MockRepositoryConsumer } from '@mocks/consumers'
 import { mockRepository } from '@mocks/repositories'
-import { render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { act, render, type RenderResult, screen, waitFor } from '@testing-library/react'
+import { useContext } from 'react'
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
+import type { RepositoryType } from '@/context/repository/types'
 import { getRepository } from '@/api'
-import { RepositoryProvider } from '@/context/repository'
+import { RepositoryContext, RepositoryProvider } from '@/context/repository'
 
 const mockNotify: Mock = vi.fn()
 
@@ -43,7 +45,7 @@ describe('RepositoryContext', () => {
         const { fetchBtn, isLoading } = elements
 
         expect(fetchBtn).toBeInTheDocument()
-        expect(isLoading).toHaveTextContent('is not loading')
+        expect(isLoading).toHaveTextContent('is loading')
       })
     })
   })
@@ -60,7 +62,7 @@ describe('RepositoryContext', () => {
       })
 
       it('should call fetch method with correct repo owner and name', () => {
-        expect(getRepository).toHaveBeenCalledWith('mock owner', 'mock name')
+        expect(getRepository).toHaveBeenCalledWith('mock owner', 'mock name', expect.any(AbortSignal))
       })
     })
 
@@ -76,6 +78,48 @@ describe('RepositoryContext', () => {
 
       it('should call notify hook as error', () => {
         expect(mockNotify).toHaveBeenCalledWith('Mock Rejection', 'error')
+      })
+    })
+
+    describe('when a newer fetch is submitted before an older one resolves', () => {
+      const RaceConditionConsumer = (): React.ReactNode => {
+        const context = useContext(RepositoryContext)
+
+        return (
+          <>
+            <div data-testid="repo-name">{context.repository.name}</div>
+            <button data-testid="fetch-first" onClick={() => { void context.handleFetch('owner', 'first') }}>first</button>
+            <button data-testid="fetch-second" onClick={() => { void context.handleFetch('owner', 'second') }}>second</button>
+          </>
+        )
+      }
+
+      it('should keep the newer repository even if the older request resolves last', async () => {
+        const firstRepo: RepositoryType = { ...mockRepository, id: 1, name: 'first-repo' }
+        const secondRepo: RepositoryType = { ...mockRepository, id: 2, name: 'second-repo' }
+
+        let resolveFirst: (value: RepositoryType) => void = () => { }
+        let resolveSecond: (value: RepositoryType) => void = () => { };
+
+        (getRepository as Mock)
+          .mockImplementationOnce(() => new Promise((resolve) => { resolveFirst = resolve }))
+          .mockImplementationOnce(() => new Promise((resolve) => { resolveSecond = resolve }))
+
+        renderContext(<RaceConditionConsumer />)
+
+        act(() => {
+          screen.getByTestId('fetch-first').click()
+          screen.getByTestId('fetch-second').click()
+        })
+
+        // Resolve out of order: the newer ("second") request finishes before the stale ("first") one.
+        resolveSecond(secondRepo)
+        resolveFirst(firstRepo)
+
+        await waitFor(() => {
+          expect(screen.getByTestId('repo-name')).toHaveTextContent('second-repo')
+        })
+        expect(screen.getByTestId('repo-name')).not.toHaveTextContent('first-repo')
       })
     })
   })

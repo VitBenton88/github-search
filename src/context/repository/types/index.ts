@@ -2,17 +2,17 @@ export type FetchHandler = (owner: string, name: string) => Promise<void>
 
 export type RepositoryType = {
   id: number
-  description: string
+  description: string | null
   name: string
   owner: string
   allow_forking: boolean
   archived: boolean
   created_at: string
   has_downloads: boolean
-  homepage: string | undefined
+  homepage: string | null
   html_url: string
   isPrivate: boolean
-  language: string | undefined
+  language: string | null
   owner_url: string
   size: number
   stargazers_count: number
