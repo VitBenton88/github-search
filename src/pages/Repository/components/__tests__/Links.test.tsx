@@ -73,5 +73,36 @@ describe('Repository Links', () => {
         expect(elements.homepageLink).not.toBeInTheDocument()
       })
     })
+
+    describe.each([
+      ['javascript:alert(1)'],
+      ['vbscript:msgbox(1)'],
+      ['data:text/html,<script>alert(1)</script>'],
+      ['ftp://example.com'],
+    ])('when repository homepage uses a non-http(s) scheme (%s)', (homepage) => {
+      beforeEach(() => {
+        renderComponent({
+          ...mockRepositoryContext,
+          repository: { ...mockRepository, homepage }
+        })
+      })
+
+      it('should not render link for repository’s homepage', () => {
+        expect(elements.homepageLink).not.toBeInTheDocument()
+      })
+    })
+
+    describe('when repository homepage has no scheme', () => {
+      beforeEach(() => {
+        renderComponent({
+          ...mockRepositoryContext,
+          repository: { ...mockRepository, homepage: ' example.com/docs ' }
+        })
+      })
+
+      it('should link to it over https', () => {
+        expect(elements.homepageLink).toHaveAttribute('href', 'https://example.com/docs')
+      })
+    })
   })
 })
