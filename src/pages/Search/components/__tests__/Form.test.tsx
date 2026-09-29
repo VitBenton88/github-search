@@ -113,5 +113,38 @@ describe('Search Form', () => {
         expect(mockOnSubmit).toHaveBeenCalledWith(mockSearchTerm, false)
       })
     })
+
+    describe('when submitting a keyword with surrounding whitespace', () => {
+      beforeEach(() => {
+        mockOnSubmit.mockClear()
+        renderComponent()
+        fireEvent.change(elements.searchInput, { target: { value: `  ${mockSearchTerm}  ` } })
+
+        act(() => {
+          elements.submitBtn.click()
+        })
+      })
+
+      it('should submit the trimmed keyword', () => {
+        expect(mockOnSubmit).toHaveBeenCalledWith(mockSearchTerm, false)
+      })
+    })
+
+    describe('when submitting a whitespace-only keyword', () => {
+      beforeEach(() => {
+        mockOnSubmit.mockClear()
+        renderComponent()
+        fireEvent.change(elements.searchInput, { target: { value: '   ' } })
+
+        act(() => {
+          elements.submitBtn.click()
+        })
+      })
+
+      // GitHub rejects a blank query with a 422, so don't send one.
+      it('should not submit', () => {
+        expect(mockOnSubmit).not.toHaveBeenCalled()
+      })
+    })
   })
 })

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import type { SearchHandler } from '@/context/search/types'
 import { Button } from '@/components'
 import { SearchContext } from '@/context/search'
@@ -18,11 +18,15 @@ const Form: React.FC<SearchFormProps> = ({ disableForm, onFormSubmit, ...props }
   const [filterPopular, setFilterPopular] = useState(() => hasSearched ? savedFilterPopular : false)
   const [searchKeyword, setSearchKeyword] = useState(() => hasSearched ? savedSearchTerm : '')
 
-  const handleFormSubmit = useCallback((e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    void onFormSubmit(searchKeyword, filterPopular)
-  }, [searchKeyword, filterPopular, onFormSubmit])
+    // `required` accepts whitespace, but GitHub rejects a blank query with a 422.
+    const keyword = searchKeyword.trim()
+    if (!keyword) return
+
+    void onFormSubmit(keyword, filterPopular)
+  }
 
   return (
     <form onSubmit={handleFormSubmit} data-testid="form" {...props}>
