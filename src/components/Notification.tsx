@@ -9,8 +9,6 @@ export type NotificationProps = {
 const Notification: React.FC<NotificationProps> = ({ message, type, ...props }) => {
   return (
     <div
-      role="status"
-      aria-live="polite"
       className={`notification ${type}`}
       data-testid="notification"
       {...props}
