@@ -1,18 +1,4 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@mocks/*": [
-        "./src/test/__mocks__/*"
-      ]
-    },
-    "types": [
-      "node"
-    ]
-  },
   "files": [],
   "references": [
     {

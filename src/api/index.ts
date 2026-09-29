@@ -33,16 +33,11 @@ const buildErrorMessage = (action: string, response: Response): string => {
  * @param popularFilter - Filter search query for popular repositories (>1k stars).
  * @param signal - Optional AbortSignal to cancel the request.
  */
-export const searchRepositories: SearchReposHandler = async (searchKeyword = '', popularFilter = false, signal) => {
+export const searchRepositories: SearchReposHandler = async (searchKeyword, popularFilter, signal) => {
   const url = new URL(`${BASE_URL}/search/repositories`)
-  url.searchParams.set('q', searchKeyword)
+  url.searchParams.set('q', popularFilter ? `${searchKeyword} stars:>1000` : searchKeyword)
 
-  if (popularFilter) {
-    url.searchParams.set('q', `${searchKeyword} stars:>1000`)
-  }
-
-  const fetchUrl = url.toString()
-  const response = await fetch(fetchUrl, { signal })
+  const response = await fetch(url.toString(), { signal })
 
   if (response.ok) {
     const { items } = await response.json() as { items: RepositoryApiResponse[] }
@@ -66,17 +61,14 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
  * @param name - Repository's name.
  * @param signal - Optional AbortSignal to cancel the request.
  */
-export const getRepository: GetRepoHandler = async (owner = '', name = '', signal) => {
+export const getRepository: GetRepoHandler = async (owner, name, signal) => {
   // owner/name come straight from the URL; refuse anything that could redirect the request
   // to a different API path (e.g. '..' segments, or '?'/'#' decoded from the route).
   if (!isValidPathSegment(owner) || !isValidPathSegment(name)) {
     throw new Error('Repository not found.')
   }
 
-  const url = new URL(`${BASE_URL}/repos/${owner}/${name}`)
-
-  const fetchUrl = url.toString()
-  const response = await fetch(fetchUrl, { signal })
+  const response = await fetch(`${BASE_URL}/repos/${owner}/${name}`, { signal })
 
   if (response.ok) {
     const {

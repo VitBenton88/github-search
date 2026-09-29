@@ -28,7 +28,7 @@ describe('Repository', () => {
     contextValue: RepositoryContextType = mockRepoContext,
     initialEntries: string[] = [`/repo/${mockRepository.owner}/${mockRepository.name}`],
   ): RenderResult => render(
-    <NotificationContext.Provider value={{ notify: vi.fn(), notification: null }}>
+    <NotificationContext.Provider value={{ notify: vi.fn() }}>
       <MemoryRouter initialEntries={initialEntries}>
         <RepositoryContext.Provider value={contextValue}>
           <Repository />
@@ -71,7 +71,7 @@ describe('Repository', () => {
           .mockRejectedValueOnce(new Error('Not Found'))
 
         render(
-          <NotificationContext.Provider value={{ notify: vi.fn(), notification: null }}>
+          <NotificationContext.Provider value={{ notify: vi.fn() }}>
             <MemoryRouter initialEntries={['/repo/owner/first']}>
               <Routes>
                 <Route path="/repo/:owner/:name" element={<Repository />} />

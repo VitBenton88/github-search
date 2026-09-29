@@ -1,9 +1,9 @@
 import './styles/Nav.css'
 import { Link } from 'react-router-dom'
 
-type NavProps = React.HTMLAttributes<HTMLDivElement>
+type NavProps = React.HTMLAttributes<HTMLElement>
 
-const Nav: React.FC<NavProps> = ({ ...props }) => {
+const Nav: React.FC<NavProps> = (props) => {
   return (
     <nav data-testid="nav" {...props}>
       <Link to="/" data-testid="back-link">

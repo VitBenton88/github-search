@@ -1,6 +1,6 @@
 
 
-import { act, render, type RenderResult, screen } from '@testing-library/react'
+import { act, cleanup, render, type RenderResult, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { NotificationProvider } from '@/context/notification'
 import { useNotification } from '@/hooks/useNotification'
@@ -8,7 +8,10 @@ import { useNotification } from '@/hooks/useNotification'
 const TestComponent = () => {
   const notify = useNotification()
   return (
-    <button onClick={() => notify('Test message', 'success')}>Trigger</button>
+    <>
+      <button onClick={() => notify('Test message', 'success')}>Trigger</button>
+      <button onClick={() => notify('Test message', 'success', 1000)}>Trigger short</button>
+    </>
   )
 }
 
@@ -22,6 +25,7 @@ describe('NotificationProvider', () => {
 
   const elements = {
     get button() { return screen.getByText('Trigger') },
+    get shortButton() { return screen.getByText('Trigger short') },
     get notification() { return screen.getByText('Test message') },
     get region() { return screen.getByRole('status') },
   }
@@ -66,6 +70,35 @@ describe('NotificationProvider', () => {
       })
 
       expect(notification).not.toBeInTheDocument()
+    })
+
+    it('should dismiss after the default 4000ms', () => {
+      act(() => { vi.advanceTimersByTime(3999) })
+      expect(screen.queryByText('Test message')).toBeInTheDocument()
+
+      act(() => { vi.advanceTimersByTime(1) })
+      expect(screen.queryByText('Test message')).not.toBeInTheDocument()
+    })
+
+    it('should restart the timer when another notification is sent', () => {
+      act(() => { vi.advanceTimersByTime(3000) })
+      act(() => { elements.button.click() })
+      act(() => { vi.advanceTimersByTime(3000) })
+
+      expect(screen.queryByText('Test message')).toBeInTheDocument()
+    })
+
+    it('should honour a custom timeout', () => {
+      act(() => { elements.shortButton.click() })
+      act(() => { vi.advanceTimersByTime(1000) })
+
+      expect(screen.queryByText('Test message')).not.toBeInTheDocument()
+    })
+
+    it('should clear its pending timer when unmounted', () => {
+      cleanup()
+
+      expect(vi.getTimerCount()).toBe(0)
     })
 
     it('should render the notification inside the live region', () => {

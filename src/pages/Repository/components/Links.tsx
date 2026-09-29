@@ -20,9 +20,9 @@ const toSafeHomepageUrl = (homepage: string | null): string | null => {
   }
 }
 
-type LinksProps = React.HTMLAttributes<HTMLDivElement>
+type LinksProps = React.HTMLAttributes<HTMLElement>
 
-const Links: React.FC<LinksProps> = ({ ...props }) => {
+const Links: React.FC<LinksProps> = (props) => {
   const { repository } = useContext(RepositoryContext)
   const { homepage, html_url } = repository
   const homepageUrl = toSafeHomepageUrl(homepage)

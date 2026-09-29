@@ -16,7 +16,7 @@ describe('useNotification', () => {
     const notifyMock: Mock = vi.fn()
 
     render(
-      <NotificationContext.Provider value={{ notify: notifyMock, notification: null }}>
+      <NotificationContext.Provider value={{ notify: notifyMock }}>
         <MockComponent />
       </NotificationContext.Provider>
     )
