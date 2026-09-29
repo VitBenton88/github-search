@@ -51,13 +51,37 @@ describe('RepositoryContext', () => {
   })
 
   describe('behavior', () => {
-    describe('when searching', () => {
+    beforeEach(() => {
+      mockNotify.mockClear()
+    })
+
+    // Mirror fetch: reject with an AbortError once the request's signal is aborted. Browsers'
+    // DOMException is an Error, but jsdom's isn't, so use a plain Error named AbortError.
+    const mockAbortableFetch = (signals: AbortSignal[], resolvers: ((value: RepositoryType) => void)[]) => {
+      (getRepository as Mock).mockImplementation((_owner: string, _name: string, signal: AbortSignal) =>
+        new Promise((resolve, reject) => {
+          signals.push(signal)
+          resolvers.push(resolve)
+          signal.addEventListener('abort', () => reject(Object.assign(new Error('The operation was aborted.'), { name: 'AbortError' })))
+        })
+      )
+    }
+
+    const flushPromises = async (): Promise<void> => {
+      await act(async () => { await new Promise((resolve) => setTimeout(resolve, 0)) })
+    }
+
+    describe('when fetching', () => {
       beforeEach(async () => {
         (getRepository as Mock).mockResolvedValue(mockRepository)
 
-        await waitFor(() => {
-          renderContext()
+        renderContext()
+        act(() => {
           elements.fetchBtn.click()
+        })
+
+        await waitFor(() => {
+          expect(elements.isLoading).toHaveTextContent('is not loading')
         })
       })
 
@@ -70,14 +94,36 @@ describe('RepositoryContext', () => {
       beforeEach(async () => {
         (getRepository as Mock).mockRejectedValue(new Error('Mock Rejection'))
 
-        await waitFor(() => {
-          renderContext()
+        renderContext()
+        act(() => {
           elements.fetchBtn.click()
+        })
+
+        await waitFor(() => {
+          expect(elements.isLoading).toHaveTextContent('is not loading')
         })
       })
 
       it('should call notify hook as error', () => {
         expect(mockNotify).toHaveBeenCalledWith('Mock Rejection', 'error')
+      })
+    })
+
+    describe('when unmounted while a fetch is in flight', () => {
+      it('should abort the request without surfacing its rejection', async () => {
+        const signals: AbortSignal[] = []
+        mockAbortableFetch(signals, [])
+
+        const { unmount } = renderContext()
+        act(() => {
+          elements.fetchBtn.click()
+        })
+
+        unmount()
+        await flushPromises()
+
+        expect(signals[0].aborted).toBe(true)
+        expect(mockNotify).not.toHaveBeenCalled()
       })
     })
 
@@ -88,6 +134,7 @@ describe('RepositoryContext', () => {
         return (
           <>
             <div data-testid="repo-name">{context.repository.name}</div>
+            <div data-testid="is-loading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
             <button data-testid="fetch-first" onClick={() => { void context.handleFetch('owner', 'first') }}>first</button>
             <button data-testid="fetch-second" onClick={() => { void context.handleFetch('owner', 'second') }}>second</button>
           </>
@@ -120,6 +167,35 @@ describe('RepositoryContext', () => {
           expect(screen.getByTestId('repo-name')).toHaveTextContent('second-repo')
         })
         expect(screen.getByTestId('repo-name')).not.toHaveTextContent('first-repo')
+      })
+
+      it('should abort the older request without surfacing its rejection or clearing the loading state', async () => {
+        const secondRepo: RepositoryType = { ...mockRepository, id: 2, name: 'second-repo' }
+        const signals: AbortSignal[] = []
+        const resolvers: ((value: RepositoryType) => void)[] = []
+        mockAbortableFetch(signals, resolvers)
+
+        renderContext(<RaceConditionConsumer />)
+
+        act(() => {
+          screen.getByTestId('fetch-first').click()
+          screen.getByTestId('fetch-second').click()
+        })
+
+        expect(signals[0].aborted).toBe(true)
+        expect(signals[1].aborted).toBe(false)
+
+        await flushPromises()
+
+        expect(mockNotify).not.toHaveBeenCalled()
+        expect(screen.getByTestId('is-loading')).toHaveTextContent('is loading')
+
+        act(() => { resolvers[1](secondRepo) })
+
+        await waitFor(() => {
+          expect(screen.getByTestId('is-loading')).toHaveTextContent('is not loading')
+        })
+        expect(screen.getByTestId('repo-name')).toHaveTextContent('second-repo')
       })
     })
   })

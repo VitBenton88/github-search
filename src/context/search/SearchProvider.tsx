@@ -29,19 +29,19 @@ const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     try {
       const reposFetch = await searchRepositories(searchKeyword, filterPopular, controller.signal)
 
-      // A newer search has since started; discard this now-stale response.
-      if (abortControllerRef.current !== controller) return
+      // Aborted by a newer search; discard this now-stale response.
+      if (controller.signal.aborted) return
 
       setResults(reposFetch)
     } catch (error) {
-      if (abortControllerRef.current !== controller) return
+      if (controller.signal.aborted) return
 
       if (error instanceof Error) {
         notify(error.message, 'error')
       }
     } finally {
       // Only the most recent request should be allowed to clear the loading state.
-      if (abortControllerRef.current === controller) {
+      if (!controller.signal.aborted) {
         setIsLoading(false)
       }
     }

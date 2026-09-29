@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { FetchHandler, RepositoryContextType, RepositoryType } from '@/context/repository/types'
 import { getRepository } from '@/api'
 import { RepositoryContext } from '@/context/repository'
@@ -21,23 +21,27 @@ const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     try {
       const fetchedRepository = await getRepository(owner, name, controller.signal)
 
-      // A newer fetch has since started; discard this now-stale response.
-      if (abortControllerRef.current !== controller) return
+      // Aborted by a newer fetch or by unmounting; discard this now-stale response.
+      if (controller.signal.aborted) return
 
       setRepository(fetchedRepository)
     } catch (error) {
-      if (abortControllerRef.current !== controller) return
+      if (controller.signal.aborted) return
 
       if (error instanceof Error) {
         notify(error.message, 'error')
       }
     } finally {
       // Only the most recent request should be allowed to clear the loading state.
-      if (abortControllerRef.current === controller) {
+      if (!controller.signal.aborted) {
         setIsLoading(false)
       }
     }
   }, [notify])
+
+  // Cancel any in-flight fetch on unmount (e.g. navigating back to search), so a late
+  // failure can't raise an error toast for a repository the user has already left.
+  useEffect(() => () => abortControllerRef.current?.abort(), [])
 
   const contextValue = useMemo((): RepositoryContextType => ({
     handleFetch,
