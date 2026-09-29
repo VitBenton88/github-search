@@ -41,6 +41,7 @@ describe('RepositoryMain', () => {
   const elements = {
     get access() { return screen.queryByTestId('access') },
     get details() { return screen.queryByTestId('details') },
+    get error() { return screen.queryByTestId('error') },
     get header() { return screen.queryAllByTestId('header') },
     get loader() { return screen.queryByTestId('loader') },
     get notFound() { return screen.queryByTestId('not-found') },
@@ -116,6 +117,28 @@ describe('RepositoryMain', () => {
 
       it('should set document.title to reflect the repository was not found', () => {
         expect(document.title).toBe('Repository not found · GitHub Search')
+      })
+    })
+
+    describe('when the fetch failed', () => {
+      beforeEach(() => {
+        renderComponent({
+          ...mockRepositoryContext,
+          error: 'GitHub API rate limit exceeded. Please try again later.',
+          repository: { ...mockRepository, id: 0 }
+        })
+      })
+
+      it('should render the error instead of "not found"', () => {
+        const { error, header, notFound } = elements
+
+        expect(error).toHaveTextContent('GitHub API rate limit exceeded. Please try again later.')
+        expect(notFound).not.toBeInTheDocument()
+        expect(header[0]).toBeUndefined()
+      })
+
+      it('should set document.title to reflect the error', () => {
+        expect(document.title).toBe('Repository unavailable · GitHub Search')
       })
     })
 

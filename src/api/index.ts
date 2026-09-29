@@ -116,6 +116,8 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '', signa
       stargazers_count,
       updated_at
     }
+  } else if (response.status === 404) {
+    throw new Error('Repository not found.')
   } else {
     throw new Error(buildErrorMessage('fetch repository', response))
   }

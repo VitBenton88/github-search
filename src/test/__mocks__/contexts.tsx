@@ -13,6 +13,7 @@ export const mockSearchContext: SearchContextType = {
 }
 
 export const mockRepositoryContext: RepositoryContextType = {
+  error: null,
   handleFetch: vi.fn(),
   isLoading: false,
   repository: mockRepository

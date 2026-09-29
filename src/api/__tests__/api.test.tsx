@@ -151,9 +151,7 @@ describe('api.ts', () => {
         headers: new Headers()
       })
 
-      await expect(getRepository('bad', 'repo')).rejects.toThrow(
-        'Failed to fetch repository. 404 Not Found'
-      )
+      await expect(getRepository('bad', 'repo')).rejects.toThrow('Repository not found.')
 
       consoleSpy.mockRestore()
     })

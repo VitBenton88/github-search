@@ -20,6 +20,7 @@ export type RepositoryType = {
 }
 
 export type RepositoryContextType = {
+  error: string | null
   handleFetch: FetchHandler
   isLoading: boolean
   repository: RepositoryType
