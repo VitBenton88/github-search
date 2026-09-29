@@ -6,6 +6,10 @@ const BASE_URL = 'https://api.github.com'
 const isRateLimited = (response: Response): boolean =>
   (response.status === 403 || response.status === 429) && response.headers.get('x-ratelimit-remaining') === '0'
 
+// GitHub owner and repository names only use these characters; '.' and '..' are not valid names.
+const isValidPathSegment = (segment: string): boolean =>
+  /^[\w.-]+$/.test(segment) && segment !== '.' && segment !== '..'
+
 /**
  * Build a user-facing error message for a failed response, special-casing
  * GitHub's rate limit so it isn't confused with a generic request failure.
@@ -63,6 +67,12 @@ export const searchRepositories: SearchReposHandler = async (searchKeyword = '',
  * @param signal - Optional AbortSignal to cancel the request.
  */
 export const getRepository: GetRepoHandler = async (owner = '', name = '', signal) => {
+  // owner/name come straight from the URL; refuse anything that could redirect the request
+  // to a different API path (e.g. '..' segments, or '?'/'#' decoded from the route).
+  if (!isValidPathSegment(owner) || !isValidPathSegment(name)) {
+    throw new Error('Repository not found.')
+  }
+
   const url = new URL(`${BASE_URL}/repos/${owner}/${name}`)
 
   const fetchUrl = url.toString()
@@ -106,6 +116,8 @@ export const getRepository: GetRepoHandler = async (owner = '', name = '', signa
       stargazers_count,
       updated_at
     }
+  } else if (response.status === 404) {
+    throw new Error('Repository not found.')
   } else {
     throw new Error(buildErrorMessage('fetch repository', response))
   }

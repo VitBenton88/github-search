@@ -7,6 +7,7 @@ import { useNotification } from '@/hooks/useNotification'
 
 const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const notify = useNotification()
+  const [fetchError, setFetchError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [repository, setRepository] = useState<RepositoryType>(defaultRepositoryContext.repository)
   const abortControllerRef = useRef<AbortController | null>(null)
@@ -17,6 +18,7 @@ const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const controller = new AbortController()
     abortControllerRef.current = controller
 
+    setFetchError(null)
     setIsLoading(true)
     try {
       const fetchedRepository = await getRepository(owner, name, controller.signal)
@@ -29,6 +31,7 @@ const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (controller.signal.aborted) return
 
       if (error instanceof Error) {
+        setFetchError(error.message)
         notify(error.message, 'error')
       }
     } finally {
@@ -44,10 +47,11 @@ const RepositoryProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => () => abortControllerRef.current?.abort(), [])
 
   const contextValue = useMemo((): RepositoryContextType => ({
+    error: fetchError,
     handleFetch,
     isLoading,
     repository,
-  }), [handleFetch, isLoading, repository])
+  }), [fetchError, handleFetch, isLoading, repository])
 
   return (
     <RepositoryContext.Provider value={contextValue}>

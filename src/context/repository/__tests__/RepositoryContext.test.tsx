@@ -31,6 +31,7 @@ describe('RepositoryContext', () => {
   }
 
   const elements = {
+    get error() { return screen.getByTestId('error') },
     get fetchBtn() { return screen.getByTestId('fetch-button') },
     get isLoading() { return screen.getByTestId('is-loading') },
   }
@@ -106,6 +107,22 @@ describe('RepositoryContext', () => {
 
       it('should call notify hook as error', () => {
         expect(mockNotify).toHaveBeenCalledWith('Mock Rejection', 'error')
+      })
+
+      it('should expose the error message', () => {
+        expect(elements.error).toHaveTextContent('Mock Rejection')
+      })
+
+      it('should clear the error when a later fetch succeeds', async () => {
+        (getRepository as Mock).mockResolvedValue(mockRepository)
+
+        act(() => {
+          elements.fetchBtn.click()
+        })
+
+        await waitFor(() => {
+          expect(elements.error).toBeEmptyDOMElement()
+        })
       })
     })
 

@@ -7,7 +7,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { Access, Details, Header, Links } from '@/pages/Repository/components'
 
 const RepositoryMain: React.FC = () => {
-  const { handleFetch, isLoading, repository } = useContext(RepositoryContext)
+  const { error, handleFetch, isLoading, repository } = useContext(RepositoryContext)
   const { name, owner } = useParams<{ owner: string, name: string }>()
 
   useEffect(() => {
@@ -18,7 +18,9 @@ const RepositoryMain: React.FC = () => {
 
   const pageTitle = isLoading
     ? 'Loading…'
-    : repository.id
+    : error
+      ? 'Repository unavailable'
+      : repository.id
       ? `${repository.owner}/${repository.name}`
       : 'Repository not found'
 
@@ -28,6 +30,8 @@ const RepositoryMain: React.FC = () => {
     <main id="repository">
       {isLoading ? (
         <Loader data-testid="loader" />
+      ) : error ? (
+        <h1 data-testid="error">{error}</h1>
       ) : !repository.id ? (
         <h1 data-testid="not-found">Repository not found.</h1>
       ) : (

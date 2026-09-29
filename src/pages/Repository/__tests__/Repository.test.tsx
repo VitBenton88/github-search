@@ -90,7 +90,7 @@ describe('Repository', () => {
         })
 
         await waitFor(() => {
-          expect(screen.getByTestId('not-found')).toBeInTheDocument()
+          expect(screen.getByTestId('error')).toHaveTextContent('Not Found')
         })
         expect(screen.queryByText('first-repo')).not.toBeInTheDocument()
       })
