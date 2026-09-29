@@ -1,6 +1,6 @@
-import { type JSX, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { SearchResultType } from '@/context/search/types'
+import type { JSX } from 'react'
 import { Button } from '@/components'
 
 export type SearchResultsProps = {
@@ -9,10 +9,8 @@ export type SearchResultsProps = {
   items: SearchResultType[]
 } & React.HTMLAttributes<HTMLDivElement>
 
-const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], items = [], ...props }) => {
+const Results: React.FC<SearchResultsProps> = ({ caption, headers, items, ...props }) => {
   const navigate = useNavigate()
-
-  const handleClick = useCallback((owner: string, name: string) => navigate(`/repo/${owner}/${name}`), [navigate])
 
   const renderTableRow = (repo: SearchResultType): JSX.Element => (
     <tr key={repo.id} data-testid="result">
@@ -22,7 +20,7 @@ const Results: React.FC<SearchResultsProps> = ({ caption = '', headers = [], ite
         <Button
           aria-label={`View details for ${repo.name} repository`}
           type="button"
-          onClick={() => { void handleClick(repo.owner, repo.name) }}
+          onClick={() => { void navigate(`/repo/${repo.owner}/${repo.name}`) }}
           data-testid="view-more-btn"
         >
           View

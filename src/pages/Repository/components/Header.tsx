@@ -2,9 +2,11 @@ import { useContext } from 'react'
 import { Link } from '@/components'
 import { RepositoryContext } from '@/context/repository'
 
-type HeaderProps = React.HTMLAttributes<HTMLDivElement>
+const formatDisplayDate = (isoString: string): string => new Date(isoString).toLocaleString()
 
-const Header: React.FC<HeaderProps> = ({ ...props }) => {
+type HeaderProps = React.HTMLAttributes<HTMLElement>
+
+const Header: React.FC<HeaderProps> = (props) => {
   const { repository } = useContext(RepositoryContext)
   const {
     created_at,
@@ -15,8 +17,6 @@ const Header: React.FC<HeaderProps> = ({ ...props }) => {
     stargazers_count,
     updated_at
   } = repository
-
-  const formatDisplayDate = (isoString: string): string => new Date(isoString).toLocaleString()
 
   return (
     <header {...props}>

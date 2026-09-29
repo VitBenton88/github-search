@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
-import type { SearchContextType, SearchHandler } from '@/context/search/types'
-import type { SearchResultType } from '@/context/search/types'
+import type { SearchContextType, SearchHandler, SearchResultType } from '@/context/search/types'
 import { searchRepositories } from '@/api'
 import { SearchContext } from '@/context/search'
 import { useNotification } from '@/hooks/useNotification'
