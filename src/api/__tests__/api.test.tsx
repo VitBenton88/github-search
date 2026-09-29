@@ -127,6 +127,20 @@ describe('api.ts', () => {
       )
     })
 
+    it.each([
+      ['..', 'users'],
+      ['../../users', 'octocat'],
+      ['owner', '.'],
+      ['owner?x=1', 'repo'],
+      ['owner', 'repo#frag'],
+      ['', 'repo'],
+    ])('rejects owner %j / name %j without calling the API', async (owner, name) => {
+      mockFetch.mockClear()
+
+      await expect(getRepository(owner, name)).rejects.toThrow('Repository not found.')
+      expect(mockFetch).not.toHaveBeenCalled()
+    })
+
     it('throws an error on failed fetch', async () => {
       const consoleSpy: MockInstance = vi.spyOn(console, 'error').mockImplementation(() => { })
 
