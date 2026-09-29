@@ -1,11 +1,10 @@
 export type NotificationType = 'success' | 'error' | 'info'
 
-export type Notification = {
+export type NotificationMessage = {
   message: string
   type: NotificationType
 }
 
 export type NotificationContextType = {
-  notification: Notification | null
-  notify: (message: string, type: NotificationType) => void
+  notify: (message: string, type: NotificationType, timeout?: number) => void
 }

@@ -1,11 +1,11 @@
-import { useCallback, useRef, useState } from 'react'
-import type { Notification, NotificationType } from '@/context/notification/types'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { NotificationContextType, NotificationMessage, NotificationType } from '@/context/notification/types'
 import NotificationComponent from '@/components/Notification'
 import { NotificationContext } from '@/context/notification'
 
 const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const [notification, setNotification] = useState<Notification | null>(null)
+  const [notification, setNotification] = useState<NotificationMessage | null>(null)
   // Changes on every notify so a repeated message renders a new node and is re-announced.
   const [notificationId, setNotificationId] = useState(0)
 
@@ -23,8 +23,14 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
     }, timeout)
   }, [])
 
+  useEffect(() => () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+  }, [])
+
+  const contextValue = useMemo((): NotificationContextType => ({ notify }), [notify])
+
   return (
-    <NotificationContext.Provider value={{ notify, notification }}>
+    <NotificationContext.Provider value={contextValue}>
       {/* Kept mounted: screen readers only announce changes to a live region that already exists. */}
       <div role="status" aria-live="polite">
         {notification && (
