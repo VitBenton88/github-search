@@ -20,7 +20,7 @@ CI (`.github/workflows/deploy.yml`) runs lint → tests → build on pull reques
 
 React 19 + TypeScript SPA that searches the public GitHub REST API (unauthenticated, so rate limits apply) and shows repository details.
 
-**Routing & hosting.** `main.tsx` wraps the app in a `HashRouter` (required for GitHub Pages; Vite `base` is `/github-search/`). Routes live in `src/router/index.tsx`: `/` → Search, `/repo/:owner/:name` → Repository, `*` → NotFound. The router calls `useFocusMainOnRouteChange`, which moves focus to the page's `<main>` on every navigation — so every page must render a `<main>` element.
+**Routing & hosting.** `main.tsx` wraps the app in a `HashRouter` (required for GitHub Pages; Vite `base` is `/github-search/`). Production builds get a Content-Security-Policy `<meta>` tag from a build-only plugin in `vite.config.ts` (only `api.github.com` is allowed for `connect-src`); update it if the app starts loading anything from another origin. Routes live in `src/router/index.tsx`: `/` → Search, `/repo/:owner/:name` → Repository, `*` → NotFound. The router calls `useFocusMainOnRouteChange`, which moves focus to the page's `<main>` on every navigation — so every page must render a `<main>` element.
 
 **State via context providers**, one folder per domain under `src/context/<domain>/` containing `<Domain>Context`, `<Domain>Provider`, a `types/` folder, `*.constants.ts` default value, and an `index.ts` barrel.
 - `NotificationProvider` (outermost, in `App.tsx`) renders the toast and exposes `notify(message, type, timeout?)` via the `useNotification` hook. Providers report API errors through `notify` rather than exposing error state.
