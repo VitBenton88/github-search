@@ -61,18 +61,34 @@ describe('SearchContext', () => {
   })
 
   describe('behavior', () => {
+    beforeEach(() => {
+      mockNotify.mockClear()
+    })
+
     describe('when searching', () => {
       beforeEach(async () => {
         (searchRepositories as Mock).mockResolvedValue(mockRepos)
 
-        await waitFor(() => {
-          renderContext()
+        renderContext()
+        act(() => {
           elements.searchBtn.click()
+        })
+
+        await waitFor(() => {
+          expect(elements.isLoading).toHaveTextContent('is not loading')
         })
       })
 
       it('should call search method with correct term and filter', () => {
         expect(searchRepositories).toHaveBeenCalledWith('mock search term', false, expect.any(AbortSignal))
+      })
+
+      it('should store the results and search state', () => {
+        const { hasSearched, results, searchTerm } = elements
+
+        expect(hasSearched).toHaveTextContent('has searched')
+        expect(results).toHaveTextContent('1')
+        expect(searchTerm).toHaveTextContent('mock search term')
       })
     })
 
@@ -80,9 +96,13 @@ describe('SearchContext', () => {
       beforeEach(async () => {
         (searchRepositories as Mock).mockRejectedValue(new Error('Mock Rejection'))
 
-        await waitFor(() => {
-          renderContext()
+        renderContext()
+        act(() => {
           elements.searchBtn.click()
+        })
+
+        await waitFor(() => {
+          expect(elements.isLoading).toHaveTextContent('is not loading')
         })
       })
 
@@ -98,6 +118,7 @@ describe('SearchContext', () => {
         return (
           <>
             <div data-testid="results">{context.results.map((result) => result.name).join(',')}</div>
+            <div data-testid="is-loading">{context.isLoading ? 'is loading' : 'is not loading'}</div>
             <button data-testid="first-search" onClick={() => { void context.handleSearch('first', false) }}>first</button>
             <button data-testid="second-search" onClick={() => { void context.handleSearch('second', false) }}>second</button>
           </>
@@ -134,6 +155,47 @@ describe('SearchContext', () => {
           expect(screen.getByTestId('results')).toHaveTextContent('second-repo')
         })
         expect(screen.getByTestId('results')).not.toHaveTextContent('first-repo')
+      })
+
+      it('should abort the older request without surfacing its rejection or clearing the loading state', async () => {
+        const secondResults: SearchResultType[] = [{
+          id: 2, name: 'second-repo', description: '', owner: 'owner'
+        }]
+        const signals: AbortSignal[] = []
+        const resolvers: ((value: SearchResultType[]) => void)[] = [];
+
+        // Mirror fetch: reject with an AbortError once the request's signal is aborted. Browsers'
+        // DOMException is an Error, but jsdom's isn't, so use a plain Error named AbortError.
+        (searchRepositories as Mock).mockImplementation((_keyword: string, _filter: boolean, signal: AbortSignal) =>
+          new Promise((resolve, reject) => {
+            signals.push(signal)
+            resolvers.push(resolve)
+            signal.addEventListener('abort', () => reject(Object.assign(new Error('The operation was aborted.'), { name: 'AbortError' })))
+          })
+        )
+
+        renderContext(<RaceConditionConsumer />)
+
+        act(() => {
+          screen.getByTestId('first-search').click()
+          screen.getByTestId('second-search').click()
+        })
+
+        expect(signals[0].aborted).toBe(true)
+        expect(signals[1].aborted).toBe(false)
+
+        // Let the aborted request's rejection settle.
+        await act(async () => { await new Promise((resolve) => setTimeout(resolve, 0)) })
+
+        expect(mockNotify).not.toHaveBeenCalled()
+        expect(screen.getByTestId('is-loading')).toHaveTextContent('is loading')
+
+        act(() => { resolvers[1](secondResults) })
+
+        await waitFor(() => {
+          expect(screen.getByTestId('is-loading')).toHaveTextContent('is not loading')
+        })
+        expect(screen.getByTestId('results')).toHaveTextContent('second-repo')
       })
     })
   })
