@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-Node >= 20.
+Node `^20.19.0 || >=22.12.0` (Vite 8's requirement; CI uses Node 24).
 
 - `npm run dev` — Vite dev server
 - `npm run build` — `tsc -b` type-check, then Vite build to `dist/`
@@ -14,7 +14,7 @@ Node >= 20.
 - `npm test -- --run -t "should render a search form"` — run tests matching a name
 - `npm run coverage` — Vitest with v8 coverage
 
-CI (`.github/workflows/deploy.yml`) runs lint → tests → build on every push to `main` and deploys `dist/` to GitHub Pages. A lint or test failure blocks the deploy.
+CI (`.github/workflows/deploy.yml`) runs lint → tests → build on pull requests and pushes to `main`; only pushes to `main` upload and deploy `dist/` to GitHub Pages, and a lint or test failure blocks the deploy. Workflow permissions are `contents: read` except on the deploy job, and actions are pinned to commit SHAs (Dependabot updates them) — keep both when editing the workflow.
 
 ## Architecture
 

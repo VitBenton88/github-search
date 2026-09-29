@@ -24,7 +24,7 @@ A responsive and accessible web application that allows users to search for GitH
 
 ### Prerequisites
 
-- **Node.js** (version 20 or higher)
+- **Node.js** (20.19+ or 22.12+, as required by Vite)
 - **npm** (version 8 or higher)
 
 ### Installation
